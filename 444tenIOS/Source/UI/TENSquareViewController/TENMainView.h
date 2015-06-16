@@ -15,5 +15,4 @@
 @property (nonatomic, strong)   IBOutlet UIButton       *nextButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *randomButton;
 
-
 @end

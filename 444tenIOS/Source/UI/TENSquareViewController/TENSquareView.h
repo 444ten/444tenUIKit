@@ -8,19 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, TENSquarePosition) {
-    TENPositionLeftUp,
-    TENPositionRightUp,
-    TENPositionRightDown,
-    TENPositionLeftDown,
-    TENPositionCount
-};
+#import "TENSquare.h"
 
 @interface TENSquareView : UIView
-@property (nonatomic, assign)   TENSquarePosition   position;
-@property (nonatomic, assign)   TENSquarePosition   targetPosition;
+@property (nonatomic, strong)   TENSquare   *square;
 
-- (void)setTargetPosition:(TENSquarePosition)targetPosition animated:(BOOL)animated;
+- (void)setTargetPosition:(TENSquarePosition)targetPosition;
+- (void)setTargetPosition:(TENSquarePosition)targetPosition
+                 animated:(BOOL)animated;
 - (void)setTargetPosition:(TENSquarePosition)targetPosition
                  animated:(BOOL)animated
         completionHandler:(void (^)(BOOL finished))completion;

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TENSquare;
+
 @interface TENSquareViewController : UIViewController
+@property (nonatomic, strong)   TENSquare   *square;
 
 - (IBAction)onNextButton:(id)sender;
 - (IBAction)onRandomButton:(id)sender;

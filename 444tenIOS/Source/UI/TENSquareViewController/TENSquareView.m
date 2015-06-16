@@ -8,16 +8,6 @@
 
 #import "TENSquareView.h"
 
-static const NSTimeInterval TENAnimateDuration  = 1.0;
-static const NSTimeInterval TENAnimateDelay     = 0.0;
-
-
-@interface TENSquareView ()
-
-- (CGRect)frameForPosition:(TENSquarePosition)position;
-
-@end
-
 @implementation TENSquareView
 
 #pragma mark -
@@ -35,7 +25,8 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
            animated:(BOOL)animated
   completionHandler:(void (^)(BOOL finished))completion
 {
-    _targetPosition = targetPosition;
+    TENSquare *square = self.square;
+    square.targetPosition = targetPosition;
 
     NSTimeInterval duration = animated ? TENAnimateDuration : 0;
     
@@ -43,45 +34,15 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
                           delay:TENAnimateDelay
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.frame = [self frameForPosition:targetPosition];
+                         self.frame = [square frameForPosition:targetPosition inSuperviewFrame:self.superview.frame];
                      }
                      completion:^(BOOL finished) {
-                         _position = targetPosition;
+                         square.position = targetPosition;
                          
                          if (completion) {
                              completion(finished);
                          }
                      }];
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (CGRect)frameForPosition:(TENSquarePosition)targetPosition {
-    CGRect frame = self.frame;
-    CGRect superviewFrame = self.superview.frame;
-    
-    CGFloat maxX = CGRectGetWidth(superviewFrame) - CGRectGetWidth(frame);
-    CGFloat maxY = CGRectGetHeight(superviewFrame) - CGRectGetHeight(frame);
-    
-    CGPoint origin = CGPointZero;
-    switch (targetPosition) {
-        case TENPositionRightUp:
-            origin.x = maxX;
-            break;
-        case TENPositionRightDown:
-            origin = CGPointMake(maxX, maxY);
-            break;
-        case TENPositionLeftDown:
-            origin.y = maxY;
-            break;
-        default:
-            break;
-    }
-    
-    frame.origin = origin;
-    
-    return frame;
 }
 
 @end

@@ -9,12 +9,13 @@
 #import "TENSquareViewController.h"
 
 #import "TENMainView.h"
+#import "TENSquare.h"
 #import "TENSquareView.h"
 
 @interface TENSquareViewController ()
 @property (nonatomic, readonly) TENMainView *mainView;
 
-- (TENSquarePosition)targetPositionRandom:(BOOL)random;
+- (void)changeSquareTargetPositionRandom:(BOOL)random;
 
 @end
 
@@ -49,27 +50,23 @@
 #pragma mark Interface Handling
 
 - (IBAction)onNextButton:(id)sender {
-    [self.mainView.squareView setTargetPosition:[self targetPositionRandom:NO] animated:YES];
+    [self changeSquareTargetPositionRandom:NO];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self.mainView.squareView setTargetPosition:[self targetPositionRandom:YES] animated:YES];
+    [self changeSquareTargetPositionRandom:YES];
 }
 
-- (TENSquarePosition)targetPositionRandom:(BOOL)random {
-    TENSquarePosition result;
-    TENSquarePosition targetPosition = self.mainView.squareView.targetPosition;
+#pragma mark -
+#pragma mark Interface Handling
 
-    if (random) {
-        result = arc4random_uniform(TENPositionCount);
-        if (result == targetPosition) {
-            return [self targetPositionRandom:YES];
-        }
-    } else {
-        result = (targetPosition + 1) % TENPositionCount;
-    }
+- (void)changeSquareTargetPositionRandom:(BOOL)random {
+    TENSquare *square = self.square;
+    TENSquareView *squareView = self.mainView.squareView;
     
-    return result;
+    squareView.square = square;
+    [squareView setTargetPosition:[square targetPositionRandom:random] animated:YES];
+    
 }
 
 @end
