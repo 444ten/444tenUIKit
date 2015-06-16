@@ -14,7 +14,7 @@
 @interface TENSquareViewController ()
 @property (nonatomic, readonly) TENMainView *mainView;
 
-- (TENSquarePosition)randomTargetPosition;
+- (TENSquarePosition)targetPositionRandom:(BOOL)random;
 
 @end
 
@@ -49,20 +49,24 @@
 #pragma mark Interface Handling
 
 - (IBAction)onNextButton:(id)sender {
-    TENSquareView *square = self.mainView.squareView;
-    TENSquarePosition position = (square.targetPosition + 1) % TENPositionCount;
-    
-    [square setTargetPosition:position animated:YES];
+    [self.mainView.squareView setTargetPosition:[self targetPositionRandom:NO] animated:YES];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self.mainView.squareView setTargetPosition:[self randomTargetPosition] animated:YES];
+    [self.mainView.squareView setTargetPosition:[self targetPositionRandom:YES] animated:YES];
 }
 
-- (TENSquarePosition)randomTargetPosition {
-    TENSquarePosition result = arc4random_uniform(TENPositionCount);
-    if (result == self.mainView.squareView.targetPosition) {
-        return [self randomTargetPosition];
+- (TENSquarePosition)targetPositionRandom:(BOOL)random {
+    TENSquarePosition result;
+    TENSquarePosition targetPosition = self.mainView.squareView.targetPosition;
+
+    if (random) {
+        result = arc4random_uniform(TENPositionCount);
+        if (result == targetPosition) {
+            return [self targetPositionRandom:YES];
+        }
+    } else {
+        result = (targetPosition + 1) % TENPositionCount;
     }
     
     return result;
