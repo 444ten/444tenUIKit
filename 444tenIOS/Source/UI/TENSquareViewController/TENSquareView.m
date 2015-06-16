@@ -8,7 +8,7 @@
 
 #import "TENSquareView.h"
 
-static const NSTimeInterval TENAnimateDuration  = 2.0;
+static const NSTimeInterval TENAnimateDuration  = 1.0;
 static const NSTimeInterval TENAnimateDelay     = 0.0;
 
 

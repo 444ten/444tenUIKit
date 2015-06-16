@@ -14,6 +14,8 @@
 @interface TENSquareViewController ()
 @property (nonatomic, readonly) TENMainView *mainView;
 
+- (TENSquarePosition)randomTargetPosition;
+
 @end
 
 @implementation TENSquareViewController
@@ -54,12 +56,16 @@
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    TENSquareView *square = self.mainView.squareView;
-    TENSquarePosition position = arc4random_uniform(TENPositionCount);
-    
-    [square setTargetPosition:position animated:YES];
-    
+    [self.mainView.squareView setTargetPosition:[self randomTargetPosition] animated:YES];
 }
 
+- (TENSquarePosition)randomTargetPosition {
+    TENSquarePosition result = arc4random_uniform(TENPositionCount);
+    if (result == self.mainView.squareView.targetPosition) {
+        return [self randomTargetPosition];
+    }
+    
+    return result;
+}
 
 @end
