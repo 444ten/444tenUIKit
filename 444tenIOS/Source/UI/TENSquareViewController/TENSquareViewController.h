@@ -1,5 +1,5 @@
 //
-//  TENAppDelegate.h
+//  TENSquareViewController.h
 //  TENSquare
 //
 //  Created by Andrey Ten on 6/11/15.
@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TENAppDelegate : UIResponder <UIApplicationDelegate>
-@property (strong, nonatomic) UIWindow *window;
+@interface TENSquareViewController : UIViewController
 
+- (IBAction)onNextButton:(id)sender;
 
 @end
-

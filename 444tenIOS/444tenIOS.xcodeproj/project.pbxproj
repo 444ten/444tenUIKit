@@ -12,6 +12,10 @@
 		6CFBE99E1B3025BA0051E3D6 /* _44tenIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE99D1B3025BA0051E3D6 /* _44tenIOSTests.m */; };
 		6CFBE9B21B3028290051E3D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9AF1B3028290051E3D6 /* LaunchScreen.xib */; };
 		6CFBE9B31B3028290051E3D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9B11B3028290051E3D6 /* Images.xcassets */; };
+		6CFBE9BC1B3029B30051E3D6 /* TENMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9B61B3029B30051E3D6 /* TENMainView.m */; };
+		6CFBE9BD1B3029B30051E3D6 /* TENSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9B81B3029B30051E3D6 /* TENSquareView.m */; };
+		6CFBE9BE1B3029B30051E3D6 /* TENSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9BA1B3029B30051E3D6 /* TENSquareViewController.m */; };
+		6CFBE9BF1B3029B30051E3D6 /* TENSquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9BB1B3029B30051E3D6 /* TENSquareViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,13 @@
 		6CFBE99D1B3025BA0051E3D6 /* _44tenIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _44tenIOSTests.m; sourceTree = "<group>"; };
 		6CFBE9B01B3028290051E3D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6CFBE9B11B3028290051E3D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6CFBE9B51B3029B30051E3D6 /* TENMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENMainView.h; sourceTree = "<group>"; };
+		6CFBE9B61B3029B30051E3D6 /* TENMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENMainView.m; sourceTree = "<group>"; };
+		6CFBE9B71B3029B30051E3D6 /* TENSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSquareView.h; sourceTree = "<group>"; };
+		6CFBE9B81B3029B30051E3D6 /* TENSquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENSquareView.m; sourceTree = "<group>"; };
+		6CFBE9B91B3029B30051E3D6 /* TENSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSquareViewController.h; sourceTree = "<group>"; };
+		6CFBE9BA1B3029B30051E3D6 /* TENSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENSquareViewController.m; sourceTree = "<group>"; };
+		6CFBE9BB1B3029B30051E3D6 /* TENSquareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENSquareViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +157,7 @@
 		6CFBE9AD1B3027230051E3D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6CFBE9B41B3029B30051E3D6 /* TENSquareViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -157,6 +169,20 @@
 				6CFBE9B11B3028290051E3D6 /* Images.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6CFBE9B41B3029B30051E3D6 /* TENSquareViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6CFBE9B91B3029B30051E3D6 /* TENSquareViewController.h */,
+				6CFBE9BA1B3029B30051E3D6 /* TENSquareViewController.m */,
+				6CFBE9BB1B3029B30051E3D6 /* TENSquareViewController.xib */,
+				6CFBE9B51B3029B30051E3D6 /* TENMainView.h */,
+				6CFBE9B61B3029B30051E3D6 /* TENMainView.m */,
+				6CFBE9B71B3029B30051E3D6 /* TENSquareView.h */,
+				6CFBE9B81B3029B30051E3D6 /* TENSquareView.m */,
+			);
+			path = TENSquareViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CFBE9BF1B3029B30051E3D6 /* TENSquareViewController.xib in Resources */,
 				6CFBE9B21B3028290051E3D6 /* LaunchScreen.xib in Resources */,
 				6CFBE9B31B3028290051E3D6 /* Images.xcassets in Resources */,
 			);
@@ -258,7 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CFBE9BE1B3029B30051E3D6 /* TENSquareViewController.m in Sources */,
 				6CFBE9871B3025B90051E3D6 /* TENAppDelegate.m in Sources */,
+				6CFBE9BD1B3029B30051E3D6 /* TENSquareView.m in Sources */,
+				6CFBE9BC1B3029B30051E3D6 /* TENMainView.m in Sources */,
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
