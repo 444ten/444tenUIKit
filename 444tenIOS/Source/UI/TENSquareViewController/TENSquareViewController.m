@@ -48,11 +48,18 @@
 
 - (IBAction)onNextButton:(id)sender {
     TENSquareView *square = self.mainView.squareView;
-    TENSquarePosition position = (square.position + 1) % TENPositionCount;
+    TENSquarePosition position = (square.targetPosition + 1) % TENPositionCount;
     
-    [square setPosition:position];
-    
-//    [square setPosition:position animated:NO];
+    [square setTargetPosition:position animated:YES];
 }
+
+- (IBAction)onRandomButton:(id)sender {
+    TENSquareView *square = self.mainView.squareView;
+    TENSquarePosition position = arc4random_uniform(TENPositionCount);
+    
+    [square setTargetPosition:position animated:YES];
+    
+}
+
 
 @end

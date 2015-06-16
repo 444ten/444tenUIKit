@@ -11,5 +11,6 @@
 @interface TENSquareViewController : UIViewController
 
 - (IBAction)onNextButton:(id)sender;
+- (IBAction)onRandomButton:(id)sender;
 
 @end

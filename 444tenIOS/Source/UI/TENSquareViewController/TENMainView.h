@@ -13,6 +13,7 @@
 @interface TENMainView : UIView
 @property (nonatomic, strong)   IBOutlet TENSquareView  *squareView;
 @property (nonatomic, strong)   IBOutlet UIButton       *nextButton;
+@property (nonatomic, strong)   IBOutlet UIButton       *randomButton;
 
 
 @end

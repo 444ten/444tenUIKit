@@ -23,41 +23,41 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setPosition:(TENSquarePosition)position {
-    [self setPosition:position animated:NO];
+- (void)setTargetPosition:(TENSquarePosition)targetPosition {
+    [self setTargetPosition:targetPosition animated:NO];
 }
 
-- (void)setPosition:(TENSquarePosition)position animated:(BOOL)animated {
-    [self setPosition:position animated:animated completionHandler:nil];
+- (void)setTargetPosition:(TENSquarePosition)targetPosition animated:(BOOL)animated {
+    [self setTargetPosition:targetPosition animated:animated completionHandler:nil];
 }
 
-- (void)setPosition:(TENSquarePosition)position
+- (void)setTargetPosition:(TENSquarePosition)targetPosition
            animated:(BOOL)animated
   completionHandler:(void (^)(BOOL finished))completion
 {
-    if (_position != position) {
-        NSTimeInterval duration = animated ? TENAnimateDuration : 0;
-        
-        [UIView animateWithDuration:duration
-                              delay:TENAnimateDelay
-                            options:UIViewAnimationOptionBeginFromCurrentState
-                         animations:^{
-                             self.frame = [self frameForPosition:position];
+    _targetPosition = targetPosition;
+
+    NSTimeInterval duration = animated ? TENAnimateDuration : 0;
+    
+    [UIView animateWithDuration:duration
+                          delay:TENAnimateDelay
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         self.frame = [self frameForPosition:targetPosition];
+                     }
+                     completion:^(BOOL finished) {
+                         _position = targetPosition;
+                         
+                         if (completion) {
+                             completion(finished);
                          }
-                         completion:^(BOOL finished) {
-                             _position = position;
-                             
-                             if (completion) {
-                                 completion(finished);
-                             }
-                         }];
-    }
+                     }];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (CGRect)frameForPosition:(TENSquarePosition)position {
+- (CGRect)frameForPosition:(TENSquarePosition)targetPosition {
     CGRect frame = self.frame;
     CGRect superviewFrame = self.superview.frame;
     
@@ -65,7 +65,7 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
     CGFloat maxY = CGRectGetHeight(superviewFrame) - CGRectGetHeight(frame);
     
     CGPoint origin = CGPointZero;
-    switch (position) {
+    switch (targetPosition) {
         case TENPositionRightUp:
             origin.x = maxX;
             break;
