@@ -17,6 +17,11 @@ typedef NS_ENUM(NSUInteger, TENSquarePosition) {
 };
 
 @interface TENSquareView : UIView
-@property (nonatomic, unsafe_unretained)    TENSquarePosition   squarePosition;
+@property (nonatomic, unsafe_unretained)    TENSquarePosition   position;
+
+- (void)setPosition:(TENSquarePosition)position animated:(BOOL)animated;
+- (void)setPosition:(TENSquarePosition)position
+           animated:(BOOL)animated
+  completionHandler:(void (^)(BOOL finished))completion;
 
 @end
