@@ -13,7 +13,7 @@ typedef NS_ENUM(NSUInteger, TENSquarePosition) {
     TENPositionRightUp,
     TENPositionRightDown,
     TENPositionLeftDown,
-    TENositionCount
+    TENPositionCount
 };
 
 @interface TENSquareView : UIView

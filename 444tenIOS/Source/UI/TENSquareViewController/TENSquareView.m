@@ -10,7 +10,7 @@
 
 @interface TENSquareView ()
 
-- (CGPoint)originWithPosition:(TENSquarePosition)position;
+- (CGRect)frameForPosition:(TENSquarePosition)position;
 
 @end
 
@@ -21,9 +21,7 @@
 
 - (void)setSquarePosition:(TENSquarePosition)squarePosition {
     if (_squarePosition != squarePosition) {
-        CGRect frame = self.frame;
-        frame.origin = [self originWithPosition:squarePosition];
-        self.frame = frame;
+        self.frame = [self frameForPosition:squarePosition];
         
         _squarePosition = squarePosition;
     }
@@ -32,30 +30,31 @@
 #pragma mark -
 #pragma mark Private
 
-- (CGPoint)originWithPosition:(TENSquarePosition)position {
-    CGPoint origin;
+- (CGRect)frameForPosition:(TENSquarePosition)position {
+    CGRect frame = self.frame;
+    CGRect superviewFrame = self.superview.frame;
+    
+    CGFloat maxX = CGRectGetWidth(superviewFrame) - CGRectGetWidth(frame);
+    CGFloat maxY = CGRectGetHeight(superviewFrame) - CGRectGetHeight(frame);
+    
+    CGPoint origin = CGPointZero;
     switch (position) {
-        case TENPositionLeftUp: {
-            origin = CGPointMake(0.0, 0.0);
+        case TENPositionRightUp:
+            origin.x = maxX;
             break;
-        }
-        case TENPositionLeftDown: {
-            origin = CGPointMake(0.0, 100.0);
+        case TENPositionRightDown:
+            origin = CGPointMake(maxX, maxY);
             break;
-        }
-        case TENPositionRightUp: {
-            origin = CGPointMake(100.0, 0.0);
+        case TENPositionLeftDown:
+            origin.y = maxY;
             break;
-        }
-        case TENPositionRightDown: {
-            origin = CGPointMake(100.0, 100.0);
-            break;
-        }
         default:
             break;
     }
     
-    return origin;
+    frame.origin = origin;
+    
+    return frame;
 }
 
 @end

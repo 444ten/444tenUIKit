@@ -48,7 +48,7 @@
 
 - (IBAction)onNextButton:(id)sender {
     TENSquareView *square = self.mainView.squareView;
-    square.squarePosition = (square.squarePosition + 1) % TENositionCount;
+    square.squarePosition = (square.squarePosition + 1) % TENPositionCount;
 }
 
 @end
