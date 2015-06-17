@@ -26,6 +26,14 @@ typedef void(^TENPositionBlock)(BOOL);
 #pragma mark -
 #pragma mark Accessors
 
+- (void) setSquare:(TENSquareModel *)square {
+    if (_square != square) {
+        _square = square;
+    }
+    
+    self.mainView.squareView.square = square;    
+}
+
 - (TENMainView *)mainView {
     if ([self isViewLoaded] && [self.view isKindOfClass:[TENMainView class]]) {
         return (TENMainView *)self.view;
