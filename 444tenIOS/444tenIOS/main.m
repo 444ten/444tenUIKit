@@ -1,8 +1,8 @@
 //
 //  main.m
-//  444tenIOS
+//  TENSquare
 //
-//  Created by Andrey Ten on 6/16/15.
+//  Created by Andrey Ten on 6/11/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>4A629C0E-85BF-4A63-85B5-57DA2D998330</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>444tenIOS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>21360D580FA7B0F2CDF1F9358393FAFD60AFD385</key>
 		<string>https://github.com/444ten/444tenUIKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>444tenIOS/444tenIOS.xcodeproj/project.xcworkspace</string>
+	<string>444tenIOS/444tenIOS.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>21360D580FA7B0F2CDF1F9358393FAFD60AFD385</key>
