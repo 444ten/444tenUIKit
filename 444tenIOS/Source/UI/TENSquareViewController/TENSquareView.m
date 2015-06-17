@@ -62,7 +62,17 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
           completionHandler:completion];
 }
 
-#pragma mark - 
+- (void)cyclicMoveToNextPositionWithCompletion:(void (^)(BOOL finished))completion {
+        [self moveToNextPositionWithAnimated:YES completion:^(BOOL finished) {
+            if (finished && self.isMoving) {
+                [self cyclicMoveToNextPositionWithCompletion:completion];
+            }
+            
+            completion(finished);
+        }];
+}
+
+#pragma mark -
 #pragma mark Private
 
 - (CGRect)frameForPosition:(TENSquarePosition)position {

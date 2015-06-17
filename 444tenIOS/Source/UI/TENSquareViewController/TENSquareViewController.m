@@ -12,6 +12,8 @@
 #import "TENSquareModel.h"
 #import "TENSquareView.h"
 
+typedef void(^TENPositionBlock)(BOOL);
+
 @interface TENSquareViewController ()
 @property (nonatomic, readonly) TENMainView *mainView;
 
@@ -49,25 +51,33 @@
 #pragma mark Interface Handling
 
 - (IBAction)onNextButton:(id)sender {
-    TENSquareModel *square = self.square;
-    [self.mainView.squareView moveToNextPositionWithAnimated:YES
-                                                  completion:^(BOOL finished) {
-                                                      if (finished) {
-                                                          square.position = square.targetPosition;
-                                                      }
-                                                  }];
-    NSLog(@"position %lu -> %lu", square.position, square.targetPosition);
+    [self.mainView.squareView moveToNextPositionWithAnimated:YES completion:[self positionBlock]];
 }
 
 - (IBAction)onRandomButton:(id)sender {
+    [self.mainView.squareView moveToRandomPositionWithAnimated:YES completion:[self positionBlock]];
+}
+
+- (IBAction)onStartStopButton:(id)sender {
+    TENSquareView *squareView = self.mainView.squareView;
+    BOOL isMoving = squareView.isMoving;
+    squareView.moving = !isMoving;
+    
+    [(UIButton *)sender setTitle:isMoving ? @"start" : @"stop" forState:UIControlStateNormal];
+    
+    if (!isMoving) {
+        [squareView cyclicMoveToNextPositionWithCompletion:[self positionBlock]];
+    }
+}
+
+- (TENPositionBlock)positionBlock {
     TENSquareModel *square = self.square;
-    [self.mainView.squareView moveToRandomPositionWithAnimated:YES
-                                                  completion:^(BOOL finished) {
-                                                      if (finished) {
-                                                          square.position = square.targetPosition;
-                                                      }
-                                                  }];
-    NSLog(@"position %lu -> %lu", square.position, square.targetPosition);
+    
+    return ^(BOOL finished) {
+        if (finished) {
+            square.position = square.targetPosition;
+        }
+    };
 }
 
 @end

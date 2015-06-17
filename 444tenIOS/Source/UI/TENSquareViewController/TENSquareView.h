@@ -11,7 +11,8 @@
 #import "TENSquareModel.h"
 
 @interface TENSquareView : UIView
-@property (nonatomic, strong)   TENSquareModel  *square;
+@property (nonatomic, strong)                   TENSquareModel  *square;
+@property (nonatomic, assign, getter=isMoving)  BOOL            moving;
 
 - (void)setTargetPosition:(TENSquarePosition)targetPosition;
 - (void)setTargetPosition:(TENSquarePosition)targetPosition
@@ -23,5 +24,6 @@
 - (void)moveToNextPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 - (void)moveToRandomPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 
+- (void)cyclicMoveToNextPositionWithCompletion:(void (^)(BOOL finished))completion;
 
 @end
