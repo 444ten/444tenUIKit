@@ -8,6 +8,15 @@
 
 #import "TENSquareView.h"
 
+static const NSTimeInterval TENAnimateDuration  = 1.0;
+static const NSTimeInterval TENAnimateDelay     = 0.0;
+
+@interface TENSquareView ()
+
+- (CGRect)frameForPosition:(TENSquarePosition)position;
+
+@end
+
 @implementation TENSquareView
 
 #pragma mark -
@@ -34,7 +43,7 @@
                           delay:TENAnimateDelay
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.frame = [square frameForPosition:targetPosition inSuperviewFrame:self.superview.frame];
+                         self.frame = [self frameForPosition:targetPosition];
                      }
                      completion:^(BOOL finished) {
                          square.position = targetPosition;
@@ -43,6 +52,36 @@
                              completion(finished);
                          }
                      }];
+}
+
+#pragma mark - 
+#pragma mark Private
+
+- (CGRect)frameForPosition:(TENSquarePosition)position {
+    CGRect frame = self.frame;
+    CGRect superviewFrame = self.superview.frame;
+    
+    CGFloat maxX = CGRectGetWidth(superviewFrame) - CGRectGetWidth(frame);
+    CGFloat maxY = CGRectGetHeight(superviewFrame) - CGRectGetHeight(frame);
+    
+    CGPoint origin = CGPointZero;
+    switch (position) {
+        case TENPositionRightUp:
+            origin.x = maxX;
+            break;
+        case TENPositionRightDown:
+            origin = CGPointMake(maxX, maxY);
+            break;
+        case TENPositionLeftDown:
+            origin.y = maxY;
+            break;
+        default:
+            break;
+    }
+    
+    frame.origin = origin;
+    
+    return frame;
 }
 
 @end

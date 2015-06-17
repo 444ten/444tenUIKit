@@ -65,8 +65,12 @@
     TENSquareView *squareView = self.mainView.squareView;
     
     squareView.square = square;
-    [squareView setTargetPosition:[square targetPositionRandom:random] animated:YES];
     
+    if (random) {
+        [squareView setTargetPosition:[square randomTargetPosition] animated:YES];
+    } else {
+        [squareView setTargetPosition:[square nextTargetPosition] animated:YES];
+    }
 }
 
 @end

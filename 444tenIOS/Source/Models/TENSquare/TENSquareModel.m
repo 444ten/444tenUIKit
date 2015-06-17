@@ -13,47 +13,19 @@
 #pragma mark -
 #pragma mark Public
 
-- (TENSquarePosition)targetPositionRandom:(BOOL)random {
-    TENSquarePosition result;
-    TENSquarePosition targetPosition = self.targetPosition;
-    
-    if (random) {
-        result = arc4random_uniform(TENPositionCount);
-        if (result == targetPosition) {
-            return [self targetPositionRandom:YES];
-        }
-    } else {
-        result = (targetPosition + 1) % TENPositionCount;
-    }
-    
-    return result;
+- (TENSquarePosition)nextTargetPosition {
+    return (self.targetPosition + 1) % TENPositionCount;
 }
 
-- (CGRect)frameForPosition:(TENSquarePosition)position inSuperviewFrame:(CGRect)superviewFrame {
-    CGRect frame;
-    frame.size = CGSizeMake(sizeSquare, sizeSquare);
+- (TENSquarePosition)randomTargetPosition {
+    TENSquarePosition result = 0;
+    TENSquarePosition targetPosition = self.targetPosition;
     
-    CGFloat maxX = CGRectGetWidth(superviewFrame) - CGRectGetWidth(frame);
-    CGFloat maxY = CGRectGetHeight(superviewFrame) - CGRectGetHeight(frame);
+    do {
+        result = arc4random_uniform(TENPositionCount);
+    } while (result == targetPosition);
     
-    CGPoint origin = CGPointZero;
-    switch (self.targetPosition) {
-        case TENPositionRightUp:
-            origin.x = maxX;
-            break;
-        case TENPositionRightDown:
-            origin = CGPointMake(maxX, maxY);
-            break;
-        case TENPositionLeftDown:
-            origin.y = maxY;
-            break;
-        default:
-            break;
-    }
-    
-    frame.origin = origin;
-    
-    return frame;
+    return result;
 }
 
 @end
