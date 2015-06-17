@@ -20,4 +20,8 @@
                  animated:(BOOL)animated
         completionHandler:(void (^)(BOOL finished))completion;
 
+- (void)moveToNextPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
+- (void)moveToRandomPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
+
+
 @end

@@ -36,22 +36,30 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
 {
     TENSquareModel *square = self.square;
     square.targetPosition = targetPosition;
-
-    NSTimeInterval duration = animated ? TENAnimateDuration : 0;
     
-    [UIView animateWithDuration:duration
+    [UIView animateWithDuration:animated ? TENAnimateDuration : 0
                           delay:TENAnimateDelay
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.frame = [self frameForPosition:targetPosition];
                      }
                      completion:^(BOOL finished) {
-                         square.position = targetPosition;
-                         
                          if (completion) {
                              completion(finished);
                          }
                      }];
+}
+
+- (void)moveToNextPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
+    [self setTargetPosition:[self.square nextTargetPosition]
+                   animated:animated
+          completionHandler:completion];
+}
+
+- (void)moveToRandomPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
+    [self setTargetPosition:[self.square randomTargetPosition]
+                   animated:animated
+          completionHandler:completion];
 }
 
 #pragma mark - 

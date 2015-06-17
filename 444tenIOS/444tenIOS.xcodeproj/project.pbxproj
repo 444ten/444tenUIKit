@@ -171,13 +171,13 @@
 		6CFBE9B41B3029B30051E3D6 /* TENSquareViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6CFBE9C81B31832A0051E3D6 /* TENSquareViewController.h */,
+				6CFBE9C91B31832A0051E3D6 /* TENSquareViewController.m */,
+				6CFBE9CA1B31832A0051E3D6 /* TENSquareViewController.xib */,
 				6CFBE9C41B31832A0051E3D6 /* TENMainView.h */,
 				6CFBE9C51B31832A0051E3D6 /* TENMainView.m */,
 				6CFBE9C61B31832A0051E3D6 /* TENSquareView.h */,
 				6CFBE9C71B31832A0051E3D6 /* TENSquareView.m */,
-				6CFBE9C81B31832A0051E3D6 /* TENSquareViewController.h */,
-				6CFBE9C91B31832A0051E3D6 /* TENSquareViewController.m */,
-				6CFBE9CA1B31832A0051E3D6 /* TENSquareViewController.xib */,
 			);
 			path = TENSquareViewController;
 			sourceTree = "<group>";
@@ -423,8 +423,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = 444tenIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -433,8 +435,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = 444tenIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

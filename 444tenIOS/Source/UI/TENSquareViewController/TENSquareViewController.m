@@ -15,8 +15,6 @@
 @interface TENSquareViewController ()
 @property (nonatomic, readonly) TENMainView *mainView;
 
-- (void)changeSquareTargetPositionRandom:(BOOL)random;
-
 @end
 
 @implementation TENSquareViewController
@@ -40,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.mainView.squareView.square = self.square;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,27 +49,25 @@
 #pragma mark Interface Handling
 
 - (IBAction)onNextButton:(id)sender {
-    [self changeSquareTargetPositionRandom:NO];
+    TENSquareModel *square = self.square;
+    [self.mainView.squareView moveToNextPositionWithAnimated:YES
+                                                  completion:^(BOOL finished) {
+                                                      if (finished) {
+                                                          square.position = square.targetPosition;
+                                                      }
+                                                  }];
+    NSLog(@"position %lu -> %lu", square.position, square.targetPosition);
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self changeSquareTargetPositionRandom:YES];
-}
-
-#pragma mark -
-#pragma mark Interface Handling
-
-- (void)changeSquareTargetPositionRandom:(BOOL)random {
     TENSquareModel *square = self.square;
-    TENSquareView *squareView = self.mainView.squareView;
-    
-    squareView.square = square;
-    
-    if (random) {
-        [squareView setTargetPosition:[square randomTargetPosition] animated:YES];
-    } else {
-        [squareView setTargetPosition:[square nextTargetPosition] animated:YES];
-    }
+    [self.mainView.squareView moveToRandomPositionWithAnimated:YES
+                                                  completion:^(BOOL finished) {
+                                                      if (finished) {
+                                                          square.position = square.targetPosition;
+                                                      }
+                                                  }];
+    NSLog(@"position %lu -> %lu", square.position, square.targetPosition);
 }
 
 @end
