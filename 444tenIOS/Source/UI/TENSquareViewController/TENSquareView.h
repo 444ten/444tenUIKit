@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TENSquare.h"
+#import "TENSquareModel.h"
 
 @interface TENSquareView : UIView
-@property (nonatomic, strong)   TENSquare   *square;
+@property (nonatomic, strong)   TENSquareModel  *square;
 
 - (void)setTargetPosition:(TENSquarePosition)targetPosition;
 - (void)setTargetPosition:(TENSquarePosition)targetPosition

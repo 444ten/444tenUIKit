@@ -1,14 +1,14 @@
 //
-//  TENSquare.m
+//  TENSquareModel.m
 //  444tenIOS
 //
 //  Created by Andrey Ten on 6/16/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENSquare.h"
+#import "TENSquareModel.h"
 
-@implementation TENSquare
+@implementation TENSquareModel
 
 #pragma mark -
 #pragma mark Public

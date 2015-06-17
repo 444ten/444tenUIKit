@@ -1,5 +1,5 @@
 //
-//  TENSquare.h
+//  TENSquareModel.h
 //  444tenIOS
 //
 //  Created by Andrey Ten on 6/16/15.
@@ -21,7 +21,7 @@ static const CGFloat    sizeSquare  = 50.0;
 static const NSTimeInterval TENAnimateDuration  = 1.0;
 static const NSTimeInterval TENAnimateDelay     = 0.0;
 
-@interface TENSquare : NSObject
+@interface TENSquareModel : NSObject
 @property (nonatomic, assign)   TENSquarePosition   position;
 @property (nonatomic, assign)   TENSquarePosition   targetPosition;
 

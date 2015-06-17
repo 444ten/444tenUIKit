@@ -9,7 +9,7 @@
 #import "TENSquareViewController.h"
 
 #import "TENMainView.h"
-#import "TENSquare.h"
+#import "TENSquareModel.h"
 #import "TENSquareView.h"
 
 @interface TENSquareViewController ()
@@ -61,7 +61,7 @@
 #pragma mark Interface Handling
 
 - (void)changeSquareTargetPositionRandom:(BOOL)random {
-    TENSquare *square = self.square;
+    TENSquareModel *square = self.square;
     TENSquareView *squareView = self.mainView.squareView;
     
     squareView.square = square;

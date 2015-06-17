@@ -25,7 +25,7 @@
            animated:(BOOL)animated
   completionHandler:(void (^)(BOOL finished))completion
 {
-    TENSquare *square = self.square;
+    TENSquareModel *square = self.square;
     square.targetPosition = targetPosition;
 
     NSTimeInterval duration = animated ? TENAnimateDuration : 0;

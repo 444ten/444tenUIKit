@@ -9,7 +9,7 @@
 #import "TENAppDelegate.h"
 
 #import "TENSquareViewController.h"
-#import "TENSquare.h"
+#import "TENSquareModel.h"
 
 @interface TENAppDelegate ()
 
@@ -22,7 +22,7 @@
     self.window = window;
 
     TENSquareViewController *controller = [TENSquareViewController new];
-    controller.square = [TENSquare new];
+    controller.square = [TENSquareModel new];
     
     window.rootViewController = controller;
     window.backgroundColor = [UIColor greenColor];
