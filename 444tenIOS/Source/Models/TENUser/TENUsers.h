@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENUsers : NSObject
+@class TENUser;
+
+@interface TENUsers : NSObject <NSFastEnumeration>
+
+- (TENUser *)objectAtIndexedSubscript:(NSUInteger)index;
 
 @end

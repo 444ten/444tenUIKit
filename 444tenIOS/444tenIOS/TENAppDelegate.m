@@ -11,6 +11,7 @@
 #import "TENSquareModel.h"
 #import "TENSquareViewController.h"
 
+#import "TENUsers.h"
 #import "TENUsersViewController.h"
 
 @interface TENAppDelegate ()
@@ -27,6 +28,7 @@
 //    controller.square = [TENSquareModel new];
     
     TENUsersViewController *controller = [TENUsersViewController new];
+    TENUsers *users = [TENUsers new];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];
