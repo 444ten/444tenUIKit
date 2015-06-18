@@ -8,8 +8,10 @@
 
 #import "TENAppDelegate.h"
 
-#import "TENSquareViewController.h"
 #import "TENSquareModel.h"
+#import "TENSquareViewController.h"
+
+#import "TENUsersViewController.h"
 
 @interface TENAppDelegate ()
 
@@ -21,11 +23,12 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
 
-    TENSquareViewController *controller = [TENSquareViewController new];
-    controller.square = [TENSquareModel new];
+//    TENSquareViewController *controller = [TENSquareViewController new];
+//    controller.square = [TENSquareModel new];
     
+    TENUsersViewController *controller = [TENUsersViewController new];
+
     window.rootViewController = controller;
-    window.backgroundColor = [UIColor greenColor];
     [window makeKeyAndVisible];
     
     return YES;

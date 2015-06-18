@@ -20,6 +20,7 @@
 		6CFBE9D51B32FCE10051E3D6 /* TENMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9D41B32FCE10051E3D6 /* TENMacro.m */; };
 		6CFBE9E01B32FED80051E3D6 /* TENUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9DE1B32FED80051E3D6 /* TENUsersViewController.m */; };
 		6CFBE9E11B32FED80051E3D6 /* TENUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9DF1B32FED80051E3D6 /* TENUsersViewController.xib */; };
+		6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9E31B32FF730051E3D6 /* TENUsersView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		6CFBE9DD1B32FED80051E3D6 /* TENUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUsersViewController.h; sourceTree = "<group>"; };
 		6CFBE9DE1B32FED80051E3D6 /* TENUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUsersViewController.m; sourceTree = "<group>"; };
 		6CFBE9DF1B32FED80051E3D6 /* TENUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENUsersViewController.xib; sourceTree = "<group>"; };
+		6CFBE9E21B32FF730051E3D6 /* TENUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUsersView.h; sourceTree = "<group>"; };
+		6CFBE9E31B32FF730051E3D6 /* TENUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUsersView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,8 @@
 				6CFBE9DD1B32FED80051E3D6 /* TENUsersViewController.h */,
 				6CFBE9DE1B32FED80051E3D6 /* TENUsersViewController.m */,
 				6CFBE9DF1B32FED80051E3D6 /* TENUsersViewController.xib */,
+				6CFBE9E21B32FF730051E3D6 /* TENUsersView.h */,
+				6CFBE9E31B32FF730051E3D6 /* TENUsersView.m */,
 			);
 			path = TENUsersViewController;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				6CFBE9CB1B31832A0051E3D6 /* TENMainView.m in Sources */,
 				6CFBE9E01B32FED80051E3D6 /* TENUsersViewController.m in Sources */,
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,
+				6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */,
 				6CFBE9CD1B31832A0051E3D6 /* TENSquareViewController.m in Sources */,
 				6CFBE9D11B3183380051E3D6 /* TENSquareModel.m in Sources */,
 				6CFBE9D51B32FCE10051E3D6 /* TENMacro.m in Sources */,
