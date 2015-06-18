@@ -71,7 +71,7 @@ typedef void(^TENPositionBlock)(BOOL);
     BOOL isMoving = squareView.isMoving;
     squareView.moving = !isMoving;
     
-    [(UIButton *)sender setTitle:isMoving ? @"start" : @"stop" forState:UIControlStateNormal];
+    [self.mainView updateStartStopButtonForMovingState:isMoving];
     
     if (!isMoving) {
         [squareView cyclicMoveToNextPositionWithCompletion:[self positionBlock]];

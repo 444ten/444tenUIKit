@@ -10,4 +10,11 @@
 
 @implementation TENMainView
 
+#pragma mark -
+#pragma mark Public
+
+- (void)updateStartStopButtonForMovingState:(BOOL)moving {
+    [self.startStopButton setTitle:moving ? @"start" : @"stop" forState:UIControlStateNormal];
+}
+
 @end

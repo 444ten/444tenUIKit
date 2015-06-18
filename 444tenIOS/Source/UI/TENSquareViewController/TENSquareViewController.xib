@@ -56,6 +56,7 @@
                 <outlet property="nextButton" destination="vvU-bw-s1p" id="liK-Gy-hxx"/>
                 <outlet property="randomButton" destination="eWp-X4-DYn" id="Qd9-Kh-tdZ"/>
                 <outlet property="squareView" destination="ELI-5K-1Dd" id="4az-VV-4Dy"/>
+                <outlet property="startStopButton" destination="MRa-vP-Hs7" id="Gbs-ys-sHu"/>
             </connections>
             <point key="canvasLocation" x="471" y="505"/>
         </view>
