@@ -22,6 +22,7 @@
 		6CFBE9E11B32FED80051E3D6 /* TENUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9DF1B32FED80051E3D6 /* TENUsersViewController.xib */; };
 		6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9E31B32FF730051E3D6 /* TENUsersView.m */; };
 		6CFBE9E81B3301250051E3D6 /* TENUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9E71B3301250051E3D6 /* TENUser.m */; };
+		6CFBE9EB1B3302C50051E3D6 /* TENUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9EA1B3302C50051E3D6 /* TENUsers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		6CFBE9E31B32FF730051E3D6 /* TENUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUsersView.m; sourceTree = "<group>"; };
 		6CFBE9E61B3301250051E3D6 /* TENUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUser.h; sourceTree = "<group>"; };
 		6CFBE9E71B3301250051E3D6 /* TENUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUser.m; sourceTree = "<group>"; };
+		6CFBE9E91B3302C50051E3D6 /* TENUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUsers.h; sourceTree = "<group>"; };
+		6CFBE9EA1B3302C50051E3D6 /* TENUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUsers.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,8 @@
 			children = (
 				6CFBE9E61B3301250051E3D6 /* TENUser.h */,
 				6CFBE9E71B3301250051E3D6 /* TENUser.m */,
+				6CFBE9E91B3302C50051E3D6 /* TENUsers.h */,
+				6CFBE9EA1B3302C50051E3D6 /* TENUsers.m */,
 			);
 			path = TENUser;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				6CFBE9CB1B31832A0051E3D6 /* TENMainView.m in Sources */,
 				6CFBE9E01B32FED80051E3D6 /* TENUsersViewController.m in Sources */,
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,
+				6CFBE9EB1B3302C50051E3D6 /* TENUsers.m in Sources */,
 				6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */,
 				6CFBE9CD1B31832A0051E3D6 /* TENSquareViewController.m in Sources */,
 				6CFBE9D11B3183380051E3D6 /* TENSquareModel.m in Sources */,
