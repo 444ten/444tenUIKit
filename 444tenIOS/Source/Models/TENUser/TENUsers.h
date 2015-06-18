@@ -12,6 +12,7 @@
 
 @interface TENUsers : NSObject <NSFastEnumeration>
 
+- (NSUInteger)count;
 - (TENUser *)objectAtIndexedSubscript:(NSUInteger)index;
 
 @end

@@ -28,7 +28,7 @@
 //    controller.square = [TENSquareModel new];
     
     TENUsersViewController *controller = [TENUsersViewController new];
-    TENUsers *users = [TENUsers new];
+    controller.users = [TENUsers new];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];

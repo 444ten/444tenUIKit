@@ -35,6 +35,10 @@
 #pragma mark -
 #pragma mark Public
 
+- (NSUInteger)count {
+    return [self.users count];
+}
+
 - (TENUser *)objectAtIndexedSubscript:(NSUInteger)index {
     return self.users[index];
 }

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TENUsersViewController : UIViewController
+@class TENUsers;
+
+@interface TENUsersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong)   TENUsers    *users;
 
 @end
