@@ -59,23 +59,20 @@ typedef void(^TENPositionBlock)(BOOL);
 #pragma mark Interface Handling
 
 - (IBAction)onNextButton:(id)sender {
-    [self.mainView.squareView moveToNextPositionWithAnimated:YES completion:[self positionBlock]];
+    [self.mainView.squareView moveToNextPositionAnimated:YES completion:[self positionBlock]];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self.mainView.squareView moveToRandomPositionWithAnimated:YES completion:[self positionBlock]];
+    [self.mainView.squareView moveToRandomPositionAnimated:YES completion:[self positionBlock]];
 }
 
 - (IBAction)onStartStopButton:(id)sender {
     TENSquareView *squareView = self.mainView.squareView;
     BOOL isMoving = squareView.isMoving;
-    squareView.moving = !isMoving;
+    
+    [squareView setMoving:!isMoving completion:[self positionBlock]];
     
     [self.mainView updateStartStopButtonForMovingState:isMoving];
-    
-    if (!isMoving) {
-        [squareView cyclicMoveToNextPositionWithCompletion:[self positionBlock]];
-    }
 }
 
 - (TENPositionBlock)positionBlock {

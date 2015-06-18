@@ -14,6 +14,7 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
 @interface TENSquareView ()
 
 - (CGRect)frameForPosition:(TENSquarePosition)position;
+- (void)cyclicMoveToNextPositionCompletion:(void (^)(BOOL finished))completion;
 
 @end
 
@@ -21,6 +22,16 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
 
 #pragma mark -
 #pragma mark Accessors
+
+- (void)setMoving:(BOOL)moving completion:(void (^)(BOOL finished))completion {
+    if (_moving != moving) {
+        _moving = moving;
+        
+        if (moving) {
+            [self cyclicMoveToNextPositionCompletion:completion];
+        }
+    }
+}
 
 - (void)setTargetPosition:(TENSquarePosition)targetPosition {
     [self setTargetPosition:targetPosition animated:NO];
@@ -50,30 +61,20 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
                      }];
 }
 
-- (void)moveToNextPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
+#pragma mark -
+#pragma mark Private
+
+- (void)moveToNextPositionAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
     [self setTargetPosition:[self.square nextTargetPosition]
                    animated:animated
           completionHandler:completion];
 }
 
-- (void)moveToRandomPositionWithAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
+- (void)moveToRandomPositionAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
     [self setTargetPosition:[self.square randomTargetPosition]
                    animated:animated
           completionHandler:completion];
 }
-
-- (void)cyclicMoveToNextPositionWithCompletion:(void (^)(BOOL finished))completion {
-        [self moveToNextPositionWithAnimated:YES completion:^(BOOL finished) {
-            if (finished && self.isMoving) {
-                [self cyclicMoveToNextPositionWithCompletion:completion];
-            }
-            
-            completion(finished);
-        }];
-}
-
-#pragma mark -
-#pragma mark Private
 
 - (CGRect)frameForPosition:(TENSquarePosition)position {
     CGRect frame = self.frame;
@@ -100,6 +101,16 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
     frame.origin = origin;
     
     return frame;
+}
+
+- (void)cyclicMoveToNextPositionCompletion:(void (^)(BOOL finished))completion {
+    [self moveToNextPositionAnimated:YES completion:^(BOOL finished) {
+        if (finished && self.isMoving) {
+            [self cyclicMoveToNextPositionCompletion:completion];
+        }
+        
+        completion(finished);
+    }];
 }
 
 @end
