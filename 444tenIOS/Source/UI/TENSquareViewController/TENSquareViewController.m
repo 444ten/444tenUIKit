@@ -8,30 +8,32 @@
 
 #import "TENSquareViewController.h"
 
+#import "TENMacro.h"
 #import "TENMainView.h"
 #import "TENSquareModel.h"
 #import "TENSquareView.h"
 
-@interface TENSquareViewController ()
-@property (nonatomic, readonly) TENMainView *mainView;
+typedef void(^TENPositionBlock)(BOOL);
 
-- (void)changeSquareTargetPositionRandom:(BOOL)random;
+TENViewControllerBaseViewProperty(TENSquareViewController, mainView, TENMainView)
+
+@interface TENSquareViewController ()
+
+- (TENPositionBlock)positionBlock;
 
 @end
 
 @implementation TENSquareViewController
 
-@dynamic mainView;
-
 #pragma mark -
 #pragma mark Accessors
 
-- (TENMainView *)mainView {
-    if ([self isViewLoaded] && [self.view isKindOfClass:[TENMainView class]]) {
-        return (TENMainView *)self.view;
+- (void) setSquare:(TENSquareModel *)square {
+    if (_square != square) {
+        _square = square;
     }
     
-    return nil;
+    self.mainView.squareView.square = square;    
 }
 
 #pragma mark - 
@@ -40,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.mainView.squareView.square = self.square;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,23 +53,33 @@
 #pragma mark Interface Handling
 
 - (IBAction)onNextButton:(id)sender {
-    [self changeSquareTargetPositionRandom:NO];
+    [self.mainView.squareView moveToNextPositionAnimated:YES completion:[self positionBlock]];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self changeSquareTargetPositionRandom:YES];
+    [self.mainView.squareView moveToRandomPositionAnimated:YES completion:[self positionBlock]];
+}
+
+- (IBAction)onStartStopButton:(id)sender {
+    TENSquareView *squareView = self.mainView.squareView;
+    BOOL isMoving = squareView.isMoving;
+    
+    [squareView setMoving:!isMoving completion:[self positionBlock]];
+    
+    [self.mainView updateStartStopButtonForMovingState:isMoving];
 }
 
 #pragma mark -
-#pragma mark Interface Handling
+#pragma mark Private
 
-- (void)changeSquareTargetPositionRandom:(BOOL)random {
+- (TENPositionBlock)positionBlock {
     TENSquareModel *square = self.square;
-    TENSquareView *squareView = self.mainView.squareView;
     
-    squareView.square = square;
-    [squareView setTargetPosition:[square targetPositionRandom:random] animated:YES];
-    
+    return ^(BOOL finished) {
+        if (finished) {
+            square.position = square.targetPosition;
+        }
+    };
 }
 
 @end

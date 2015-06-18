@@ -14,5 +14,8 @@
 @property (nonatomic, strong)   IBOutlet TENSquareView  *squareView;
 @property (nonatomic, strong)   IBOutlet UIButton       *nextButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *randomButton;
+@property (nonatomic, strong)   IBOutlet UIButton       *startStopButton;
+
+- (void)updateStartStopButtonForMovingState:(BOOL)moving;
 
 @end
