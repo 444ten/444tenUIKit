@@ -8,20 +8,22 @@
 
 #import "TENSquareViewController.h"
 
+#import "TENMacro.h"
 #import "TENMainView.h"
 #import "TENSquareModel.h"
 #import "TENSquareView.h"
 
 typedef void(^TENPositionBlock)(BOOL);
 
+TENViewControllerBaseViewProperty(TENSquareViewController, mainView, TENMainView)
+
 @interface TENSquareViewController ()
-@property (nonatomic, readonly) TENMainView *mainView;
+
+- (TENPositionBlock)positionBlock;
 
 @end
 
 @implementation TENSquareViewController
-
-@dynamic mainView;
 
 #pragma mark -
 #pragma mark Accessors
@@ -32,14 +34,6 @@ typedef void(^TENPositionBlock)(BOOL);
     }
     
     self.mainView.squareView.square = square;    
-}
-
-- (TENMainView *)mainView {
-    if ([self isViewLoaded] && [self.view isKindOfClass:[TENMainView class]]) {
-        return (TENMainView *)self.view;
-    }
-    
-    return nil;
 }
 
 #pragma mark - 
@@ -74,6 +68,9 @@ typedef void(^TENPositionBlock)(BOOL);
     
     [self.mainView updateStartStopButtonForMovingState:isMoving];
 }
+
+#pragma mark -
+#pragma mark Private
 
 - (TENPositionBlock)positionBlock {
     TENSquareModel *square = self.square;

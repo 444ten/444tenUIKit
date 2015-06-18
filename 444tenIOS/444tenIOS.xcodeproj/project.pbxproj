@@ -17,6 +17,7 @@
 		6CFBE9CD1B31832A0051E3D6 /* TENSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9C91B31832A0051E3D6 /* TENSquareViewController.m */; };
 		6CFBE9CE1B31832A0051E3D6 /* TENSquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9CA1B31832A0051E3D6 /* TENSquareViewController.xib */; };
 		6CFBE9D11B3183380051E3D6 /* TENSquareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9D01B3183380051E3D6 /* TENSquareModel.m */; };
+		6CFBE9D51B32FCE10051E3D6 /* TENMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9D41B32FCE10051E3D6 /* TENMacro.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		6CFBE9CA1B31832A0051E3D6 /* TENSquareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENSquareViewController.xib; sourceTree = "<group>"; };
 		6CFBE9CF1B3183380051E3D6 /* TENSquareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENSquareModel.h; sourceTree = "<group>"; };
 		6CFBE9D01B3183380051E3D6 /* TENSquareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENSquareModel.m; sourceTree = "<group>"; };
+		6CFBE9D31B32FCE10051E3D6 /* TENMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENMacro.h; sourceTree = "<group>"; };
+		6CFBE9D41B32FCE10051E3D6 /* TENMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENMacro.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 			children = (
 				6CFBE9D21B3183570051E3D6 /* Categories */,
 				6CFBE9AB1B3027230051E3D6 /* Classes */,
+				6CFBE9D31B32FCE10051E3D6 /* TENMacro.h */,
+				6CFBE9D41B32FCE10051E3D6 /* TENMacro.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,
 				6CFBE9CD1B31832A0051E3D6 /* TENSquareViewController.m in Sources */,
 				6CFBE9D11B3183380051E3D6 /* TENSquareModel.m in Sources */,
+				6CFBE9D51B32FCE10051E3D6 /* TENMacro.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
