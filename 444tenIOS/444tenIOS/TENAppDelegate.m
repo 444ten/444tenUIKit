@@ -24,11 +24,11 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
 
-    TENSquareViewController *controller = [TENSquareViewController new];
-    controller.square = [TENSquareModel new];
+//    TENSquareViewController *controller = [TENSquareViewController new];
+//    controller.square = [TENSquareModel new];
     
-//    TENUsersViewController *controller = [TENUsersViewController new];
-//    controller.users = [TENUsers new];
+    TENUsersViewController *controller = [TENUsersViewController new];
+    controller.users = [TENUsers new];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];

@@ -19,12 +19,12 @@
     }
 
 #define TENViewControllerBaseViewProperty(baseViewController, propertyName, baseViewClass) \
-    @interface baseViewController (__TENPrivateBaseView) \
+    @interface baseViewController (__##baseViewController##BaseView) \
     TENDefineBaseViewProperty(propertyName, baseViewClass) \
     \
     @end \
     \
-    @implementation TENSquareViewController (__TENPrivateBaseView) \
+    @implementation TENSquareViewController (__##baseViewController##BaseView) \
     \
     @dynamic propertyName; \
     \
