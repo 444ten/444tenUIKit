@@ -10,6 +10,8 @@
 
 #import "TENUser.h"
 
+static const NSUInteger TENUsersCount   = 300;
+
 @interface TENUsers ()
 @property   (nonatomic, strong)   NSMutableArray *users;
 
@@ -47,20 +49,12 @@
 #pragma mark Private
 
 - (void)fillUsers:(NSMutableArray *)users {
-
-    TENUser *user0 = [TENUser new];
-    user0.name = @"user0";
-    [self.users addObject:user0];
-    
-    TENUser *user1 = [TENUser new];
-    user1.name = @"user1";
-    [self.users addObject:user1];
-
-    TENUser *user2 = [TENUser new];
-    user2.name = @"user2";
-    [self.users addObject:user2];
+    for (NSUInteger index = 0; index < TENUsersCount; index++) {
+        TENUser *user = [TENUser new];
+        user.name = [NSString stringWithFormat:@"User_%lu", index];
+        [self.users addObject:user];
+    }
 }
-
 
 #pragma mark -
 #pragma mark NSFastEnumeration protocol
