@@ -8,8 +8,12 @@
 
 #import "TENUsersViewController.h"
 
+#import "TENMacro.h"
 #import "TENUser.h"
 #import "TENUsers.h"
+#import "TENUsersView.h"
+
+TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
 @interface TENUsersViewController ()
 
@@ -19,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.usersView.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +44,13 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [UITableViewCell new];
+    static NSString * const kTENCellName = @"kTENCellName";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTENCellName];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                       reuseIdentifier:kTENCellName];
+    }
     cell.textLabel.text = self.users[indexPath.row].name;
     
     return cell;

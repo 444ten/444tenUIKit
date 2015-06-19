@@ -24,7 +24,7 @@
     \
     @end \
     \
-    @implementation TENSquareViewController (__##baseViewController##BaseView) \
+    @implementation baseViewController (__##baseViewController##BaseView) \
     \
     @dynamic propertyName; \
     \
