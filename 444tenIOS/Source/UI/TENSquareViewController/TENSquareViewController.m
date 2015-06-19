@@ -64,7 +64,7 @@ TENViewControllerBaseViewProperty(TENSquareViewController, mainView, TENMainView
     TENSquareView *squareView = self.mainView.squareView;
     BOOL isMoving = squareView.isMoving;
     
-    [squareView setMoving:!isMoving completion:[self positionBlock]];
+    [squareView setMoving:!isMoving updateState:[self positionBlock]];
     
     [self.mainView updateStartStopButtonForMovingState:isMoving];
 }

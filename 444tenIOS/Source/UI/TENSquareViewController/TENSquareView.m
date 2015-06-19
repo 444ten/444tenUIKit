@@ -14,7 +14,7 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
 @interface TENSquareView ()
 
 - (CGRect)frameForPosition:(TENSquarePosition)position;
-- (void)cyclicMoveToNextPositionCompletion:(void (^)(BOOL finished))completion;
+- (void)cyclicMoveToNextPositionWithUpdateState:(void (^)(BOOL finished))updateBlock;
 
 @end
 
@@ -23,12 +23,12 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setMoving:(BOOL)moving completion:(void (^)(BOOL finished))completion {
+- (void)setMoving:(BOOL)moving updateState:(void (^)(BOOL finished))updateBlock {
     if (_moving != moving) {
         _moving = moving;
         
         if (moving) {
-            [self cyclicMoveToNextPositionCompletion:completion];
+            [self cyclicMoveToNextPositionWithUpdateState:updateBlock];
         }
     }
 }
@@ -103,13 +103,13 @@ static const NSTimeInterval TENAnimateDelay     = 0.0;
     return frame;
 }
 
-- (void)cyclicMoveToNextPositionCompletion:(void (^)(BOOL finished))completion {
+- (void)cyclicMoveToNextPositionWithUpdateState:(void (^)(BOOL finished))updateBlock {
     [self moveToNextPositionAnimated:YES completion:^(BOOL finished) {
         if (finished && self.isMoving) {
-            [self cyclicMoveToNextPositionCompletion:completion];
+            [self cyclicMoveToNextPositionWithUpdateState:updateBlock];
         }
         
-        completion(finished);
+        updateBlock(finished);
     }];
 }
 

@@ -14,7 +14,7 @@
 @property (nonatomic, strong)                   TENSquareModel  *square;
 @property (nonatomic, assign, getter=isMoving)  BOOL            moving;
 
-- (void)setMoving:(BOOL)moving completion:(void (^)(BOOL finished))completion;
+- (void)setMoving:(BOOL)moving updateState:(void (^)(BOOL finished))updateBlock;
 
 - (void)setTargetPosition:(TENSquarePosition)targetPosition;
 - (void)setTargetPosition:(TENSquarePosition)targetPosition
