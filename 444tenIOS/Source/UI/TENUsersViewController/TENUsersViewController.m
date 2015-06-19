@@ -8,6 +8,9 @@
 
 #import "TENUsersViewController.h"
 
+#import "TENUser.h"
+#import "TENUsers.h"
+
 @interface TENUsersViewController ()
 
 @end
