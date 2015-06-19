@@ -42,7 +42,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     return [self.users count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * const kTENCellName = @"kTENCellName";
     

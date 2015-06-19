@@ -23,6 +23,7 @@
 		6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9E31B32FF730051E3D6 /* TENUsersView.m */; };
 		6CFBE9E81B3301250051E3D6 /* TENUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9E71B3301250051E3D6 /* TENUser.m */; };
 		6CFBE9EB1B3302C50051E3D6 /* TENUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9EA1B3302C50051E3D6 /* TENUsers.m */; };
+		6CFBE9EF1B34AE490051E3D6 /* TENTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9EE1B34AE490051E3D6 /* TENTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		6CFBE9E71B3301250051E3D6 /* TENUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUser.m; sourceTree = "<group>"; };
 		6CFBE9E91B3302C50051E3D6 /* TENUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUsers.h; sourceTree = "<group>"; };
 		6CFBE9EA1B3302C50051E3D6 /* TENUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUsers.m; sourceTree = "<group>"; };
+		6CFBE9ED1B34AE490051E3D6 /* TENTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENTableViewCell.h; sourceTree = "<group>"; };
+		6CFBE9EE1B34AE490051E3D6 /* TENTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,7 @@
 		6CFBE9AB1B3027230051E3D6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6CFBE9EC1B34AE220051E3D6 /* TENTableViewCell */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -241,6 +245,15 @@
 				6CFBE9EA1B3302C50051E3D6 /* TENUsers.m */,
 			);
 			path = TENUser;
+			sourceTree = "<group>";
+		};
+		6CFBE9EC1B34AE220051E3D6 /* TENTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				6CFBE9ED1B34AE490051E3D6 /* TENTableViewCell.h */,
+				6CFBE9EE1B34AE490051E3D6 /* TENTableViewCell.m */,
+			);
+			path = TENTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +360,7 @@
 				6CFBE9871B3025B90051E3D6 /* TENAppDelegate.m in Sources */,
 				6CFBE9CC1B31832A0051E3D6 /* TENSquareView.m in Sources */,
 				6CFBE9E81B3301250051E3D6 /* TENUser.m in Sources */,
+				6CFBE9EF1B34AE490051E3D6 /* TENTableViewCell.m in Sources */,
 				6CFBE9CB1B31832A0051E3D6 /* TENMainView.m in Sources */,
 				6CFBE9E01B32FED80051E3D6 /* TENUsersViewController.m in Sources */,
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,

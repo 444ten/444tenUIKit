@@ -41,7 +41,7 @@ static const NSUInteger TENUsersCount   = 300;
     return [self.users count];
 }
 
-- (TENUser *)objectAtIndexedSubscript:(NSUInteger)index {
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.users[index];
 }
 
