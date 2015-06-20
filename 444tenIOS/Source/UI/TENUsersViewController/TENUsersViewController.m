@@ -10,6 +10,7 @@
 
 #import "TENMacro.h"
 #import "TENUser.h"
+#import "TENUserCell.h"
 #import "TENUsers.h"
 #import "TENUsersView.h"
 
@@ -43,14 +44,16 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * const kTENCellName = @"kTENCellName";
+    NSString *cellClassName = NSStringFromClass([TENUserCell class]);
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTENCellName];
+    TENUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                       reuseIdentifier:kTENCellName];
+        UINib *nib = [UINib nibWithNibName:cellClassName bundle:nil];
+        NSArray *cells = [nib instantiateWithOwner:nil options:nil];
+        cell = [cells firstObject];
     }
-    cell.textLabel.text = self.users[indexPath.row].name;
+    
+    cell.user = self.users[indexPath.row];
     
     return cell;
 }
