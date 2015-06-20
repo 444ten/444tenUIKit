@@ -8,6 +8,8 @@
 
 #import "TENUsersViewController.h"
 
+#import "UINib+TENExtensions.h"
+
 #import "TENMacro.h"
 #import "TENUser.h"
 #import "TENUserCell.h"
@@ -44,13 +46,12 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellClassName = NSStringFromClass([TENUserCell class]);
+    Class cellClass = [TENUserCell class];
     
-    TENUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+    TENUserCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];
     if (!cell) {
-        UINib *nib = [UINib nibWithNibName:cellClassName bundle:nil];
-        NSArray *cells = [nib instantiateWithOwner:nil options:nil];
-        cell = [cells firstObject];
+        UINib *nib = [UINib nibWithClass:cellClass];
+        cell = [nib instantiateWithClass:cellClass];
     }
     
     cell.user = self.users[indexPath.row];
