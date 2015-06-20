@@ -11,9 +11,15 @@
 @interface UINib (TENExtensions)
 
 + (UINib *)nibWithClass:(Class)cls;
-+ (UINib *)nibWithClass:(Class)cls bundle:(NSBundle *)bundleOrNil;
++ (UINib *)nibWithClass:(Class)cls bundle:(NSBundle *)bundle;
+
++ (id)objectWithClass:(Class)cls;
++ (id)objectWithClass:(Class)cls
+               bundle:(NSBundle *)bundle
+                owner:(id)owner
+              options:(NSDictionary *)options;
 
 - (id)instantiateWithClass:(Class)cls;
-- (id)instantiateWithClass:(Class)cls owner:(id)ownerOrNil options:(NSDictionary *)optionsOrNil;
+- (id)instantiateWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
 
 @end

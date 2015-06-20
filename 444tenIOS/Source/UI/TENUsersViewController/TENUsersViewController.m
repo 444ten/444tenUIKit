@@ -50,8 +50,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     
     TENUserCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];
     if (!cell) {
-        UINib *nib = [UINib nibWithClass:cellClass];
-        cell = [nib instantiateWithClass:cellClass];
+        cell = [UINib objectWithClass:cellClass];
     }
     
     cell.user = self.users[indexPath.row];
