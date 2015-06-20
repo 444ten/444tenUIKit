@@ -45,7 +45,7 @@
 - (id)instantiateWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options {
     NSArray *instances = [self instantiateWithOwner:owner options:options];
     for (id instance in instances) {
-        if (cls == [instance class]) {
+        if ([instance isMemberOfClass:cls]) {
             return instance;
         }
     }
