@@ -10,4 +10,14 @@
 
 @implementation TENUser
 
+@dynamic userImage;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (UIImage *)userImage {
+    return [UIImage imageNamed:@"cat.jpg"];
+}
+
+
 @end

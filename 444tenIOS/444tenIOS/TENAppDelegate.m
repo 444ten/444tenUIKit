@@ -8,6 +8,8 @@
 
 #import "TENAppDelegate.h"
 
+#import "UIWindow+TENExtensions.h"
+
 #import "TENSquareModel.h"
 #import "TENSquareViewController.h"
 
@@ -21,7 +23,7 @@
 @implementation TENAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *window = [UIWindow mainWindow];
     self.window = window;
 
 //    TENSquareViewController *controller = [TENSquareViewController new];

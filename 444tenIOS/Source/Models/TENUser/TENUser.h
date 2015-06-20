@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface TENUser : NSObject
-@property (nonatomic, strong)   NSString    *name;
+@property (nonatomic, copy)     NSString    *name;
+@property (nonatomic, readonly) UIImage     *userImage;
 
 @end

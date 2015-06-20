@@ -28,6 +28,7 @@
 
 - (void)fillWithModel:(TENUser *)user {
     self.nameLabel.text = user.name;
+    self.userImageView.image = user.userImage;
 }
 
 @end
