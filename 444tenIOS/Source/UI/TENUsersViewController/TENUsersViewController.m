@@ -33,6 +33,20 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -
+#pragma mark Interface Handling
+
+- (IBAction)onAddButton:(id)sender {
+    
+}
+
+- (IBAction)onEditButton:(id)sender {
+    UITableView *tableView = self.usersView.tableView;
+    
+    BOOL isEditing = tableView.isEditing;
+    tableView.editing = !isEditing;
+}
+
 #pragma mark - 
 #pragma mark UITableViewDelegate
 
@@ -49,6 +63,20 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     cell.user = self.users[indexPath.row];
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+                                                  toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSLog(@"%lu -> %lu", sourceIndexPath.row, destinationIndexPath.row);
 }
 
 @end
