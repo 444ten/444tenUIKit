@@ -10,7 +10,7 @@
 
 #import "TENUser.h"
 
-static const NSUInteger TENUsersCount   = 300;
+static const NSUInteger TENUsersCount   = 5;
 
 @interface TENUsers ()
 @property   (nonatomic, strong)   NSMutableArray *users;
@@ -41,6 +41,32 @@ static const NSUInteger TENUsersCount   = 300;
     return [self.users count];
 }
 
+- (void)addObject {
+    TENUser *user = [TENUser new];
+    user.name = [NSString stringWithFormat:@"User_%lu", [self count]];
+    [self.users addObject:user];
+}
+
+- (void)removeObjectAtIndex:(NSUInteger)index {
+    [self.users removeObjectAtIndex:index];
+}
+
+- (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+//    if (fromIndex < toIndex) {
+//        toIndex -= 1;
+//    }
+    
+    NSMutableArray *users = self.users;
+    
+    id object = users[fromIndex];
+    [users removeObjectAtIndex:fromIndex];
+    [users insertObject:object atIndex:toIndex];
+}
+
+- (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2 {
+    [self.users exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
+}
+
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.users[index];
 }
@@ -50,9 +76,7 @@ static const NSUInteger TENUsersCount   = 300;
 
 - (void)fillUsers:(NSMutableArray *)users {
     for (NSUInteger index = 0; index < TENUsersCount; index++) {
-        TENUser *user = [TENUser new];
-        user.name = [NSString stringWithFormat:@"User_%lu", index];
-        [self.users addObject:user];
+        [self addObject];
     }
 }
 

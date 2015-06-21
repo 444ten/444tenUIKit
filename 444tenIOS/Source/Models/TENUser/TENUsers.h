@@ -13,6 +13,11 @@
 @interface TENUsers : NSObject <NSFastEnumeration>
 
 - (NSUInteger)count;
-- (TENUser *)objectAtIndexedSubscript:(NSUInteger)index;
+
+- (void)addObject;
+- (void)removeObjectAtIndex:(NSUInteger)index;
+- (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+- (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2;
+- (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 @end
