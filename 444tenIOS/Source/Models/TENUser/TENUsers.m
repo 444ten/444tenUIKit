@@ -8,7 +8,10 @@
 
 #import "TENUsers.h"
 
+#import "NSMutableArray+TENExtensions.h"
+
 #import "TENUser.h"
+
 
 static const NSUInteger TENUsersCount   = 5;
 
@@ -52,15 +55,7 @@ static const NSUInteger TENUsersCount   = 5;
 }
 
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
-//    if (fromIndex < toIndex) {
-//        toIndex -= 1;
-//    }
-    
-    NSMutableArray *users = self.users;
-    
-    id object = users[fromIndex];
-    [users removeObjectAtIndex:fromIndex];
-    [users insertObject:object atIndex:toIndex];
+    [self.users moveObjectAtIndex:fromIndex toIndex:toIndex];
 }
 
 - (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2 {
