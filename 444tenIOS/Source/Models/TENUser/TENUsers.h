@@ -8,9 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@class TENUser;
+#import "TENObservableObject.h"
 
-@interface TENUsers : NSObject <NSFastEnumeration>
+typedef NS_ENUM(NSUInteger, TENUsersState) {
+    TENUsersChangesShown,
+    TENUsersChanged
+};
+
+@class TENUsers;
+
+@protocol TENUsersObserver <NSObject>
+
+@optional
+
+- (void)usersDidBecomeChanged:(TENUsers *)users;
+
+@end
+
+@interface TENUsers : TENObservableObject <NSFastEnumeration>
 
 - (NSUInteger)count;
 

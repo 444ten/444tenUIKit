@@ -30,6 +30,8 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self.users addObserver:self];
+    
     [self.usersView.tableView reloadData];
 }
 
@@ -42,8 +44,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (IBAction)onAddButton:(id)sender {
     [self.users addObject];
-#warning reload
-    [self.usersView.tableView reloadData];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -93,7 +93,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
-    return indexPath.row % 2;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,8 +104,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeObjectAtIndex:indexPath.row];
-#warning reload
-        [self.usersView.tableView reloadData];
     }
 }
 
@@ -115,9 +112,15 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
                                                   toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     [self.users moveObjectAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
-    NSLog(@"%lu -> %lu", sourceIndexPath.row, destinationIndexPath.row);
-#warning reload
+}
+
+#pragma mark -
+#pragma mark TENUsersObserver
+
+- (void)usersDidBecomeChanged:(TENUsers *)users {
     [self.usersView.tableView reloadData];
+    
+    users.state = TENUsersChangesShown;
 }
 
 #pragma mark -

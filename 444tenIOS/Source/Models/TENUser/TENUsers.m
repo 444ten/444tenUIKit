@@ -33,6 +33,8 @@ static const NSUInteger TENUsersCount   = 5;
         self.users = [NSMutableArray new];
         
         [self fillUsers:self.users];
+        
+        self.state = TENUsersChangesShown;
     }
     return self;
 }
@@ -48,23 +50,42 @@ static const NSUInteger TENUsersCount   = 5;
     TENUser *user = [TENUser new];
     user.name = [NSString stringWithFormat:@"User_%lu", [self count]];
     [self.users addObject:user];
+    self.state = TENUsersChanged;
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.users removeObjectAtIndex:index];
+    self.state = TENUsersChanged;
 }
 
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     [self.users moveObjectAtIndex:fromIndex toIndex:toIndex];
+    self.state = TENUsersChanged;
 }
 
 - (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2 {
     [self.users exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
+    self.state = TENUsersChanged;
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.users[index];
 }
+
+#pragma mark -
+#pragma mark Overload
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case TENUsersChanged:
+            return @selector(usersDidBecomeChanged:);
+        default:
+            [super selectorForState:state];
+    }
+    
+    return NULL;
+}
+
 
 #pragma mark -
 #pragma mark Private

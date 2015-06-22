@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class TENUsers;
+#import "TENUsers.h"
 
-@interface TENUsersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TENUsersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TENUsersObserver>
 @property (nonatomic, strong)   TENUsers    *users;
 
 - (IBAction)onAddButton:(id)sender;
