@@ -27,10 +27,25 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 @implementation TENUsersViewController
 
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setUsers:(TENUsers *)users {
+    if (_users != users) {
+        
+        [_users removeObserver:self];
+        
+        _users = users;
+        
+        [users addObserver:self];
+    }
+}
+
+#pragma mark -
+#pragma mark View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self.users addObserver:self];
     
     [self.usersView.tableView reloadData];
 }

@@ -12,7 +12,6 @@
 
 #import "TENUser.h"
 
-
 static const NSUInteger TENUsersCount   = 5;
 
 @interface TENUsers ()
@@ -46,12 +45,22 @@ static const NSUInteger TENUsersCount   = 5;
     return [self.users count];
 }
 
+- (id)objectAtIndex:(NSUInteger)index {
+    return [self.users objectAtIndex:index];
+}
+
 - (void)addObject {
     TENUser *user = [TENUser new];
     user.name = [NSString stringWithFormat:@"User_%lu", [self count]];
     [self.users addObject:user];
     self.state = TENUsersChanged;
 }
+
+- (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
+    [self.users insertObject:anObject atIndex:index];
+    self.state = TENUsersChanged;
+}
+
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.users removeObjectAtIndex:index];
@@ -63,10 +72,11 @@ static const NSUInteger TENUsersCount   = 5;
     self.state = TENUsersChanged;
 }
 
-- (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2 {
-    [self.users exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
+- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx {
+    [self.users setObject:obj atIndexedSubscript:idx];
     self.state = TENUsersChanged;
 }
+
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.users[index];
@@ -85,7 +95,6 @@ static const NSUInteger TENUsersCount   = 5;
     
     return NULL;
 }
-
 
 #pragma mark -
 #pragma mark Private

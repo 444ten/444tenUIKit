@@ -29,10 +29,10 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 
 - (NSUInteger)count;
 
+- (id)objectAtIndex:(NSUInteger)index;
 - (void)addObject;
 - (void)removeObjectAtIndex:(NSUInteger)index;
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-- (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 @end
