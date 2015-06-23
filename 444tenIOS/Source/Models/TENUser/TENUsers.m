@@ -11,11 +11,12 @@
 #import "NSMutableArray+TENExtensions.h"
 
 #import "TENUser.h"
+#import "TENModifiedIndexPaths.h"
 
 static const NSUInteger TENUsersCount   = 5;
 
 @interface TENUsers ()
-@property   (nonatomic, strong)   NSMutableArray *users;
+@property (nonatomic, strong)   NSMutableArray          *users;
 
 - (void)fillUsers:(NSMutableArray *)users;
 
@@ -30,8 +31,9 @@ static const NSUInteger TENUsersCount   = 5;
     self = [super init];
     if (self) {
         self.users = [NSMutableArray new];
+        self.modifiedIndexPaths = [TENModifiedIndexPaths new];
         
-        [self fillUsers:self.users];
+//        [self fillUsers:self.users];
     }
     return self;
 }
@@ -49,27 +51,29 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)addObject:(id)object {
     [self.users addObject:object];
+    [self.modifiedIndexPaths addInsertingIndex:[self count] - 1];
     self.state = TENUsersChanged;
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     [self.users insertObject:object atIndex:index];
+    [self.modifiedIndexPaths addInsertingIndex:index];
     self.state = TENUsersChanged;
 }
 
-
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.users removeObjectAtIndex:index];
+    [self.modifiedIndexPaths addDeletingIndex:index];
     self.state = TENUsersChanged;
 }
 
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     [self.users moveObjectAtIndex:fromIndex toIndex:toIndex];
-    self.state = TENUsersChanged;
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     [self.users setObject:object atIndexedSubscript:index];
+    [self.modifiedIndexPaths addReloadingIndex:index];
     self.state = TENUsersChanged;
 }
 
@@ -97,8 +101,6 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)fillUsers:(NSMutableArray *)users {
     for (NSUInteger index = 0; index < TENUsersCount; index++) {
-//        TENUser *user = [TENUser new];
-//        user.name = [NSString stringWithFormat:@"User_%lu", [self count]];
         [self addObject:[TENUser testUser]];
     }
 }

@@ -11,18 +11,15 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENMacro.h"
+#import "TENModifiedIndexPaths.h"
 #import "TENUserCell.h"
 #import "TENUser.h"
 #import "TENUsers.h"
 #import "TENUsersView.h"
 
-typedef void (^TENRowAction)(UITableViewRowAction *action, NSIndexPath *indexPath);
-
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
 @interface TENUsersViewController ()
-
-- (TENRowAction)rowAction;
 
 @end
 
@@ -58,8 +55,10 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark Interface Handling
 
-- (IBAction)onAddButton:(id)sender {
-    [self.users addObject:[TENUser testUser]];
+- (IBAction)onAddButton:(id)sender {    
+    TENUsers * users = self.users;
+    [users addObject:[TENUser testUser]];
+    [users addObject:[TENUser testUser]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -70,6 +69,11 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark - 
 #pragma mark UITableViewDelegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.users[indexPath.row] = [TENUser testUser];
+}
+
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -79,14 +83,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
-
-//- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewRowAction *startRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
-//                                                                              title:@"start" handler:[self rowAction]];
-//    UITableViewRowAction *finishRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
-//                                                                              title:@"finish" handler:[self rowAction]];
-//    return @[finishRowAction, startRowAction];
-//}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -110,8 +106,9 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-                                            forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)    tableView:(UITableView *)tableView
+   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeObjectAtIndex:indexPath.row];
@@ -119,8 +116,9 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-                                                  toIndexPath:(NSIndexPath *)destinationIndexPath
+- (void)    tableView:(UITableView *)tableView
+   moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+          toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     [self.users moveObjectAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
 }
@@ -129,16 +127,19 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark TENUsersObserver
 
 - (void)usersChanged:(TENUsers *)users {
-    [self.usersView.tableView reloadData];
+    TENModifiedIndexPaths *indexPaths = users.modifiedIndexPaths;
+    UITableView *tableView = self.usersView.tableView;
+    
+    [tableView beginUpdates];
+    
+    [tableView insertRowsAtIndexPaths:indexPaths.insertingPaths withRowAnimation:UITableViewRowAnimationLeft];
+    [tableView deleteRowsAtIndexPaths:indexPaths.deletingPaths withRowAnimation:UITableViewRowAnimationLeft];
+    [tableView reloadRowsAtIndexPaths:indexPaths.reloadingPaths withRowAnimation:UITableViewRowAnimationRight];
+    
+    [tableView endUpdates];
 }
 
 #pragma mark -
 #pragma mark Private
-
-- (TENRowAction)rowAction {
-    return ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        NSLog(@"row %lu -> %@", indexPath.row, action.title);
-    };
-}
 
 @end
