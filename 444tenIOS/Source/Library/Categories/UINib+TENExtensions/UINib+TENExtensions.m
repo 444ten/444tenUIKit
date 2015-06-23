@@ -32,21 +32,21 @@
 {
     UINib *nib = [self nibWithClass:cls bundle:bundle];
     
-    return [nib instantiateWithClass:cls owner:owner options:options];
+    return [nib objectWithClass:cls owner:owner options:options];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (id)instantiateWithClass:(Class)cls {
-        return [self instantiateWithClass:cls owner:nil options:nil];
+- (id)objectWithClass:(Class)cls {
+        return [self objectWithClass:cls owner:nil options:nil];
 }
 
-- (id)instantiateWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options {
-    NSArray *instances = [self instantiateWithOwner:owner options:options];
-    for (id instance in instances) {
-        if ([instance isMemberOfClass:cls]) {
-            return instance;
+- (id)objectWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options {
+    NSArray *objects = [self instantiateWithOwner:owner options:options];
+    for (id object in objects) {
+        if ([object isMemberOfClass:cls]) {
+            return object;
         }
     }
     

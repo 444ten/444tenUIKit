@@ -23,7 +23,7 @@
 @implementation TENAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [UIWindow mainWindow];
+    UIWindow *window = [UIWindow window];
     self.window = window;
 
 //    TENSquareViewController *controller = [TENSquareViewController new];

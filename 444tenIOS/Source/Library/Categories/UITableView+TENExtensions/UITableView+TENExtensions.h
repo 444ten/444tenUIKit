@@ -16,4 +16,6 @@
               owner:(id)owner
             options:(NSDictionary *)options;
 
+- (id)dequeueReusableCellWithClass:(Class)cls;
+
 @end

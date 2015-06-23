@@ -24,12 +24,16 @@
               owner:(id)owner
             options:(NSDictionary *)options
 {
-    id cell = [self dequeueReusableCellWithIdentifier:NSStringFromClass(cls)];
+    id cell = [self dequeueReusableCellWithClass:cls];
     if (!cell) {
         cell = [UINib objectWithClass:cls bundle:bundle owner:owner options:options];
     }
     
     return cell;
+}
+
+- (id)dequeueReusableCellWithClass:(Class)cls {
+    return [self dequeueReusableCellWithIdentifier:NSStringFromClass(cls)];
 }
 
 @end

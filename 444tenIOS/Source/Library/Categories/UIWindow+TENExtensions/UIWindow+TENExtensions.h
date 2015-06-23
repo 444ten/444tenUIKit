@@ -10,6 +10,6 @@
 
 @interface UIWindow (TENExtensions)
 
-+ (instancetype)mainWindow;
++ (instancetype)window;
 
 @end

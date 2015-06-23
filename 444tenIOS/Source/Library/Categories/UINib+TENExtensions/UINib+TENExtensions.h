@@ -19,7 +19,7 @@
                 owner:(id)owner
               options:(NSDictionary *)options;
 
-- (id)instantiateWithClass:(Class)cls;
-- (id)instantiateWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
+- (id)objectWithClass:(Class)cls;
+- (id)objectWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
 
 @end
