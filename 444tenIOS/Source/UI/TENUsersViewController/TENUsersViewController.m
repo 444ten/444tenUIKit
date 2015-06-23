@@ -63,13 +63,8 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
-    UITableView *tableView = self.usersView.tableView;
-    BOOL isEditing = tableView.isEditing;
-    
-    [tableView setEditing:!isEditing animated:YES];
-    
-    [sender setTitle:isEditing ? @"Edit" : @"Done"
-            forState:UIControlStateNormal];
+    TENUsersView *view = self.usersView;
+    view.editing = !view.editing;
 }
 
 #pragma mark - 
