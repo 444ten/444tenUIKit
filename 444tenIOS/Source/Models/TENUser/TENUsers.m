@@ -32,8 +32,6 @@ static const NSUInteger TENUsersCount   = 5;
         self.users = [NSMutableArray new];
         
         [self fillUsers:self.users];
-        
-        self.state = TENUsersChangesShown;
     }
     return self;
 }
@@ -49,15 +47,13 @@ static const NSUInteger TENUsersCount   = 5;
     return [self.users objectAtIndex:index];
 }
 
-- (void)addObject {
-    TENUser *user = [TENUser new];
-    user.name = [NSString stringWithFormat:@"User_%lu", [self count]];
-    [self.users addObject:user];
+- (void)addObject:(id)object {
+    [self.users addObject:object];
     self.state = TENUsersChanged;
 }
 
-- (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
-    [self.users insertObject:anObject atIndex:index];
+- (void)insertObject:(id)object atIndex:(NSUInteger)index {
+    [self.users insertObject:object atIndex:index];
     self.state = TENUsersChanged;
 }
 
@@ -72,8 +68,8 @@ static const NSUInteger TENUsersCount   = 5;
     self.state = TENUsersChanged;
 }
 
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx {
-    [self.users setObject:obj atIndexedSubscript:idx];
+- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
+    [self.users setObject:object atIndexedSubscript:index];
     self.state = TENUsersChanged;
 }
 
@@ -88,7 +84,7 @@ static const NSUInteger TENUsersCount   = 5;
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case TENUsersChanged:
-            return @selector(usersDidBecomeChanged:);
+            return @selector(usersChanged:);
         default:
             [super selectorForState:state];
     }
@@ -101,7 +97,9 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)fillUsers:(NSMutableArray *)users {
     for (NSUInteger index = 0; index < TENUsersCount; index++) {
-        [self addObject];
+//        TENUser *user = [TENUser new];
+//        user.name = [NSString stringWithFormat:@"User_%lu", [self count]];
+        [self addObject:[TENUser testUser]];
     }
 }
 

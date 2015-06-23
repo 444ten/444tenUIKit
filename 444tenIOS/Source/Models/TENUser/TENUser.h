@@ -13,4 +13,8 @@
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, readonly) UIImage     *userImage;
 
++ (instancetype)testUser;
+
+- (instancetype)initTestUser;
+
 @end

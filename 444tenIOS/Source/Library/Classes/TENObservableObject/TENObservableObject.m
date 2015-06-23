@@ -40,11 +40,9 @@
 
 - (void)setState:(NSUInteger)state {
     @synchronized (self) {
-        if (_state != state) {
-            _state = state;
-            
-            TENPerformOnMainThreadWithBlock(^{[self notifyOnMainThread];});
-        }
+        _state = state;
+        
+        TENPerformOnMainThreadWithBlock(^{[self notifyOnMainThread];});
     }
 }
 

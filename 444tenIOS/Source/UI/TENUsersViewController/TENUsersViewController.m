@@ -12,6 +12,7 @@
 
 #import "TENMacro.h"
 #import "TENUserCell.h"
+#import "TENUser.h"
 #import "TENUsers.h"
 #import "TENUsersView.h"
 
@@ -58,7 +59,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark Interface Handling
 
 - (IBAction)onAddButton:(id)sender {
-    [self.users addObject];
+    [self.users addObject:[TENUser testUser]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -132,10 +133,8 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark TENUsersObserver
 
-- (void)usersDidBecomeChanged:(TENUsers *)users {
+- (void)usersChanged:(TENUsers *)users {
     [self.usersView.tableView reloadData];
-    
-    users.state = TENUsersChangesShown;
 }
 
 #pragma mark -
