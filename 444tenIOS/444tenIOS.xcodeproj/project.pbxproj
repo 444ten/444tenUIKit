@@ -34,6 +34,7 @@
 		6CFBE9F31B34B08C0051E3D6 /* TENUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9F21B34B08C0051E3D6 /* TENUserCell.m */; };
 		6CFBE9F51B34B2200051E3D6 /* TENUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9F41B34B2200051E3D6 /* TENUserCell.xib */; };
 		6CFBE9F81B3579790051E3D6 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9F71B3579790051E3D6 /* cat.jpg */; };
+		8F2C7571795A0DF98C3D1E7C /* libPods-444tenIOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4EF7460C51BB769776B03B /* libPods-444tenIOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		651C6B1F400D759CDDDBABED /* Pods-444tenIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-444tenIOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-444tenIOSTests/Pods-444tenIOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		6C53FDB41B35992800460608 /* UIWindow+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+TENExtensions.h"; sourceTree = "<group>"; };
 		6C53FDB51B35992800460608 /* UIWindow+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+TENExtensions.m"; sourceTree = "<group>"; };
 		6C53FDB81B359B7D00460608 /* UINib+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+TENExtensions.h"; sourceTree = "<group>"; };
@@ -97,6 +99,8 @@
 		6CFBE9F21B34B08C0051E3D6 /* TENUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUserCell.m; sourceTree = "<group>"; };
 		6CFBE9F41B34B2200051E3D6 /* TENUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENUserCell.xib; sourceTree = "<group>"; };
 		6CFBE9F71B3579790051E3D6 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
+		7F4EF7460C51BB769776B03B /* libPods-444tenIOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-444tenIOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21D4D9642812D766ED4BBD8 /* Pods-444tenIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-444tenIOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-444tenIOSTests/Pods-444tenIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,12 +115,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F2C7571795A0DF98C3D1E7C /* libPods-444tenIOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022E3CF3829914E78952D581 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F4EF7460C51BB769776B03B /* libPods-444tenIOSTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6C53FDB21B35992800460608 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +212,8 @@
 				6CFBE9801B3025B90051E3D6 /* 444tenIOS */,
 				6CFBE99A1B3025BA0051E3D6 /* 444tenIOSTests */,
 				6CFBE97F1B3025B90051E3D6 /* Products */,
+				E168D59234F87D93AB81180E /* Pods */,
+				022E3CF3829914E78952D581 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -374,6 +389,15 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		E168D59234F87D93AB81180E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E21D4D9642812D766ED4BBD8 /* Pods-444tenIOSTests.debug.xcconfig */,
+				651C6B1F400D759CDDDBABED /* Pods-444tenIOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,9 +422,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CFBE9A41B3025BA0051E3D6 /* Build configuration list for PBXNativeTarget "444tenIOSTests" */;
 			buildPhases = (
+				69B7719C0465A3634C8AE2F2 /* Check Pods Manifest.lock */,
 				6CFBE9931B3025BA0051E3D6 /* Sources */,
 				6CFBE9941B3025BA0051E3D6 /* Frameworks */,
 				6CFBE9951B3025BA0051E3D6 /* Resources */,
+				0463B23561905647FA68081B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -471,6 +497,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0463B23561905647FA68081B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-444tenIOSTests/Pods-444tenIOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69B7719C0465A3634C8AE2F2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6CFBE97A1B3025B90051E3D6 /* Sources */ = {
@@ -636,6 +695,7 @@
 		};
 		6CFBE9A51B3025BA0051E3D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E21D4D9642812D766ED4BBD8 /* Pods-444tenIOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -655,6 +715,7 @@
 		};
 		6CFBE9A61B3025BA0051E3D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 651C6B1F400D759CDDDBABED /* Pods-444tenIOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
