@@ -14,9 +14,9 @@
 		6C53FDC61B38178A00460608 /* TENObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDC51B38178A00460608 /* TENObservableObject.m */; };
 		6C53FDCA1B381C3A00460608 /* TENThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDC91B381C3A00460608 /* TENThread.m */; };
 		6C53FDD61B3A963300460608 /* TENChangedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDD51B3A963300460608 /* TENChangedPath.m */; };
+		6C53FDDA1B3ACC9E00460608 /* NSMutableArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */; };
 		6CFBE9841B3025B90051E3D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9831B3025B90051E3D6 /* main.m */; };
 		6CFBE9871B3025B90051E3D6 /* TENAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9861B3025B90051E3D6 /* TENAppDelegate.m */; };
-		6CFBE99E1B3025BA0051E3D6 /* _44tenIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE99D1B3025BA0051E3D6 /* _44tenIOSTests.m */; };
 		6CFBE9B21B3028290051E3D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9AF1B3028290051E3D6 /* LaunchScreen.xib */; };
 		6CFBE9B31B3028290051E3D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9B11B3028290051E3D6 /* Images.xcassets */; };
 		6CFBE9CB1B31832A0051E3D6 /* TENMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9C51B31832A0051E3D6 /* TENMainView.m */; };
@@ -63,6 +63,7 @@
 		6C53FDC91B381C3A00460608 /* TENThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENThread.m; sourceTree = "<group>"; };
 		6C53FDD41B3A963300460608 /* TENChangedPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENChangedPath.h; sourceTree = "<group>"; };
 		6C53FDD51B3A963300460608 /* TENChangedPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENChangedPath.m; sourceTree = "<group>"; };
+		6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArraySpec.m; sourceTree = "<group>"; };
 		6CFBE97E1B3025B90051E3D6 /* 444tenIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 444tenIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFBE9821B3025B90051E3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CFBE9831B3025B90051E3D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		6CFBE9861B3025B90051E3D6 /* TENAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TENAppDelegate.m; sourceTree = "<group>"; };
 		6CFBE9971B3025BA0051E3D6 /* 444tenIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 444tenIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFBE99C1B3025BA0051E3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CFBE99D1B3025BA0051E3D6 /* _44tenIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _44tenIOSTests.m; sourceTree = "<group>"; };
 		6CFBE9B01B3028290051E3D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6CFBE9B11B3028290051E3D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6CFBE9C41B31832A0051E3D6 /* TENMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENMainView.h; sourceTree = "<group>"; };
@@ -204,6 +204,22 @@
 			path = TENChangedPath;
 			sourceTree = "<group>";
 		};
+		6C53FDD71B3ACC7D00460608 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				6C53FDD81B3ACC7D00460608 /* NSMutableArraySpec */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		6C53FDD81B3ACC7D00460608 /* NSMutableArraySpec */ = {
+			isa = PBXGroup;
+			children = (
+				6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */,
+			);
+			path = NSMutableArraySpec;
+			sourceTree = "<group>";
+		};
 		6CFBE9751B3025B90051E3D6 = {
 			isa = PBXGroup;
 			children = (
@@ -240,7 +256,7 @@
 		6CFBE99A1B3025BA0051E3D6 /* 444tenIOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				6CFBE99D1B3025BA0051E3D6 /* _44tenIOSTests.m */,
+				6C53FDD71B3ACC7D00460608 /* Specs */,
 				6CFBE99B1B3025BA0051E3D6 /* Supporting Files */,
 			);
 			path = 444tenIOSTests;
@@ -563,7 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CFBE99E1B3025BA0051E3D6 /* _44tenIOSTests.m in Sources */,
+				6C53FDDA1B3ACC9E00460608 /* NSMutableArraySpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
