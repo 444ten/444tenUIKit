@@ -15,14 +15,14 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)testUser {
-    return [[self alloc] initTestUser];
++ (instancetype)user {
+    return [[self alloc] initUser];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initTestUser {
+- (instancetype)initUser {
     static NSUInteger userNumber = 0;
 
     self = [super init];

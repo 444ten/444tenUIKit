@@ -32,7 +32,7 @@ static const NSUInteger TENUsersCount   = 5;
     if (self) {
         self.users = [NSMutableArray new];
         
-//        [self fillUsers:self.users];
+        [self fillUsers:self.users];
     }
     return self;
 }
@@ -72,7 +72,6 @@ static const NSUInteger TENUsersCount   = 5;
     [self setState:TENUsersChanged withObject:[TENChangedPath reloadingPathWithIndex:index]];
 }
 
-
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.users[index];
 }
@@ -96,7 +95,7 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)fillUsers:(NSMutableArray *)users {
     for (NSUInteger index = 0; index < TENUsersCount; index++) {
-        [self addObject:[TENUser testUser]];
+        [self addObject:[TENUser user]];
     }
 }
 

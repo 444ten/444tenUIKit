@@ -50,7 +50,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark Interface Handling
 
 - (IBAction)onAddButton:(id)sender {    
-    [self.users addObject:[TENUser testUser]];
+    [self.users addObject:[TENUser user]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -62,7 +62,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.users[indexPath.row] = [TENUser testUser];
+    self.users[indexPath.row] = [TENUser user];
 }
 
 #pragma mark -
