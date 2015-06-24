@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class TENChangedPath;
+
 @interface TENUsersView : UIView
 @property (nonatomic, strong)   IBOutlet UIButton       *addButton;
 @property (nonatomic, strong)   IBOutlet UIButton       *editButton;
 @property (nonatomic, strong)   IBOutlet UITableView    *tableView;
 
 @property (nonatomic, assign, getter=isEditing) BOOL    editing;
+
+- (void)updateTableViewPath:(TENChangedPath *)changedPath;
 
 @end

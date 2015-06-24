@@ -11,7 +11,7 @@
 #import "NSMutableArray+TENExtensions.h"
 
 #import "TENUser.h"
-#import "TENModifiedIndexPaths.h"
+#import "TENChangedPath.h"
 
 static const NSUInteger TENUsersCount   = 5;
 
@@ -31,7 +31,6 @@ static const NSUInteger TENUsersCount   = 5;
     self = [super init];
     if (self) {
         self.users = [NSMutableArray new];
-        self.modifiedIndexPaths = [TENModifiedIndexPaths new];
         
 //        [self fillUsers:self.users];
     }
@@ -51,20 +50,17 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)addObject:(id)object {
     [self.users addObject:object];
-    [self.modifiedIndexPaths addInsertingIndex:[self count] - 1];
-    self.state = TENUsersChanged;
+    [self setState:TENUsersChanged withObject:[TENChangedPath insertingPathWithIndex:[self count] - 1]];
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     [self.users insertObject:object atIndex:index];
-    [self.modifiedIndexPaths addInsertingIndex:index];
-    self.state = TENUsersChanged;
+    [self setState:TENUsersChanged withObject:[TENChangedPath insertingPathWithIndex:index]];
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.users removeObjectAtIndex:index];
-    [self.modifiedIndexPaths addDeletingIndex:index];
-    self.state = TENUsersChanged;
+    [self setState:TENUsersChanged withObject:[TENChangedPath deletingPathWithIndex:index]];
 }
 
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
@@ -73,8 +69,7 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     [self.users setObject:object atIndexedSubscript:index];
-    [self.modifiedIndexPaths addReloadingIndex:index];
-    self.state = TENUsersChanged;
+    [self setState:TENUsersChanged withObject:[TENChangedPath reloadingPathWithIndex:index]];
 }
 
 
@@ -85,12 +80,12 @@ static const NSUInteger TENUsersCount   = 5;
 #pragma mark -
 #pragma mark Overload
 
-- (SEL)selectorForState:(NSUInteger)state {
+- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
     switch (state) {
         case TENUsersChanged:
-            return @selector(usersChanged:);
+            return @selector(users:didChangedWithUsersInfo:);
         default:
-            [super selectorForState:state];
+            [super selectorForState:state withObject:object];
     }
     
     return NULL;

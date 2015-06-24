@@ -14,6 +14,7 @@
 @property (nonatomic, retain)   NSHashTable    *observerHashTable;
 
 - (void)notifyOnMainThread;
+- (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object;
 
 @end
 
@@ -45,6 +46,15 @@
         TENPerformOnMainThreadWithBlock(^{[self notifyOnMainThread];});
     }
 }
+
+- (void)setState:(NSUInteger)state withObject:(id)object {
+    @synchronized (self) {
+        _state = state;
+        
+        [self notifyOfStateChange:state withObject:object];
+    }
+}
+
 
 - (NSUInteger)state {
     @synchronized (self) {
@@ -83,6 +93,11 @@
     return NULL;
 }
 
+- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
+    return NULL;
+}
+
+
 #pragma mark -
 #pragma mark Private
 
@@ -95,6 +110,18 @@
             [observer performSelector:selector withObject:self];
         }
     }
+}
+
+- (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object {
+    SEL selector = [self selectorForState:_state withObject:object];
+    NSSet *observerSet = self.observerSet;
+    
+    for (id observer in observerSet) {
+        if ([observer respondsToSelector:selector]) {
+            [observer performSelector:selector withObject:self withObject:object];
+        }
+    }
+    
 }
 
 @end

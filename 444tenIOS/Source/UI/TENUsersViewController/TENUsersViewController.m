@@ -11,7 +11,7 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENMacro.h"
-#import "TENModifiedIndexPaths.h"
+#import "TENChangedPath.h"
 #import "TENUserCell.h"
 #import "TENUser.h"
 #import "TENUsers.h"
@@ -30,12 +30,10 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (void)setUsers:(TENUsers *)users {
     if (_users != users) {
-        
         [_users removeObserver:self];
         
         _users = users;
-        
-        [users addObserver:self];
+        [_users addObserver:self];
     }
 }
 
@@ -56,9 +54,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark Interface Handling
 
 - (IBAction)onAddButton:(id)sender {    
-    TENUsers * users = self.users;
-    [users addObject:[TENUser testUser]];
-    [users addObject:[TENUser testUser]];
+    [self.users addObject:[TENUser testUser]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -72,7 +68,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.users[indexPath.row] = [TENUser testUser];
 }
-
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +110,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     }
 }
 
-
 - (void)    tableView:(UITableView *)tableView
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
@@ -126,20 +120,8 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark TENUsersObserver
 
-- (void)usersChanged:(TENUsers *)users {
-    TENModifiedIndexPaths *indexPaths = users.modifiedIndexPaths;
-    UITableView *tableView = self.usersView.tableView;
-    
-    [tableView beginUpdates];
-    
-    [tableView insertRowsAtIndexPaths:indexPaths.insertingPaths withRowAnimation:UITableViewRowAnimationLeft];
-    [tableView deleteRowsAtIndexPaths:indexPaths.deletingPaths withRowAnimation:UITableViewRowAnimationLeft];
-    [tableView reloadRowsAtIndexPaths:indexPaths.reloadingPaths withRowAnimation:UITableViewRowAnimationRight];
-    
-    [tableView endUpdates];
+- (void)users:(TENUsers *)users didChangedWithUsersInfo:(TENChangedPath *)path {
+    [self.usersView updateTableViewPath:path];
 }
-
-#pragma mark -
-#pragma mark Private
 
 @end

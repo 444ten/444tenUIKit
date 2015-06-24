@@ -15,18 +15,16 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 };
 
 @class TENUsers;
-@class TENModifiedIndexPaths;
 
 @protocol TENUsersObserver <NSObject>
 
 @optional
 
-- (void)usersChanged:(TENUsers *)users;
+- (void)users:(TENUsers *)users didChangedWithUsersInfo:(id)userInfo;
 
 @end
 
 @interface TENUsers : TENObservableObject <NSFastEnumeration>
-@property (nonatomic, strong)   TENModifiedIndexPaths   *modifiedIndexPaths;
 
 - (NSUInteger)count;
 

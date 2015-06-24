@@ -12,11 +12,14 @@
 @property (atomic, assign)      NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observerSet;
 
+- (void)setState:(NSUInteger)state withObject:(id)object;
+
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
 - (BOOL)isObsevedByObserver:(id)observer;
 
-// This method is intended for subclassing. Never call it directly.
+// This methods is intended for subclassing. Never call its directly.
 - (SEL)selectorForState:(NSUInteger)state;
+- (SEL)selectorForState:(NSUInteger)state withObject:(id)object;
 
 @end

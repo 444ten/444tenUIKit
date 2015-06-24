@@ -8,6 +8,8 @@
 
 #import "TENUsersView.h"
 
+#import "TENChangedPath.h"
+
 static NSString * const kEdit = @"Edit";
 static NSString * const kDone = @"Done";
 
@@ -31,6 +33,29 @@ static NSString * const kDone = @"Done";
         
         [self.tableView setEditing:editing animated:YES];
         [self.editButton setTitle:editing ? kDone : kEdit forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark -
+#pragma mark - Public
+
+- (void)updateTableViewPath:(TENChangedPath *)changedPath {
+    UITableView *tableView = self.tableView;
+    NSArray *paths = @[changedPath.path];
+    
+    switch (changedPath.pathType) {
+        case TENPathTypeInserting:
+            [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+        case TENPathTypeDeleting:
+            [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+        case TENPathTypeReloading:
+            [tableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationRight];
+            break;
+            
+        default:
+            break;
     }
 }
 
