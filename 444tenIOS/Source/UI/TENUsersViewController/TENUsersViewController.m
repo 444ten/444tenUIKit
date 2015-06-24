@@ -10,10 +10,10 @@
 
 #import "UITableView+TENExtensions.h"
 
-#import "TENMacro.h"
 #import "TENChangedPath.h"
-#import "TENUserCell.h"
+#import "TENMacro.h"
 #import "TENUser.h"
+#import "TENUserCell.h"
 #import "TENUsers.h"
 #import "TENUsersView.h"
 
@@ -46,10 +46,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     [self.usersView.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark -
 #pragma mark Interface Handling
 
@@ -69,16 +65,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     self.users[indexPath.row] = [TENUser testUser];
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -91,14 +77,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     cell.user = self.users[indexPath.row];
     
     return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
 }
 
 - (void)    tableView:(UITableView *)tableView
