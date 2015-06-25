@@ -95,7 +95,7 @@ static const NSUInteger TENUsersCount   = 5;
 
 - (void)fillUsers:(NSMutableArray *)users {
     for (NSUInteger index = 0; index < TENUsersCount; index++) {
-        [self addObject:[TENUser user]];
+        [self addObject:[TENUser new]];
     }
 }
 

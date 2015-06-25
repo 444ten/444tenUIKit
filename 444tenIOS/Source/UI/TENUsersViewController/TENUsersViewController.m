@@ -19,11 +19,14 @@
 
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
-@interface TENUsersViewController ()
-
-@end
-
 @implementation TENUsersViewController
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.users = nil;
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -50,7 +53,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark Interface Handling
 
 - (IBAction)onAddButton:(id)sender {    
-    [self.users addObject:[TENUser user]];
+    [self.users addObject:[TENUser new]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -62,7 +65,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.users[indexPath.row] = [TENUser user];
+    self.users[indexPath.row] = [TENUser new];
 }
 
 #pragma mark -

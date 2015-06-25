@@ -8,21 +8,16 @@
 
 #import "TENUser.h"
 
+static NSString * const kTENImageName = @"cat.jpg";
+
 @implementation TENUser
 
 @dynamic userImage;
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)user {
-    return [[self alloc] initUser];
-}
-
-#pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initUser {
+- (instancetype)init {
     static NSUInteger userNumber = 0;
 
     self = [super init];
@@ -38,7 +33,7 @@
 #pragma mark Accessors
 
 - (UIImage *)userImage {
-    return [UIImage imageNamed:@"cat.jpg"];
+    return [UIImage imageNamed:kTENImageName];
 }
 
 @end

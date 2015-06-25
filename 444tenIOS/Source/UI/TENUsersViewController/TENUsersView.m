@@ -32,7 +32,8 @@ static NSString * const kDone = @"Done";
         _editing = editing;
         
         [self.tableView setEditing:editing animated:YES];
-        [self.editButton setTitle:editing ? kDone : kEdit forState:UIControlStateNormal];
+        [self.editButton setTitle:editing ? kDone : kEdit
+                         forState:UIControlStateNormal];
     }
 }
 
