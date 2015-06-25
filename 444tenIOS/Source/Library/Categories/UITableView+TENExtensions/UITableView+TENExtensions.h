@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class TENChangedPath;
+
 @interface UITableView (TENExtensions)
 
 - (id)cellWithClass:(Class)cls;
@@ -17,5 +19,7 @@
             options:(NSDictionary *)options;
 
 - (id)dequeueReusableCellWithClass:(Class)cls;
+
+- (void)updateTableViewPath:(TENChangedPath *)changedPath;
 
 @end

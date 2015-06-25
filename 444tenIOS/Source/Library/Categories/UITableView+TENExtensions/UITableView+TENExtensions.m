@@ -8,6 +8,8 @@
 
 #import "UITableView+TENExtensions.h"
 
+#import "TENChangedPath.h"
+
 #import "UINib+TENExtensions.h"
 
 @implementation UITableView (TENExtensions)
@@ -34,6 +36,25 @@
 
 - (id)dequeueReusableCellWithClass:(Class)cls {
     return [self dequeueReusableCellWithIdentifier:NSStringFromClass(cls)];
+}
+
+- (void)updateTableViewPath:(TENChangedPath *)changedPath {
+    NSArray *paths = @[changedPath.path];
+    
+    switch (changedPath.pathType) {
+        case TENPathTypeInserting:
+            [self insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+        case TENPathTypeDeleting:
+            [self deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+        case TENPathTypeReloading:
+            [self reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationRight];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

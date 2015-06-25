@@ -36,27 +36,4 @@ static NSString * const kDone = @"Done";
     }
 }
 
-#pragma mark -
-#pragma mark - Public
-
-- (void)updateTableViewPath:(TENChangedPath *)changedPath {
-    UITableView *tableView = self.tableView;
-    NSArray *paths = @[changedPath.path];
-    
-    switch (changedPath.pathType) {
-        case TENPathTypeInserting:
-            [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
-            break;
-        case TENPathTypeDeleting:
-            [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
-            break;
-        case TENPathTypeReloading:
-            [tableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationRight];
-            break;
-            
-        default:
-            break;
-    }
-}
-
 @end

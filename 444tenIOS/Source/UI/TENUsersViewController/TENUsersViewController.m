@@ -99,7 +99,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark TENUsersObserver
 
 - (void)users:(TENUsers *)users didChangedWithUsersInfo:(TENChangedPath *)path {
-    [self.usersView updateTableViewPath:path];
+    [self.usersView.tableView updateTableViewPath:path];
 }
 
 @end
