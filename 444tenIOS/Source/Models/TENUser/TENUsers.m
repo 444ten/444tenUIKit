@@ -13,16 +13,30 @@
 #import "TENUser.h"
 #import "TENChangedPath.h"
 
-static const NSUInteger TENUsersCount   = 5;
+static NSString * const kTENUsersArray  = @"kTENUsersArray";
 
 @interface TENUsers ()
 @property (nonatomic, strong)   NSMutableArray          *users;
 
-- (void)fillUsers:(NSMutableArray *)users;
+- (NSMutableArray *)loadUsers;
 
 @end
 
 @implementation TENUsers
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)sharedUsers {
+    static id sharedUsers = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedUsers = [self new];
+    });
+    
+    return sharedUsers;
+}
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -30,9 +44,7 @@ static const NSUInteger TENUsersCount   = 5;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.users = [NSMutableArray new];
-        
-        [self fillUsers:self.users];
+        self.users = [self loadUsers];
     }
     return self;
 }
@@ -76,6 +88,13 @@ static const NSUInteger TENUsersCount   = 5;
     return self.users[index];
 }
 
+- (void)saveUsers {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.users] forKey:kTENUsersArray];
+    [defaults synchronize];
+}
+
 #pragma mark -
 #pragma mark Overload
 
@@ -93,10 +112,13 @@ static const NSUInteger TENUsersCount   = 5;
 #pragma mark -
 #pragma mark Private
 
-- (void)fillUsers:(NSMutableArray *)users {
-    for (NSUInteger index = 0; index < TENUsersCount; index++) {
-        [self addObject:[TENUser new]];
+- (NSMutableArray *)loadUsers {
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
+    if (userData) {
+        return [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]];
     }
+    
+    return [NSMutableArray array];
 }
 
 #pragma mark -

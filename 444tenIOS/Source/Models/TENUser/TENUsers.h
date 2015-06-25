@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 
 @class TENUsers;
 
-@protocol TENUsersObserver <NSObject>
+@protocol TENUsersObserver <NSObject, NSCoding>
 
 @optional
 
@@ -25,6 +25,8 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 @end
 
 @interface TENUsers : TENObservableObject <NSFastEnumeration>
+
++ (instancetype)sharedUsers;
 
 - (NSUInteger)count;
 
@@ -37,5 +39,7 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
+
+- (void)saveUsers;
 
 @end

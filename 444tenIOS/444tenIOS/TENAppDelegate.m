@@ -30,7 +30,7 @@
 //    controller.square = [TENSquareModel new];
     
     TENUsersViewController *controller = [TENUsersViewController new];
-    controller.users = [TENUsers new];
+    controller.users = [TENUsers sharedUsers];
 
     window.rootViewController = controller;
     [window makeKeyAndVisible];
@@ -39,10 +39,12 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    [[TENUsers sharedUsers] saveUsers];
     
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[TENUsers sharedUsers] saveUsers];
     
 }
 
@@ -55,7 +57,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    
+    [[TENUsers sharedUsers] saveUsers];
 }
 
 @end
