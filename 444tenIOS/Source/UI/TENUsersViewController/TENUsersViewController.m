@@ -46,6 +46,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         _users = users;
         [_users addObserver:self];
         
+        [self.lockView lock];
         [_users load];
     }
 }
