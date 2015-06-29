@@ -11,7 +11,8 @@
 #import "TENObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, TENUsersState) {
-    TENUsersChanged
+    TENUsersChanged,
+    TENUsersLoaded
 };
 
 @class TENUsers;
@@ -21,6 +22,7 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 @optional
 
 - (void)users:(TENUsers *)users didChangedWithUsersInfo:(id)userInfo;
+- (void)users:(TENUsers *)users didLoadedWithUsersInfo:(id)userInfo;
 
 @end
 
@@ -40,6 +42,7 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
+- (void)load;
 - (void)saveUsers;
 
 @end

@@ -18,8 +18,6 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
 @interface TENUsers ()
 @property (nonatomic, strong)   NSMutableArray          *users;
 
-- (NSMutableArray *)loadUsers;
-
 @end
 
 @implementation TENUsers
@@ -44,7 +42,7 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.users = [self loadUsers];
+
     }
     return self;
 }
@@ -102,6 +100,8 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
     switch (state) {
         case TENUsersChanged:
             return @selector(users:didChangedWithUsersInfo:);
+        case TENUsersLoaded:
+            return @selector(users:didLoadedWithUsersInfo:);
         default:
             [super selectorForState:state withObject:object];
     }
@@ -112,13 +112,14 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
 #pragma mark -
 #pragma mark Private
 
-- (NSMutableArray *)loadUsers {
+- (void)load {
     NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
-    if (userData) {
-        return [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]];
-    }
+    self.users  = userData
+                ? [NSMutableArray arrayWithArray:
+                        [NSKeyedUnarchiver unarchiveObjectWithData:userData]]
+                :[NSMutableArray array];
     
-    return [NSMutableArray array];
+    [self setState:TENUsersLoaded withObject:nil];
 }
 
 #pragma mark -

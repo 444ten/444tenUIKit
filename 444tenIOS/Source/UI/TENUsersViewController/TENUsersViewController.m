@@ -8,9 +8,11 @@
 
 #import "TENUsersViewController.h"
 
+#import "UINib+TENExtensions.h"
 #import "UITableView+TENExtensions.h"
 
 #import "TENChangedPath.h"
+#import "TENLoadView.h"
 #import "TENMacro.h"
 #import "TENUser.h"
 #import "TENUserCell.h"
@@ -18,6 +20,11 @@
 #import "TENUsersView.h"
 
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
+
+@interface TENUsersViewController ()
+@property (nonatomic, strong)   TENLoadView *lloadView;
+
+@end
 
 @implementation TENUsersViewController
 
@@ -37,6 +44,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         
         _users = users;
         [_users addObserver:self];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            sleep(5);
+            [users load];
+        });
+        
+   
     }
 }
 
@@ -47,6 +61,11 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     [super viewDidLoad];
     
     [self.usersView.tableView reloadData];
+    
+    if (self.users.state != TENUsersLoaded) {
+        self.lloadView = [TENLoadView viewInSuperView:self.usersView];
+        [self.lloadView lock];
+    }
 }
 
 #pragma mark -
@@ -100,6 +119,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 #pragma mark -
 #pragma mark TENUsersObserver
+
+- (void)users:(TENUsers *)users didLoadedWithUsersInfo:(id)userInfo {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.lloadView unlock];
+        [self.usersView.tableView reloadData];
+    });
+}
 
 - (void)users:(TENUsers *)users didChangedWithUsersInfo:(TENChangedPath *)path {
     [self.usersView.tableView updateTableViewPath:path];
