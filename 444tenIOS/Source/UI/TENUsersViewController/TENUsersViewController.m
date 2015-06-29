@@ -12,8 +12,9 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENChangedPath.h"
-#import "TENLoadView.h"
+#import "TENLockView.h"
 #import "TENMacro.h"
+#import "TENThread.h"
 #import "TENUser.h"
 #import "TENUserCell.h"
 #import "TENUsers.h"
@@ -22,7 +23,7 @@
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
 @interface TENUsersViewController ()
-@property (nonatomic, strong)   TENLoadView *lockView;
+@property (nonatomic, strong)   TENLockView *lockView;
 
 @end
 
@@ -45,10 +46,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         _users = users;
         [_users addObserver:self];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            sleep(3);
-            [users load];
-        });
+        [_users load];
     }
 }
 
@@ -63,8 +61,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     if (TENUsersLoaded == self.users.state) {
         [usersView.tableView reloadData];
     } else {
-        self.lockView = [TENLoadView viewInSuperView:usersView];
-        [self.lockView lock];
+        TENLockView *lockView = self.lockView;
+        if (!lockView) {
+            lockView = [TENLockView viewInSuperView:usersView];
+            self.lockView = lockView;
+        }
+        
+        [lockView lock];
     }
 }
 
@@ -121,7 +124,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark TENUsersObserver
 
 - (void)users:(TENUsers *)users didLoadedWithUsersInfo:(id)userInfo {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    TENPerformOnMainThreadWithBlock(^{
         [self.lockView unlock];
         [self.usersView.tableView reloadData];
     });

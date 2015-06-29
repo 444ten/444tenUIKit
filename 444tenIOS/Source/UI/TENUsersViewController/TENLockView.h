@@ -1,5 +1,5 @@
 //
-//  TENLoadView.h
+//  TENLockView.h
 //  444tenIOS
 //
 //  Created by 444ten on 6/28/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TENLoadView : UIView
+@interface TENLockView : UIView
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
 @property (nonatomic, strong)   IBOutlet UIButton                   *unlockButton;
 
@@ -17,7 +17,6 @@
 - (instancetype)initInSuperView:(UIView *)superView;
 
 - (IBAction)onUnlockButton:(id)sender;
-
 
 - (void)lock;
 - (void)unlock;

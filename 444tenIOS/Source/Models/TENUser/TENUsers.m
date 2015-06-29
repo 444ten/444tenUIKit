@@ -13,7 +13,8 @@
 #import "TENUser.h"
 #import "TENChangedPath.h"
 
-static NSString * const kTENUsersArray  = @"kTENUsersArray";
+static NSString * const kTENUsersArray      = @"kTENUsersArray";
+static const NSUInteger TENSleepInterval    = 3;
 
 @interface TENUsers ()
 @property (nonatomic, strong)   NSMutableArray          *users;
@@ -87,13 +88,16 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
 }
 
 - (void)load {
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
-    self.users  = userData
-    ? [NSMutableArray arrayWithArray:
-       [NSKeyedUnarchiver unarchiveObjectWithData:userData]]
-    :[NSMutableArray array];
-    
-    [self setState:TENUsersLoaded withObject:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        sleep(TENSleepInterval);
+        
+        NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
+        self.users  = userData
+                    ? [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]]
+                    :[NSMutableArray array];
+        
+        [self setState:TENUsersLoaded withObject:nil];
+    });
 }
 
 - (void)save {

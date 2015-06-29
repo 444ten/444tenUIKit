@@ -1,5 +1,5 @@
 //
-//  TENLoadView.m
+//  TENLockView.m
 //  444tenIOS
 //
 //  Created by 444ten on 6/28/15.
@@ -7,7 +7,7 @@
 //
 
 
-#import "TENLoadView.h"
+#import "TENLockView.h"
 
 #import "UINib+TENExtensions.h"
 
@@ -15,7 +15,7 @@ static const NSTimeInterval TENAnimateDuration  = 0.5;
 static const CGFloat        TENLockAlpha        = 0.7;
 static const CGFloat        TENUnlockAlpha      = 0.0;
 
-@implementation TENLoadView
+@implementation TENLockView
 
 #pragma mark -
 #pragma mark Class Methods
