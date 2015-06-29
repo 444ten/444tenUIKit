@@ -13,7 +13,6 @@
 @interface TENObservableObject ()
 @property (nonatomic, retain)   NSHashTable    *observerHashTable;
 
-- (void)notifyOnMainThread;
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object;
 
 @end
@@ -40,21 +39,18 @@
 #pragma mark Accessors
 
 - (void)setState:(NSUInteger)state {
-    @synchronized (self) {
-        _state = state;
-        
-        TENPerformOnMainThreadWithBlock(^{[self notifyOnMainThread];});
-    }
+    [self setState:state withObject:nil];
 }
 
 - (void)setState:(NSUInteger)state withObject:(id)object {
     @synchronized (self) {
         _state = state;
         
-        [self notifyOfStateChange:state withObject:object];
+//        TENPerformOnMainThreadWithBlock(^{
+            [self notifyOfStateChange:state withObject:object];
+//        });
     }
 }
-
 
 - (NSUInteger)state {
     @synchronized (self) {
@@ -89,10 +85,6 @@
     }
 }
 
-- (SEL)selectorForState:(NSUInteger)state {
-    return NULL;
-}
-
 - (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
     return NULL;
 }
@@ -100,17 +92,6 @@
 
 #pragma mark -
 #pragma mark Private
-
-- (void)notifyOnMainThread {
-    SEL selector = [self selectorForState:_state];
-    NSSet *observerSet = self.observerSet;
-    
-    for (id observer in observerSet) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self];
-        }
-    }
-}
 
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object {
     SEL selector = [self selectorForState:_state withObject:object];

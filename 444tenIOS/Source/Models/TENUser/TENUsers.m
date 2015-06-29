@@ -86,7 +86,17 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
     return self.users[index];
 }
 
-- (void)saveUsers {
+- (void)load {
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
+    self.users  = userData
+    ? [NSMutableArray arrayWithArray:
+       [NSKeyedUnarchiver unarchiveObjectWithData:userData]]
+    :[NSMutableArray array];
+    
+    [self setState:TENUsersLoaded withObject:nil];
+}
+
+- (void)save {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.users] forKey:kTENUsersArray];
@@ -107,19 +117,6 @@ static NSString * const kTENUsersArray  = @"kTENUsersArray";
     }
     
     return NULL;
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)load {
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
-    self.users  = userData
-                ? [NSMutableArray arrayWithArray:
-                        [NSKeyedUnarchiver unarchiveObjectWithData:userData]]
-                :[NSMutableArray array];
-    
-    [self setState:TENUsersLoaded withObject:nil];
 }
 
 #pragma mark -

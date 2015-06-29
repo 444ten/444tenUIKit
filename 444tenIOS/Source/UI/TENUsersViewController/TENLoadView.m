@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-static const double TENAnimateDuration  = 0.5;
 
 #import "TENLoadView.h"
 
 #import "UINib+TENExtensions.h"
+
+static const NSTimeInterval TENAnimateDuration  = 0.5;
+static const CGFloat        TENLockAlpha        = 0.7;
+static const CGFloat        TENUnlockAlpha      = 0.0;
 
 @implementation TENLoadView
 
@@ -43,19 +46,17 @@ static const double TENAnimateDuration  = 0.5;
     
     [UIView animateWithDuration:TENAnimateDuration
                      animations:^{
-                         self.alpha = 0.7;
+                         self.alpha = TENLockAlpha;
                      }];
 }
 
 - (void)unlock {
     [UIView animateWithDuration:TENAnimateDuration
                      animations:^{
-                         self.alpha = 0.0;
+                         self.alpha = TENUnlockAlpha;
                      }
                      completion:^(BOOL finished) {
-                         if (finished) {
-                             [self.activityIndicator stopAnimating];
-                         }
+                         [self.activityIndicator stopAnimating];
                      }];
 }
 
@@ -65,4 +66,5 @@ static const double TENAnimateDuration  = 0.5;
 - (IBAction)onUnlockButton:(id)sender {
     [self unlock];
 }
+
 @end

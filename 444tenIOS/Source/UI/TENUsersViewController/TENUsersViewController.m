@@ -22,7 +22,7 @@
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
 @interface TENUsersViewController ()
-@property (nonatomic, strong)   TENLoadView *lloadView;
+@property (nonatomic, strong)   TENLoadView *lockView;
 
 @end
 
@@ -46,11 +46,9 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         [_users addObserver:self];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            sleep(5);
+            sleep(3);
             [users load];
         });
-        
-   
     }
 }
 
@@ -60,11 +58,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.usersView.tableView reloadData];
+    TENUsersView *usersView = self.usersView;
     
-    if (self.users.state != TENUsersLoaded) {
-        self.lloadView = [TENLoadView viewInSuperView:self.usersView];
-        [self.lloadView lock];
+    if (TENUsersLoaded == self.users.state) {
+        [usersView.tableView reloadData];
+    } else {
+        self.lockView = [TENLoadView viewInSuperView:usersView];
+        [self.lockView lock];
     }
 }
 
@@ -122,7 +122,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (void)users:(TENUsers *)users didLoadedWithUsersInfo:(id)userInfo {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.lloadView unlock];
+        [self.lockView unlock];
         [self.usersView.tableView reloadData];
     });
 }

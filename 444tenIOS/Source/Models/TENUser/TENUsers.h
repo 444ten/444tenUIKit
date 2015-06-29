@@ -43,6 +43,6 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 - (void)load;
-- (void)saveUsers;
+- (void)save;
 
 @end

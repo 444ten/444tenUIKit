@@ -41,12 +41,12 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    [[TENUsers sharedUsers] saveUsers];
+    [[TENUsers sharedUsers] save];
     
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [[TENUsers sharedUsers] saveUsers];
+    [[TENUsers sharedUsers] save];
     
 }
 
@@ -59,7 +59,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [[TENUsers sharedUsers] saveUsers];
+    [[TENUsers sharedUsers] save];
 }
 
 @end
