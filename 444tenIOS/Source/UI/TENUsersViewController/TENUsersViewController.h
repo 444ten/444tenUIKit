@@ -17,5 +17,6 @@
 
 - (IBAction)onAddButton:(id)sender;
 - (IBAction)onEditButton:(id)sender;
+- (IBAction)onRestoreButton:(id)sender;
 
 @end

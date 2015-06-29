@@ -83,7 +83,12 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     view.editing = !view.editing;
 }
 
-#pragma mark - 
+- (IBAction)onRestoreButton:(id)sender {
+    [self.lockView lock];
+    [self.users load];
+}
+
+#pragma mark -
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

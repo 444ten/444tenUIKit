@@ -44,11 +44,22 @@
                         <action selector="onEditButton:" destination="-1" eventType="touchUpInside" id="3K4-8a-ekL"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="88n-J0-2Vj">
+                    <rect key="frame" x="209" y="15" width="53" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Restore">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onRestoreButton:" destination="-1" eventType="touchUpInside" id="haL-0K-f3t"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="addButton" destination="daZ-L6-Vpx" id="c2q-B2-npE"/>
                 <outlet property="editButton" destination="Sbr-SE-b9C" id="uA7-Z5-R4U"/>
+                <outlet property="restoreButton" destination="88n-J0-2Vj" id="ycc-Fw-V49"/>
                 <outlet property="tableView" destination="a6e-K1-wPp" id="1Q1-eB-X1V"/>
             </connections>
             <point key="canvasLocation" x="555" y="582"/>
