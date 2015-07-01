@@ -12,7 +12,7 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENChangedPath.h"
-#import "TENLockView.h"
+#import "TENLoadingView.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 #import "TENUser.h"
@@ -23,7 +23,7 @@
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
 @interface TENUsersViewController ()
-@property (nonatomic, strong)   TENLockView *lockView;
+@property (nonatomic, strong)   TENLoadingView *loadingView;
 
 @end
 
@@ -46,7 +46,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         _users = users;
         [_users addObserver:self];
         
-        [self.lockView lock];
+        [self.loadingView lock];
         [_users load];
     }
 }
@@ -62,13 +62,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     if (TENUsersLoaded == self.users.state) {
         [usersView.tableView reloadData];
     } else {
-        TENLockView *lockView = self.lockView;
-        if (!lockView) {
-            lockView = [TENLockView viewInSuperView:usersView];
-            self.lockView = lockView;
+        TENLoadingView *loadingView = self.loadingView;
+        if (!loadingView) {
+            loadingView = [TENLoadingView viewInSuperView:usersView];
+            self.loadingView = loadingView;
         }
         
-        [lockView lock];
+        [loadingView lock];
     }
 }
 
@@ -85,7 +85,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (IBAction)onRestoreButton:(id)sender {
-    [self.lockView lock];
+    [self.loadingView lock];
     [self.users load];
 }
 
@@ -131,7 +131,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (void)users:(TENUsers *)users didLoadWithUsersInfo:(id)userInfo {
     TENPerformOnMainThreadWithBlock(^{
-        [self.lockView unlock];
+        [self.loadingView unlock];
         [self.usersView.tableView reloadData];
     });
 }
