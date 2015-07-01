@@ -13,6 +13,9 @@
 @interface UITableView (TENExtensions)
 
 - (id)cellWithClass:(Class)cls;
+
+- (id)cellWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
+
 - (id)cellWithClass:(Class)cls
              bundle:(NSBundle *)bundle
               owner:(id)owner

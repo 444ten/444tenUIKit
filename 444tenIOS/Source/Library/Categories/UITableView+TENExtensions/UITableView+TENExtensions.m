@@ -18,7 +18,11 @@
 #pragma mark Public
 
 - (id)cellWithClass:(Class)cls {
-    return [self cellWithClass:cls bundle:nil owner:nil options:nil];
+    return [self cellWithClass:cls owner:nil options:nil];
+}
+
+- (id)cellWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options {
+    return [self cellWithClass:cls bundle:nil owner:owner options:options];
 }
 
 - (id)cellWithClass:(Class)cls
