@@ -93,6 +93,9 @@
 #pragma mark -
 #pragma mark Private
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object {
     SEL selector = [self selectorForState:_state withObject:object];
     NSSet *observerSet = self.observerSet;
@@ -104,5 +107,7 @@
     }
     
 }
+
+#pragma clang diagnostic pop
 
 @end
