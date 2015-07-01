@@ -8,6 +8,8 @@
 
 #import "UINib+TENExtensions.h"
 
+#import "NSBundle+TENExtensions.h"
+
 @implementation UINib (TENExtensions)
 
 #pragma mark -
@@ -39,7 +41,7 @@
 {
     UINib *nib = [self nibWithClass:cls bundle:bundle];
     
-    return [nib objectWithClass:cls owner:owner options:options];
+    return [nib objectWithClass:cls owner:owner options:options];    
 }
 
 #pragma mark -
