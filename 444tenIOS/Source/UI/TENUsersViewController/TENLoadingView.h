@@ -12,11 +12,11 @@
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
 @property (nonatomic, strong)   IBOutlet UIButton                   *unlockButton;
 
-+ (instancetype)viewInSuperView:(UIView *)superView;
-
-- (instancetype)initInSuperView:(UIView *)superView;
++ (instancetype)viewInSuperview:(UIView *)superview;
 
 - (IBAction)onUnlockButton:(id)sender;
+
+- (BOOL)isUnlock;
 
 - (void)lock;
 - (void)unlock;

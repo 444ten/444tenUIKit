@@ -14,7 +14,7 @@
 #import "TENChangedPath.h"
 
 static NSString * const kTENUsersArray      = @"kTENUsersArray";
-static const NSUInteger TENSleepInterval    = 3;
+static const NSUInteger TENSleepInterval    = 1;
 
 @interface TENUsers ()
 @property (nonatomic, strong)   NSMutableArray          *users;

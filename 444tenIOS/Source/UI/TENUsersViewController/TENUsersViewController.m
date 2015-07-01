@@ -64,7 +64,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     } else {
         TENLoadingView *loadingView = self.loadingView;
         if (!loadingView) {
-            loadingView = [TENLoadingView viewInSuperView:usersView];
+            loadingView = [TENLoadingView viewInSuperview:usersView];
             self.loadingView = loadingView;
         }
         

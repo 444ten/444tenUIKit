@@ -20,26 +20,19 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)viewInSuperView:(UIView *)superView {
-    return [[self alloc] initInSuperView:superView];
-}
-
-#pragma mark - 
-#pragma mark Initialization and Deallocations
-
-- (instancetype)initInSuperView:(UIView *)superView {
-    self = [super init];
-    if (self) {
-        self = [UINib objectWithClass:[self class]];
-    }
++ (instancetype)viewInSuperview:(UIView *)superview {
+    TENLoadingView *result = [UINib objectWithClass:[self class]];
+    [superview addSubview:result];
     
-    [superView addSubview:self];
-    
-    return self;
+    return result;
 }
 
 #pragma mark -
 #pragma mark Public
+
+- (BOOL)isUnlock{
+    return TENUnlockAlpha == self.alpha;
+}
 
 - (void)lock {
     [self.activityIndicator startAnimating];
