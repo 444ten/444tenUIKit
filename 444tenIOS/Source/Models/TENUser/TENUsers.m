@@ -113,9 +113,9 @@ static const NSUInteger TENSleepInterval    = 3;
 - (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
     switch (state) {
         case TENUsersChanged:
-            return @selector(users:didChangedWithUsersInfo:);
+            return @selector(users:didChangeWithUsersInfo:);
         case TENUsersLoaded:
-            return @selector(users:didLoadedWithUsersInfo:);
+            return @selector(users:didLoadWithUsersInfo:);
         default:
             [super selectorForState:state withObject:object];
     }

@@ -38,7 +38,7 @@
     return [self dequeueReusableCellWithIdentifier:NSStringFromClass(cls)];
 }
 
-- (void)updateTableViewPath:(TENChangedPath *)changedPath {
+- (void)updateTableViewWithChangedPath:(TENChangedPath *)changedPath {
     NSArray *paths = @[changedPath.path];
     
     switch (changedPath.pathType) {

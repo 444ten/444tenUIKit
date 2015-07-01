@@ -46,8 +46,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [[TENUsers sharedUsers] save];
-    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

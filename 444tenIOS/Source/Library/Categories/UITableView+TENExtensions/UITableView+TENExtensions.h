@@ -20,6 +20,6 @@
 
 - (id)dequeueReusableCellWithClass:(Class)cls;
 
-- (void)updateTableViewPath:(TENChangedPath *)changedPath;
+- (void)updateTableViewWithChangedPath:(TENChangedPath *)changedPath;
 
 @end

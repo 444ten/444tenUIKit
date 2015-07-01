@@ -21,8 +21,8 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 
 @optional
 
-- (void)users:(TENUsers *)users didChangedWithUsersInfo:(id)userInfo;
-- (void)users:(TENUsers *)users didLoadedWithUsersInfo:(id)userInfo;
+- (void)users:(TENUsers *)users didChangeWithUsersInfo:(id)userInfo;
+- (void)users:(TENUsers *)users didLoadWithUsersInfo:(id)userInfo;
 
 @end
 

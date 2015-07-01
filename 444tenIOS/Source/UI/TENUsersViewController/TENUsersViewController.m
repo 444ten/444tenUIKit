@@ -129,15 +129,15 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark TENUsersObserver
 
-- (void)users:(TENUsers *)users didLoadedWithUsersInfo:(id)userInfo {
+- (void)users:(TENUsers *)users didLoadWithUsersInfo:(id)userInfo {
     TENPerformOnMainThreadWithBlock(^{
         [self.lockView unlock];
         [self.usersView.tableView reloadData];
     });
 }
 
-- (void)users:(TENUsers *)users didChangedWithUsersInfo:(TENChangedPath *)path {
-    [self.usersView.tableView updateTableViewPath:path];
+- (void)users:(TENUsers *)users didChangeWithUsersInfo:(TENChangedPath *)path {
+    [self.usersView.tableView updateTableViewWithChangedPath:path];
 }
 
 @end
