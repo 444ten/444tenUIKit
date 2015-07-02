@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, TENUsersState) {
 
 @class TENUsers;
 
-@protocol TENUsersObserver <NSObject, NSCoding>
+@protocol TENUsersObserver
 
 @optional
 

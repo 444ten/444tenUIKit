@@ -9,7 +9,7 @@
 
 #import "TENLoadingView.h"
 
-#import "UINib+TENExtensions.h"
+#import "NSBundle+TENExtensions.h"
 
 static const NSTimeInterval TENAnimateDuration  = 0.5;
 static const CGFloat        TENLockAlpha        = 0.7;
@@ -21,7 +21,7 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 #pragma mark Class Methods
 
 + (instancetype)viewInSuperview:(UIView *)superview {
-    TENLoadingView *result = [UINib objectWithClass:[self class]];
+    TENLoadingView *result = [[NSBundle mainBundle] objectWithClass:[self class]];
     result.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [superview addSubview:result];

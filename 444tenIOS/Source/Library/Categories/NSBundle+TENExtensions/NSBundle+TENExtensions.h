@@ -11,6 +11,7 @@
 @interface NSBundle (TENExtensions)
 
 - (id)objectWithClass:(Class)cls;
+- (id)objectWithClass:(Class)cls owner:(id)owner;
 - (id)objectWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
 
 @end

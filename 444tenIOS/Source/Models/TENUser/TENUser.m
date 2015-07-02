@@ -44,7 +44,7 @@ static NSString * const kCoderName      = @"kCoderName";
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        _name = [aDecoder decodeObjectForKey:kCoderName];
+        self.name = [aDecoder decodeObjectForKey:kCoderName];
     }
     
     return self;

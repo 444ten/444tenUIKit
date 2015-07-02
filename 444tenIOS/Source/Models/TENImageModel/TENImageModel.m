@@ -94,12 +94,12 @@
     
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         __strong TENImageModel *strongSelf = weakSelf;
-        strongSelf.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
+        strongSelf.image = [UIImage imageWithContentsOfFile:[strongSelf.url absoluteString]];
     }];
     
     operation.completionBlock = ^{
         __strong TENImageModel *strongSelf = weakSelf;
-        strongSelf.state = self.image ? TENImageModelLoaded : TENImageModelFailingLoading;
+        strongSelf.state = strongSelf.image ? TENImageModelLoaded : TENImageModelFailingLoading;
     };
 
     return operation;
