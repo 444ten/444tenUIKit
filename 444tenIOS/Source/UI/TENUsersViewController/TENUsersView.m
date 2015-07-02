@@ -9,9 +9,15 @@
 #import "TENUsersView.h"
 
 #import "TENChangedPath.h"
+#import "TENLoadingView.h"
 
 static NSString * const kEdit = @"Edit";
 static NSString * const kDone = @"Done";
+
+@interface TENUsersView ()
+@property (nonatomic, strong)   TENLoadingView  *loadingView;
+
+@end
 
 @implementation TENUsersView
 
@@ -20,8 +26,8 @@ static NSString * const kDone = @"Done";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.editing = NO;
+
+    self.loadingView = [TENLoadingView viewInSuperview:self];
 }
 
 #pragma mark -
@@ -35,6 +41,21 @@ static NSString * const kDone = @"Done";
         [self.editButton setTitle:editing ? kDone : kEdit
                          forState:UIControlStateNormal];
     }
+}
+
+#pragma mark -
+#pragma mark - Public
+
+- (BOOL)isUnlock {
+    return [self.loadingView isUnlock];
+}
+
+- (void)lock {
+    [self.loadingView lock];
+}
+
+- (void)unlock {
+    [self.loadingView unlock];
 }
 
 @end

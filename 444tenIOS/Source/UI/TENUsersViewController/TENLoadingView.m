@@ -22,6 +22,8 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 
 + (instancetype)viewInSuperview:(UIView *)superview {
     TENLoadingView *result = [UINib objectWithClass:[self class]];
+    result.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
     [superview addSubview:result];
     
     return result;
