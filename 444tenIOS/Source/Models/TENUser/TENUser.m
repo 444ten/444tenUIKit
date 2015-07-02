@@ -11,9 +11,12 @@
 static NSString * const kTENImageName   = @"cat.jpg";
 static NSString * const kCoderName      = @"kCoderName";
 
-@implementation TENUser
+@interface TENUser ()
+@property (nonatomic, strong) UIImage     *userImage;
 
-@dynamic userImage;
+@end
+
+@implementation TENUser
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -32,10 +35,30 @@ static NSString * const kCoderName      = @"kCoderName";
 }
 
 #pragma mark -
-#pragma mark Accessors
+#pragma mark Public
 
-- (UIImage *)userImage {
-    return [UIImage imageNamed:kTENImageName];
+- (void)loadUserImage {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        sleep(1);
+        self.userImage = [UIImage imageNamed:kTENImageName];
+        
+        self.state = TENModelLoaded;
+    });
+}
+
+#pragma mark -
+#pragma mark Overload
+
+- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
+    switch (state) {
+        case TENModelLoaded:
+            return @selector(model:didLoadWithUsersInfo:);
+            
+        default:
+            [super selectorForState:state withObject:object];
+    }
+    
+    return NULL;
 }
 
 #pragma mark -
