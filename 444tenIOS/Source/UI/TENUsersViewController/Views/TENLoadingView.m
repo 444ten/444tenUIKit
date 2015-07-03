@@ -17,8 +17,7 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 @interface TENLoadingView ()
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
 
-- (void)lock;
-- (void)unlock;
+- (void)lock:(BOOL)locking;
 
 @end
 
@@ -41,58 +40,31 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 
 - (void)setLocking:(BOOL)locking {
     if (_locking != locking) {
-        
-        if (locking) {
-            [self lock];
-        } else
-            [self unlock];
+        [self lock:locking];
     }
 }
 
-//#pragma mark -
-//#pragma mark Public
-//
-//- (void)lockUnlock:(BOOL)locking {
-//    void(^completionBlock)(void) = nil;
-//    
-//    if (locking) {
-//        _locking = YES;
-//        [self.activityIndicator startAnimating];
-//    } else {
-//        completionBlock = ^{
-//            [self.activityIndicator stopAnimating];
-//            _locking = NO;
-//        };
-//    }
-//    
-//    [UIView animateWithDuration: TENAnimateDuration
-//                     animations:^{
-//                         self.alpha = locking ? TENLockAlpha : TENUnlockAlpha;
-//                     }
-//                     completion:^(BOOL finished) {
-//                        completionBlock();
-//                     }];
-//}
+#pragma mark -
+#pragma mark Private
 
-- (void)lock {
-    _locking = YES;
-    [self.activityIndicator startAnimating];
+- (void)lock:(BOOL)locking {
+    void(^completionBlock)(BOOL finished) = nil;
+    
+    if (locking) {
+        _locking = YES;
+        [self.activityIndicator startAnimating];
+    } else {
+        completionBlock = ^(BOOL finished){
+            [self.activityIndicator stopAnimating];
+            _locking = NO;
+        };
+    }
     
     [UIView animateWithDuration:TENAnimateDuration
                      animations:^{
-                         self.alpha = TENLockAlpha;
-                     }];
-}
-
-- (void)unlock {
-    [UIView animateWithDuration:TENAnimateDuration
-                     animations:^{
-                         self.alpha = TENUnlockAlpha;
+                         self.alpha = locking ? TENLockAlpha : TENUnlockAlpha;
                      }
-                     completion:^(BOOL finished) {
-                         [self.activityIndicator stopAnimating];
-                         _locking = NO;
-                     }];
+                     completion:completionBlock];
 }
 
 @end
