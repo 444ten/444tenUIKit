@@ -9,6 +9,7 @@
 #import "TENLoadingView.h"
 
 #import "NSBundle+TENExtensions.h"
+#import "UIView+TENExtensions.h"
 
 static const NSTimeInterval TENAnimateDuration  = 0.5;
 static const CGFloat        TENLockAlpha        = 0.7;
@@ -18,6 +19,9 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
 
 - (void)lock:(BOOL)locking;
+
+- (TENAnimationsBlock)animationsWithLocking:(BOOL)locking;
+- (TENCompletionBlock)completionWithLocking:(BOOL)locking;
 
 @end
 
@@ -48,23 +52,28 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 #pragma mark Private
 
 - (void)lock:(BOOL)locking {
-    void(^completionBlock)(BOOL finished) = nil;
-    
     if (locking) {
         _locking = YES;
         [self.activityIndicator startAnimating];
-    } else {
-        completionBlock = ^(BOOL finished){
-            [self.activityIndicator stopAnimating];
-            _locking = NO;
-        };
     }
     
     [UIView animateWithDuration:TENAnimateDuration
-                     animations:^{
-                         self.alpha = locking ? TENLockAlpha : TENUnlockAlpha;
-                     }
-                     completion:completionBlock];
+                     animations:[self animationsWithLocking:locking]
+                     completion:[self completionWithLocking:locking]];
+}
+
+- (TENAnimationsBlock)animationsWithLocking:(BOOL)locking {
+    return ^{ self.alpha = locking ? TENLockAlpha : TENUnlockAlpha; };
+    
+}
+
+- (TENCompletionBlock)completionWithLocking:(BOOL)locking {
+    TENCompletionBlock unlockingBlock = ^(BOOL finished){
+                                            [self.activityIndicator stopAnimating];
+                                            _locking = NO;
+                                        };
+    
+    return locking ? nil : unlockingBlock;
 }
 
 @end
