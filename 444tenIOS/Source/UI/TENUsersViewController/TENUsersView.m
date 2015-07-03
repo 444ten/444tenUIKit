@@ -46,16 +46,12 @@ static NSString * const kDone = @"Done";
 #pragma mark -
 #pragma mark - Public
 
-- (BOOL)isUnlock {
-    return [self.loadingView isUnlock];
-}
-
 - (void)lock {
-    [self.loadingView lock];
+    self.loadingView.locking = YES;
 }
 
 - (void)unlock {
-    [self.loadingView unlock];
+    self.loadingView.locking = NO;
 }
 
 @end

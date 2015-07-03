@@ -16,8 +16,6 @@
 
 @property (nonatomic, assign, getter=isEditing) BOOL    editing;
 
-- (BOOL)isUnlock;
-
 - (void)lock;
 - (void)unlock;
 
