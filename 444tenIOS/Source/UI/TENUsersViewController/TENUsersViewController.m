@@ -40,7 +40,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         _users = users;
         [_users addObserver:self];
         
-        [self.usersView lock];
+        self.usersView.locking = YES;
         [_users load];
     }
 }
@@ -55,7 +55,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     if (TENUsersLoaded == self.users.state) {
         [usersView.tableView reloadData];
     } else {
-        [usersView lock];
+        self.usersView.locking = YES;
     }
 }
 
@@ -72,7 +72,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (IBAction)onRestoreButton:(id)sender {
-    [self.usersView lock];
+    self.usersView.locking = YES;
     [self.users load];
 }
 
@@ -123,7 +123,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         __strong TENUsersViewController *strongSelf = weakSelf;
 
         TENUsersView *usersView = strongSelf.usersView;
-        [usersView unlock];
+        self.usersView.locking = NO;
         [usersView.tableView reloadData];
     });
 }

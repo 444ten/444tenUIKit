@@ -21,6 +21,8 @@ static NSString * const kDone = @"Done";
 
 @implementation TENUsersView
 
+@dynamic locking;
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
@@ -43,15 +45,12 @@ static NSString * const kDone = @"Done";
     }
 }
 
-#pragma mark -
-#pragma mark - Public
-
-- (void)lock {
-    self.loadingView.locking = YES;
+- (void)setLocking:(BOOL)locking {
+    self.loadingView.locking = locking;
 }
 
-- (void)unlock {
-    self.loadingView.locking = NO;
+- (BOOL)isLocking {
+    return self.loadingView.isLocking;
 }
 
 @end
