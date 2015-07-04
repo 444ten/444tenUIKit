@@ -117,13 +117,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark TENUsersObserver
 
 - (void)users:(TENUsers *)users didLoadWithUsersInfo:(id)userInfo {
-    __weak TENUsersViewController *weakSelf = self;
+    TENWeakify(self);
     
     TENPerformOnMainThreadWithBlock(^{
-        __strong TENUsersViewController *strongSelf = weakSelf;
-
-        TENUsersView *usersView = strongSelf.usersView;
-        self.usersView.locking = NO;
+        TENStrongifyAndReturnIfNil(self);
+        
+        TENUsersView *usersView = self.usersView;
+        usersView.locking = NO;
         [usersView.tableView reloadData];
     });
 }

@@ -31,3 +31,30 @@
     TENBaseViewGetterSynthesize(propertyName, baseViewClass); \
     \
     @end
+
+#define TENWeakify(variable) \
+    __weak __typeof(variable) __TENWeakified_##variable = variable;
+
+// you should only call this method after you called weakify for that same variable
+#define TENStrongify(variable) \
+    _Pragma ("clang diagnostic push"); \
+    _Pragma ("clang diagnostic ignored \"-Wshadow\""); \
+    \
+    __strong __typeof(variable) variable = __TENWeakified_##variable; \
+    \
+    _Pragma ("clang diagnostic pop");
+
+#define TENEmptyResult
+
+#define TENStrongifyAndReturnIfNil(variable) \
+    TENStrongifyAndReturnResultIfNil(variable, TENEmptyResult)
+
+#define TENStrongifyAndReturnNilIfNil(variable) \
+    TENStrongifyAndReturnResultIfNil(variable, nil)
+
+#define TENStrongifyAndReturnResultIfNil(variable, result) \
+    TENStrongify(variable) \
+    if (!variable) { \
+        return result; \
+    }
+

@@ -9,6 +9,7 @@
 #import "TENImageModel.h"
 
 #import "TENImageModelDispatcher.h"
+#import "TENMacro.h"
 
 @interface TENImageModel ()
 @property (nonatomic, strong)   UIImage     *image;
@@ -90,16 +91,16 @@
 #pragma mark Private
 
 - (NSOperation *)imageLoadingOperation {
-    __weak TENImageModel *weakSelf = self;
+    TENWeakify(self);
     
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        __strong TENImageModel *strongSelf = weakSelf;
-        strongSelf.image = [UIImage imageWithContentsOfFile:[strongSelf.url absoluteString]];
+        TENStrongifyAndReturnIfNil(self);
+        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
     }];
     
     operation.completionBlock = ^{
-        __strong TENImageModel *strongSelf = weakSelf;
-        strongSelf.state = strongSelf.image ? TENImageModelLoaded : TENImageModelFailingLoading;
+        TENStrongifyAndReturnIfNil(self);
+        self.state = self.image ? TENImageModelLoaded : TENImageModelFailingLoading;
     };
 
     return operation;
