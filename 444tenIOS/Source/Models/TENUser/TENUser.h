@@ -8,24 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TENObservableObject.h"
+#import "TENObservableModel.h"
 
-typedef NS_ENUM(NSUInteger, TENModelState) {
-    TENModelUnloaded,
-    TENModelLoading,
-    TENModelLoaded,
-    TENModelFailingLoading
-};
-
-@protocol TENModelObserver
-
-@optional
-
-- (void)model:(id)model didLoadWithUsersInfo:(id)userInfo;
-
-@end
-
-@interface TENUser : TENObservableObject <NSCoding>
+@interface TENUser : TENObservableModel <NSCoding>
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, readonly) UIImage     *userImage;
 

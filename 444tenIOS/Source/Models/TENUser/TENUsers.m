@@ -128,7 +128,8 @@ static const NSUInteger TENSleepInterval    = 1;
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id __unsafe_unretained [])buffer
-                                    count:(NSUInteger)len {
+                                    count:(NSUInteger)len
+{
     return [self.users countByEnumeratingWithState:state objects:buffer count:len];
 }
 

@@ -8,7 +8,9 @@
 
 #import "TENUserCell.h"
 
+#import "TENMacro.h"
 #import "TENThread.h"
+
 
 @implementation TENUserCell
 
@@ -45,13 +47,13 @@
 #pragma mark TENModelObserver
 
 - (void)model:(TENUser *)model didLoadWithUsersInfo:(id)userInfo {
-    __weak TENUserCell *weakSelf = self;
+    TENWeakify(self)
     
     TENPerformOnMainThreadWithBlock(^{
-        __strong TENUserCell *strongSelf = weakSelf;
+        TENStrongifyAndReturnIfNil(self);
         
-        [strongSelf.activityIndicator stopAnimating];
-        strongSelf.userImageView.image = model.userImage;
+        [self.activityIndicator stopAnimating];
+        self.userImageView.image = model.userImage;
     });
 }
 

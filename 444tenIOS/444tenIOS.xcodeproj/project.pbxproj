@@ -21,6 +21,7 @@
 		6CF640481B470C8D003025A6 /* TENLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF640461B470C8D003025A6 /* TENLoadingView.m */; };
 		6CF640491B470C8D003025A6 /* TENLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640471B470C8D003025A6 /* TENLoadingView.xib */; };
 		6CF6404D1B471C38003025A6 /* UIView+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */; };
+		6CF640511B48543F003025A6 /* TENObservableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF640501B48543F003025A6 /* TENObservableModel.m */; };
 		6CFBE9841B3025B90051E3D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9831B3025B90051E3D6 /* main.m */; };
 		6CFBE9871B3025B90051E3D6 /* TENAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9861B3025B90051E3D6 /* TENAppDelegate.m */; };
 		6CFBE9B21B3028290051E3D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9AF1B3028290051E3D6 /* LaunchScreen.xib */; };
@@ -81,6 +82,8 @@
 		6CF640471B470C8D003025A6 /* TENLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENLoadingView.xib; sourceTree = "<group>"; };
 		6CF6404B1B471C38003025A6 /* UIView+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TENExtensions.h"; sourceTree = "<group>"; };
 		6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TENExtensions.m"; sourceTree = "<group>"; };
+		6CF6404F1B48543F003025A6 /* TENObservableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENObservableModel.h; sourceTree = "<group>"; };
+		6CF640501B48543F003025A6 /* TENObservableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENObservableModel.m; sourceTree = "<group>"; };
 		6CFBE97E1B3025B90051E3D6 /* 444tenIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 444tenIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFBE9821B3025B90051E3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CFBE9831B3025B90051E3D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -276,6 +279,15 @@
 			path = "UIView+TENExtensions";
 			sourceTree = "<group>";
 		};
+		6CF6404E1B48542E003025A6 /* TENObservableModel */ = {
+			isa = PBXGroup;
+			children = (
+				6CF6404F1B48543F003025A6 /* TENObservableModel.h */,
+				6CF640501B48543F003025A6 /* TENObservableModel.m */,
+			);
+			path = TENObservableModel;
+			sourceTree = "<group>";
+		};
 		6CFBE9751B3025B90051E3D6 = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +365,7 @@
 				6C53FDD31B3A963300460608 /* TENChangedPath */,
 				6C53FDC71B381C3A00460608 /* TENThread */,
 				6C53FDC31B38178A00460608 /* TENObservableObject */,
+				6CF6404E1B48542E003025A6 /* TENObservableModel */,
 				6CFBE9EC1B34AE220051E3D6 /* TENTableViewCell */,
 			);
 			path = Classes;
@@ -621,6 +634,7 @@
 				6CFBE9F31B34B08C0051E3D6 /* TENUserCell.m in Sources */,
 				6CFBE9E81B3301250051E3D6 /* TENUser.m in Sources */,
 				6C0FDB581B441E9F00BE9A85 /* TENImageModelDispatcher.m in Sources */,
+				6CF640511B48543F003025A6 /* TENObservableModel.m in Sources */,
 				6C53FDBA1B359B7D00460608 /* UINib+TENExtensions.m in Sources */,
 				6CFBE9EF1B34AE490051E3D6 /* TENTableViewCell.m in Sources */,
 				6C53FDB61B35992800460608 /* UIWindow+TENExtensions.m in Sources */,

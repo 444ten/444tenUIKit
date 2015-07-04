@@ -39,26 +39,13 @@ static NSString * const kCoderName      = @"kCoderName";
 
 - (void)loadUserImage {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        sleep(3);
         self.userImage = [UIImage imageNamed:kTENImageName];
         
         self.state = TENModelLoaded;
     });
 }
 
-#pragma mark -
-#pragma mark Overload
-
-- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
-    switch (state) {
-        case TENModelLoaded:
-            return @selector(model:didLoadWithUsersInfo:);
-            
-        default:
-            [super selectorForState:state withObject:object];
-    }
-    
-    return NULL;
-}
 
 #pragma mark -
 #pragma mark NSCoding protocol
