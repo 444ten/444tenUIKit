@@ -30,4 +30,10 @@ typedef NS_ENUM(NSUInteger, TENModelState) {
 
 @interface TENObservableModel : TENObservableObject
 
+- (void)load;
+
+// This method is intended for subclassing. Never call it directly.
+// You should set state
+- (void)performLoadingInBackground;
+
 @end

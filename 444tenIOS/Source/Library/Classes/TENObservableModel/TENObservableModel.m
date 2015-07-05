@@ -11,6 +11,26 @@
 @implementation TENObservableModel
 
 #pragma mark -
+#pragma mark Public
+
+- (void)load {
+    if (TENModelLoaded == self.state) {
+        self.state = TENModelLoaded;
+        return;
+    }
+    
+    self.state = TENModelWillLoad;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [self performLoadingInBackground];
+    });
+}
+
+- (void)performLoadingInBackground {
+    
+}
+
+#pragma mark -
 #pragma mark Overload
 
 - (SEL)selectorForState:(NSUInteger)state withObject:(id)object {

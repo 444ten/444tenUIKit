@@ -87,26 +87,25 @@ static const NSUInteger TENSleepInterval    = 1;
     return self.users[index];
 }
 
-- (void)load {
-    self.state = TENModelWillLoad;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        sleep(TENSleepInterval);
-        
-        NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
-        self.users  = userData
-                    ? [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]]
-                    :[NSMutableArray array];
-        
-        [self setState:TENModelLoaded withObject:nil];
-    });
-}
-
 - (void)save {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.users] forKey:kTENUsersArray];
     [defaults synchronize];
+}
+
+#pragma mark -
+#pragma mark Overloading
+
+- (void)performLoadingInBackground {
+    sleep(TENSleepInterval);
+    
+    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
+    self.users  = userData
+                ? [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]]
+                :[NSMutableArray array];
+    
+    self.state = TENModelLoaded;
 }
 
 #pragma mark -

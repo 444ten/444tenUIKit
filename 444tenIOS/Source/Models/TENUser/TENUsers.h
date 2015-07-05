@@ -26,7 +26,6 @@
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
-- (void)load;
 - (void)save;
 
 @end
