@@ -39,7 +39,7 @@ static NSString * const kCoderName      = @"kCoderName";
 
 - (void)loadUserImage {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        sleep(3);
+        sleep(1);
         self.userImage = [UIImage imageNamed:kTENImageName];
         
         self.state = TENModelLoaded;

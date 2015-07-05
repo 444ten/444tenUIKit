@@ -61,17 +61,17 @@ static const NSUInteger TENSleepInterval    = 1;
 
 - (void)addObject:(id)object {
     [self.users addObject:object];
-    [self setState:TENUsersChanged withObject:[TENChangedPath insertingPathWithIndex:[self count] - 1]];
+    [self setState:TENModelChanged withObject:[TENChangedPath insertingPathWithIndex:[self count] - 1]];
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     [self.users insertObject:object atIndex:index];
-    [self setState:TENUsersChanged withObject:[TENChangedPath insertingPathWithIndex:index]];
+    [self setState:TENModelChanged withObject:[TENChangedPath insertingPathWithIndex:index]];
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.users removeObjectAtIndex:index];
-    [self setState:TENUsersChanged withObject:[TENChangedPath deletingPathWithIndex:index]];
+    [self setState:TENModelChanged withObject:[TENChangedPath deletingPathWithIndex:index]];
 }
 
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
@@ -80,7 +80,7 @@ static const NSUInteger TENSleepInterval    = 1;
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     [self.users setObject:object atIndexedSubscript:index];
-    [self setState:TENUsersChanged withObject:[TENChangedPath reloadingPathWithIndex:index]];
+    [self setState:TENModelChanged withObject:[TENChangedPath reloadingPathWithIndex:index]];
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
@@ -88,6 +88,8 @@ static const NSUInteger TENSleepInterval    = 1;
 }
 
 - (void)load {
+    self.state = TENModelWillLoad;
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         sleep(TENSleepInterval);
         
@@ -96,7 +98,7 @@ static const NSUInteger TENSleepInterval    = 1;
                     ? [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]]
                     :[NSMutableArray array];
         
-        [self setState:TENUsersLoaded withObject:nil];
+        [self setState:TENModelLoaded withObject:nil];
     });
 }
 
@@ -105,22 +107,6 @@ static const NSUInteger TENSleepInterval    = 1;
     
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.users] forKey:kTENUsersArray];
     [defaults synchronize];
-}
-
-#pragma mark -
-#pragma mark Overload
-
-- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
-    switch (state) {
-        case TENUsersChanged:
-            return @selector(users:didChangeWithUsersInfo:);
-        case TENUsersLoaded:
-            return @selector(users:didLoadWithUsersInfo:);
-        default:
-            [super selectorForState:state withObject:object];
-    }
-    
-    return NULL;
 }
 
 #pragma mark -

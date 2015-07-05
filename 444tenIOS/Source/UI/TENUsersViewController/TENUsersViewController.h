@@ -12,7 +12,7 @@
 
 @interface TENUsersViewController : UIViewController <  UITableViewDelegate,
                                                         UITableViewDataSource,
-                                                        TENUsersObserver>
+                                                        TENModelObserver>
 @property (nonatomic, strong)   TENUsers    *users;
 
 - (IBAction)onAddButton:(id)sender;

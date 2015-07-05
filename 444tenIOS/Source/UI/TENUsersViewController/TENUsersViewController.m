@@ -40,7 +40,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         _users = users;
         [_users addObserver:self];
         
-        self.usersView.locking = YES;
         [_users load];
     }
 }
@@ -51,12 +50,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    TENUsersView *usersView = self.usersView;
-    if (TENUsersLoaded == self.users.state) {
-        [usersView.tableView reloadData];
-    } else {
-        self.usersView.locking = YES;
-    }
+    [self.users load];
 }
 
 #pragma mark -
@@ -116,7 +110,11 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark TENUsersObserver
 
-- (void)users:(TENUsers *)users didLoadWithUsersInfo:(id)userInfo {
+- (void)model:(id)model startedLoadWithUsersInfo:(id)userInfo {
+    self.usersView.locking = YES;
+}
+
+- (void)model:(id)model didLoadWithUsersInfo:(id)userInfo {
     TENWeakify(self);
     
     TENPerformOnMainThreadWithBlock(^{
@@ -128,7 +126,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     });
 }
 
-- (void)users:(TENUsers *)users didChangeWithUsersInfo:(TENChangedPath *)path {
+- (void)model:(id)model didChangeWithUsersInfo:(TENChangedPath *)path {
     [self.usersView.tableView updateTableViewWithChangedPath:path];
 }
 
