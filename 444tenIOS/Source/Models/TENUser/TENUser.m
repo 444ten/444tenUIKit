@@ -11,8 +11,10 @@
 static NSString * const kTENImageName   = @"cat.jpg";
 static NSString * const kCoderName      = @"kCoderName";
 
+static NSUInteger userNumber = 0;
+
 @interface TENUser ()
-@property (nonatomic, strong) UIImage     *userImage;
+@property (nonatomic, strong) UIImage   *userImage;
 
 @end
 
@@ -22,7 +24,6 @@ static NSString * const kCoderName      = @"kCoderName";
 #pragma mark Initializations and Deallocations
 
 - (instancetype)init {
-    static NSUInteger userNumber = 0;
 
     self = [super init];
     if (self) {
@@ -35,17 +36,18 @@ static NSString * const kCoderName      = @"kCoderName";
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Overloading
 
-- (void)loadUserImage {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        sleep(1);
-        self.userImage = [UIImage imageNamed:kTENImageName];
-        
-        self.state = TENModelLoaded;
-    });
+- (void)performLoadingInBackground {
+    self.userImage = nil;
+    
+    usleep(1000*1000 + 1000 * arc4random_uniform(1000));
+    
+    UIImage *image = [UIImage imageNamed:self.name];
+    self.userImage = image ? image : [UIImage imageNamed:kTENImageName];
+    
+    self.state = TENModelLoaded;
 }
-
 
 #pragma mark -
 #pragma mark NSCoding protocol

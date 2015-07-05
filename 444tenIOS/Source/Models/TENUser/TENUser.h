@@ -14,6 +14,4 @@
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, readonly) UIImage     *userImage;
 
-- (void)loadUserImage;
-
 @end

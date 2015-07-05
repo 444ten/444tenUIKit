@@ -14,12 +14,14 @@
 #pragma mark Public
 
 - (void)load {
-    if (TENModelLoaded == self.state) {
-        self.state = TENModelLoaded;
-        return;
+    @synchronized (self) {
+        if (TENModelLoaded == self.state) {
+            self.state = TENModelLoaded;
+            return;
+        }
+        
+        self.state = TENModelWillLoad;
     }
-    
-    self.state = TENModelWillLoad;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [self performLoadingInBackground];

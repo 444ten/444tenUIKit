@@ -39,8 +39,9 @@
 #pragma mark Public
 
 - (void)fillWithModel:(TENUser *)user {
+    [self.activityIndicator startAnimating];
     self.nameLabel.text = user.name;
-    [user loadUserImage];
+    [user load];
 }
 
 #pragma mark -
