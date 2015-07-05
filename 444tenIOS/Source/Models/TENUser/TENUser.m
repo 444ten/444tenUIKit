@@ -8,8 +8,8 @@
 
 #import "TENUser.h"
 
-static NSString * const kTENImageName   = @"cat.jpg";
-static NSString * const kCoderName      = @"kCoderName";
+static NSString * const kTENFailImageName   = @"cat.jpg";
+static NSString * const kCoderName          = @"kCoderName";
 
 static NSUInteger userNumber = 0;
 
@@ -39,12 +39,10 @@ static NSUInteger userNumber = 0;
 #pragma mark Overloading
 
 - (void)performLoadingInBackground {
-    self.userImage = nil;
-    
     usleep(1000*1000 + 1000 * arc4random_uniform(1000));
     
     UIImage *image = [UIImage imageNamed:self.name];
-    self.userImage = image ? image : [UIImage imageNamed:kTENImageName];
+    self.userImage = image ? image : [UIImage imageNamed:kTENFailImageName];
     
     self.state = TENModelLoaded;
 }

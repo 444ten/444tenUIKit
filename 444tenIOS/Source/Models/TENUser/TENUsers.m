@@ -8,12 +8,13 @@
 
 #import "TENUsers.h"
 
+#import "NSFileManager+TENExtensions.h"
 #import "NSMutableArray+TENExtensions.h"
 
 #import "TENUser.h"
 #import "TENChangedPath.h"
 
-static NSString * const kTENUsersArray      = @"kTENUsersArray";
+static NSString * const kTENUsersFileName   = @"kTENUsersFileName";
 static const NSUInteger TENSleepInterval    = 1;
 
 @interface TENUsers ()
@@ -88,10 +89,10 @@ static const NSUInteger TENSleepInterval    = 1;
 }
 
 - (void)save {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.users];
+    NSString *file = [NSFileManager pathForDocumentDirectoryAndFile:kTENUsersFileName];
     
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.users] forKey:kTENUsersArray];
-    [defaults synchronize];
+    [data writeToFile:file atomically:YES];
 }
 
 #pragma mark -
@@ -100,7 +101,9 @@ static const NSUInteger TENSleepInterval    = 1;
 - (void)performLoadingInBackground {
     sleep(TENSleepInterval);
     
-    NSData *userData = [[NSUserDefaults standardUserDefaults] objectForKey:kTENUsersArray];
+    NSString *file = [NSFileManager pathForDocumentDirectoryAndFile:kTENUsersFileName];
+    NSData *userData = [NSData dataWithContentsOfFile:file];
+    
     self.users  = userData
                 ? [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]]
                 :[NSMutableArray array];
