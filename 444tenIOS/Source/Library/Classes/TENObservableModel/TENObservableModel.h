@@ -33,6 +33,9 @@ typedef NS_ENUM(NSUInteger, TENModelState) {
 - (void)load;
 
 // This method is intended for subclassing. Never call it directly.
+- (void)setupLoading;
+
+// This method is intended for subclassing. Never call it directly.
 // You should set state
 - (void)performLoadingInBackground;
 

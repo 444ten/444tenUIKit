@@ -8,8 +8,6 @@
 
 #import "TENObservableObject.h"
 
-#import "TENThread.h"
-
 @interface TENObservableObject ()
 @property (nonatomic, retain)   NSHashTable    *observerHashTable;
 
@@ -45,10 +43,7 @@
 - (void)setState:(NSUInteger)state withObject:(id)object {
     @synchronized (self) {
         _state = state;
-        
-//        TENPerformOnMainThreadWithBlock(^{
-            [self notifyOfStateChange:state withObject:object];
-//        });
+        [self notifyOfStateChange:state withObject:object];
     }
 }
 
@@ -89,7 +84,6 @@
     return NULL;
 }
 
-
 #pragma mark -
 #pragma mark Private
 
@@ -105,7 +99,6 @@
             [observer performSelector:selector withObject:self withObject:object];
         }
     }
-    
 }
 
 #pragma clang diagnostic pop
