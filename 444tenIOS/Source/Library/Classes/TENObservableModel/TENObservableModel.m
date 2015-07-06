@@ -15,6 +15,11 @@
 
 - (void)load {
     @synchronized (self) {
+        if (TENModelWillLoad == self.state) {
+            self.state = TENModelWillLoad;
+            return;
+        }
+        
         if (TENModelLoaded == self.state) {
             self.state = TENModelLoaded;
             return;
