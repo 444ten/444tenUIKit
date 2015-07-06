@@ -8,6 +8,7 @@
 
 #import "TENAppDelegate.h"
 
+#import "UIViewController+TENExtensions.h"
 #import "UIWindow+TENExtensions.h"
 
 #import "TENSquareModel.h"
@@ -15,6 +16,8 @@
 
 #import "TENUsers.h"
 #import "TENUsersViewController.h"
+
+#import "TENTestViewController.h"
 
 @interface TENAppDelegate ()
 
@@ -30,10 +33,11 @@
 //    controller.square = [TENSquareModel new];
     
     TENUsersViewController *controller = [TENUsersViewController new];
-    
     controller.users = [TENUsers sharedUsers];
 
-
+//    TENTestViewController *controller = [TENTestViewController new];
+//    TENTestViewController *controller = [TENTestViewController controller];
+    
     window.rootViewController = controller;
     [window makeKeyAndVisible];
     
