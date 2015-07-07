@@ -13,4 +13,6 @@
 
 + (instancetype)viewInSuperview:(UIView *)superview;
 
+- (void)setLocked:(BOOL)locked animated:(BOOL)animated;
+
 @end

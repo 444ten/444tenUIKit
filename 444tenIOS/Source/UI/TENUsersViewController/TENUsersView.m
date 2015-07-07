@@ -46,7 +46,7 @@ static NSString * const kDone = @"Done";
 }
 
 - (void)setLocked:(BOOL)locked {
-    self.loadingView.locked = locked;
+    [self.loadingView setLocked:locked animated:YES];
 }
 
 - (BOOL)isLocked {

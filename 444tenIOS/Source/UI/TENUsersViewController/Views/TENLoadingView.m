@@ -41,15 +41,19 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 #pragma mark Accessors
 
 - (void)setLocked:(BOOL)locked {
+    [self setLocked:locked animated:NO];
+}
+
+- (void)setLocked:(BOOL)locked animated:(BOOL)animated {
     if (_locked != locked) {
-        [UIView animateWithDuration:TENAnimateDuration
+        [UIView animateWithDuration: animated ? TENAnimateDuration : 0
                          animations:[self animationsWithLocked:locked]
                          completion:^(BOOL finished) {
-                                        [self completionWithLocked:locked];
-                                        if (finished) {
-                                            _locked = locked;
-                                        }
-                                    }];
+                             [self completionWithLocked:locked];
+                             if (finished) {
+                                 _locked = locked;
+                             }
+                         }];
     }
 }
 
