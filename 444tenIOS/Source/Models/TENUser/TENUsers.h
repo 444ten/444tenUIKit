@@ -12,8 +12,6 @@
 
 @interface TENUsers : TENObservableModel <NSFastEnumeration>
 
-+ (instancetype)sharedUsers;
-
 - (NSUInteger)count;
 
 - (id)objectAtIndex:(NSUInteger)index;

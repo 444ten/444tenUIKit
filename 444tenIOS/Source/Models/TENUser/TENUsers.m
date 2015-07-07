@@ -25,31 +25,6 @@ static const NSUInteger TENSleepInterval    = 1;
 @implementation TENUsers
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)sharedUsers {
-    static id sharedUsers = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedUsers = [self new];
-    });
-    
-    return sharedUsers;
-}
-
-#pragma mark -
-#pragma mark Initialization and Deallocation
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-
-    }
-    return self;
-}
-
-#pragma mark -
 #pragma mark Public
 
 - (NSUInteger)count {

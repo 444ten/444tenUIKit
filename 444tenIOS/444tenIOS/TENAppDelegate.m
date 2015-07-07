@@ -20,6 +20,7 @@
 #import "TENTestViewController.h"
 
 @interface TENAppDelegate ()
+@property (nonatomic, strong)   TENUsers    *users;
 
 @end
 
@@ -29,14 +30,16 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
 
-//    TENSquareViewController *controller = [TENSquareViewController new];
+//    TENSquareViewController *controller = [TENSquareViewController controller];
 //    controller.square = [TENSquareModel new];
     
-    TENUsersViewController *controller = [TENUsersViewController new];
-    controller.users = [TENUsers sharedUsers];
-
-//    TENTestViewController *controller = [TENTestViewController new];
 //    TENTestViewController *controller = [TENTestViewController controller];
+
+    TENUsersViewController *controller = [TENUsersViewController controller];
+
+    TENUsers *users = [TENUsers new];
+    self.users = users;
+    controller.users = users;
     
     window.rootViewController = controller;
     [window makeKeyAndVisible];
@@ -45,8 +48,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    [[TENUsers sharedUsers] save];
-    
+    [self.users save];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -61,7 +63,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [[TENUsers sharedUsers] save];
+    [self.users save];
 }
 
 @end
