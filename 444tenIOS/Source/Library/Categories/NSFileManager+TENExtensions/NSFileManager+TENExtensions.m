@@ -13,10 +13,10 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (NSString *)pathForDocumentDirectoryAndFile:(NSString *)file {
++ (NSString *)documentDirectoryPathWithFileName:(NSString *)fileName {
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 
-    return [path stringByAppendingPathComponent:file];
+    return [path stringByAppendingPathComponent:fileName];
 }
 
 @end

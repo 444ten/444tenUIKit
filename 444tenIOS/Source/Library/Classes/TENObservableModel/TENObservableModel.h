@@ -19,7 +19,6 @@ typedef NS_ENUM(NSUInteger, TENModelState) {
 @protocol TENModelObserver
 
 @optional
-
 - (void)model:(id)model didUnloadWithUsersInfo:(id)userInfo;
 - (void)model:(id)model willLoadWithUsersInfo:(id)userInfo;
 - (void)model:(id)model didLoadWithUsersInfo:(id)userInfo;

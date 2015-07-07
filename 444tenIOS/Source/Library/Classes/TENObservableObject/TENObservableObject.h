@@ -19,6 +19,6 @@
 - (BOOL)isObsevedByObserver:(id)observer;
 
 // This methods is intended for subclassing. Never call its directly.
-- (SEL)selectorForState:(NSUInteger)state withObject:(id)object;
+- (SEL)selectorForState:(NSUInteger)state;
 
 @end

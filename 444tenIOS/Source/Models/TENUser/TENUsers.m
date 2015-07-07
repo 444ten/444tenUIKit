@@ -14,7 +14,7 @@
 #import "TENUser.h"
 #import "TENChangedPath.h"
 
-static NSString * const kTENUsersFileName   = @"kTENUsersFileName";
+static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 static const NSUInteger TENSleepInterval    = 1;
 
 @interface TENUsers ()
@@ -90,7 +90,7 @@ static const NSUInteger TENSleepInterval    = 1;
 
 - (void)save {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.users];
-    NSString *file = [NSFileManager pathForDocumentDirectoryAndFile:kTENUsersFileName];
+    NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
     
     [data writeToFile:file atomically:YES];
 }
@@ -101,7 +101,7 @@ static const NSUInteger TENSleepInterval    = 1;
 - (void)performLoadingInBackground {
     sleep(TENSleepInterval);
     
-    NSString *file = [NSFileManager pathForDocumentDirectoryAndFile:kTENUsersFileName];
+    NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
     NSData *userData = [NSData dataWithContentsOfFile:file];
     
     self.users  = userData

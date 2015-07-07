@@ -80,7 +80,7 @@
     }
 }
 
-- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
+- (SEL)selectorForState:(NSUInteger)state {
     return NULL;
 }
 
@@ -91,7 +91,7 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object {
-    SEL selector = [self selectorForState:_state withObject:object];
+    SEL selector = [self selectorForState:_state];
     NSSet *observerSet = self.observerSet;
     
     for (id observer in observerSet) {

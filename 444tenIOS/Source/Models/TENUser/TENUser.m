@@ -60,7 +60,7 @@ static NSUInteger userNumber = 0;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_name forKey:kCoderName];
+    [aCoder encodeObject:self.name forKey:kCoderName];
 }
 
 @end

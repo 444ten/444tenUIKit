@@ -46,7 +46,7 @@
 #pragma mark -
 #pragma mark Overload
 
-- (SEL)selectorForState:(NSUInteger)state withObject:(id)object {
+- (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case TENModelUnloaded:
             return @selector(model:didUnloadWithUsersInfo:);
@@ -60,7 +60,7 @@
             return @selector(model:didChangeWithUsersInfo:);
             
         default:
-            [super selectorForState:state withObject:object];
+            [super selectorForState:state];
     }
     
     return NULL;

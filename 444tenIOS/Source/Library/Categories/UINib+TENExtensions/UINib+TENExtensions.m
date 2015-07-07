@@ -24,14 +24,11 @@
 }
 
 + (id)objectWithClass:(Class)cls {
-    return [self objectWithClass:cls owner:nil options:nil];
+    return [self objectWithClass:cls owner:nil];
 }
 
-+ (id)objectWithClass:(Class)cls
-                owner:(id)owner
-              options:(NSDictionary *)options
-{
-    return [self objectWithClass:cls bundle:nil owner:owner options:options];
++ (id)objectWithClass:(Class)cls owner:(id)owner {
+    return [self objectWithClass:cls bundle:nil owner:owner options:nil];
 }
 
 + (id)objectWithClass:(Class)cls
