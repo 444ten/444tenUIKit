@@ -368,8 +368,7 @@
 				6CF640831B4C0943003025A6 /* TENArrayModel.h */,
 				6CF640841B4C0943003025A6 /* TENArrayModel.m */,
 			);
-			name = TENArrayModel;
-			path = Classes/TENArrayModel;
+			path = TENArrayModel;
 			sourceTree = "<group>";
 		};
 		6CFBE9751B3025B90051E3D6 = {
@@ -439,7 +438,6 @@
 				6CFBE9AB1B3027230051E3D6 /* Classes */,
 				6CFBE9D31B32FCE10051E3D6 /* TENMacro.h */,
 				6CFBE9D41B32FCE10051E3D6 /* TENMacro.m */,
-				6CF640821B4C092C003025A6 /* TENArrayModel */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -452,6 +450,7 @@
 				6C53FDC31B38178A00460608 /* TENObservableObject */,
 				6CF6404E1B48542E003025A6 /* TENObservableModel */,
 				6CFBE9EC1B34AE220051E3D6 /* TENTableViewCell */,
+				6CF640821B4C092C003025A6 /* TENArrayModel */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
