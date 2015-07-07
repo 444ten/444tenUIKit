@@ -8,6 +8,12 @@
 
 #import "TENObservableModel.h"
 
+@interface TENObservableModel ()
+
+- (void)notifyWithState:(TENModelState)state;
+
+@end
+
 @implementation TENObservableModel
 
 #pragma mark -
@@ -15,13 +21,9 @@
 
 - (void)load {
     @synchronized (self) {
-        if (TENModelWillLoad == self.state) {
-            self.state = TENModelWillLoad;
-            return;
-        }
-        
-        if (TENModelLoaded == self.state) {
-            self.state = TENModelLoaded;
+        TENModelState state = self.state;
+        if (TENModelWillLoad == state || TENModelLoaded == state) {
+            [self notifyWithState:state];
             return;
         }
         
@@ -41,6 +43,13 @@
 
 - (void)performLoadingInBackground {
     
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)notifyWithState:(TENModelState)state {
+    self.state = state;
 }
 
 #pragma mark -
