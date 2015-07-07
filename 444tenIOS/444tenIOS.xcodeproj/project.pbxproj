@@ -41,6 +41,7 @@
 		6CF640781B4A81A9003025A6 /* TENTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF640761B4A81A9003025A6 /* TENTestViewController.m */; };
 		6CF6407D1B4A8751003025A6 /* TENTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CF6407C1B4A8751003025A6 /* TENTestViewController.xib */; };
 		6CF640811B4A890C003025A6 /* UIViewController+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF640801B4A890C003025A6 /* UIViewController+TENExtensions.m */; };
+		6CF640851B4C0943003025A6 /* TENArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF640841B4C0943003025A6 /* TENArrayModel.m */; };
 		6CFBE9841B3025B90051E3D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9831B3025B90051E3D6 /* main.m */; };
 		6CFBE9871B3025B90051E3D6 /* TENAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBE9861B3025B90051E3D6 /* TENAppDelegate.m */; };
 		6CFBE9B21B3028290051E3D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBE9AF1B3028290051E3D6 /* LaunchScreen.xib */; };
@@ -125,6 +126,8 @@
 		6CF6407C1B4A8751003025A6 /* TENTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TENTestViewController.xib; path = Source/UI/TENTestViewController/TENTestViewController.xib; sourceTree = SOURCE_ROOT; };
 		6CF6407F1B4A890C003025A6 /* UIViewController+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TENExtensions.h"; sourceTree = "<group>"; };
 		6CF640801B4A890C003025A6 /* UIViewController+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TENExtensions.m"; sourceTree = "<group>"; };
+		6CF640831B4C0943003025A6 /* TENArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENArrayModel.h; sourceTree = "<group>"; };
+		6CF640841B4C0943003025A6 /* TENArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENArrayModel.m; sourceTree = "<group>"; };
 		6CFBE97E1B3025B90051E3D6 /* 444tenIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 444tenIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFBE9821B3025B90051E3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CFBE9831B3025B90051E3D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -359,6 +362,16 @@
 			path = "UIViewController+TENExtensions";
 			sourceTree = "<group>";
 		};
+		6CF640821B4C092C003025A6 /* TENArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+				6CF640831B4C0943003025A6 /* TENArrayModel.h */,
+				6CF640841B4C0943003025A6 /* TENArrayModel.m */,
+			);
+			name = TENArrayModel;
+			path = Classes/TENArrayModel;
+			sourceTree = "<group>";
+		};
 		6CFBE9751B3025B90051E3D6 = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +439,7 @@
 				6CFBE9AB1B3027230051E3D6 /* Classes */,
 				6CFBE9D31B32FCE10051E3D6 /* TENMacro.h */,
 				6CFBE9D41B32FCE10051E3D6 /* TENMacro.m */,
+				6CF640821B4C092C003025A6 /* TENArrayModel */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -734,6 +748,7 @@
 				6C53FDCA1B381C3A00460608 /* TENThread.m in Sources */,
 				6CF640811B4A890C003025A6 /* UIViewController+TENExtensions.m in Sources */,
 				6CF640731B49E909003025A6 /* NSFileManager+TENExtensions.m in Sources */,
+				6CF640851B4C0943003025A6 /* TENArrayModel.m in Sources */,
 				6CF6404D1B471C38003025A6 /* UIView+TENExtensions.m in Sources */,
 				6CFBE9CC1B31832A0051E3D6 /* TENSquareView.m in Sources */,
 				6CFBE9F31B34B08C0051E3D6 /* TENUserCell.m in Sources */,
