@@ -31,7 +31,10 @@
         _user = user;
         [_user addObserver:self];
         
+        [self.activityIndicator startAnimating];
+
         [self fillWithModel:user];
+        [user load];
     }
 }
 
@@ -39,9 +42,8 @@
 #pragma mark Public
 
 - (void)fillWithModel:(TENUser *)user {
-    [self.activityIndicator startAnimating];
     self.nameLabel.text = user.name;
-    [user load];
+    self.userImageView.image = user.userImage;
 }
 
 #pragma mark -
@@ -54,9 +56,8 @@
         TENStrongifyAndReturnIfNil(self);
         
         [self.activityIndicator stopAnimating];
-        self.userImageView.image = model.userImage;
+        [self fillWithModel:model];
     });
 }
-
 
 @end
