@@ -15,6 +15,6 @@
 @property (nonatomic, strong)   IBOutlet UITableView    *tableView;
 
 @property (nonatomic, assign, getter=isEditing) BOOL    editing;
-@property (nonatomic, assign, getter=isLocking) BOOL    locking;
+@property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 
 @end

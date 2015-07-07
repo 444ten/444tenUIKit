@@ -67,7 +67,6 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (IBAction)onRestoreButton:(id)sender {
-    self.usersView.locking = YES;
     [self.users load];
 }
 
@@ -112,7 +111,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark TENUsersObserver
 
 - (void)model:(id)model startedLoadWithUsersInfo:(id)userInfo {
-    self.usersView.locking = YES;
+    self.usersView.locked = YES;
 }
 
 - (void)model:(id)model didLoadWithUsersInfo:(id)userInfo {
@@ -122,7 +121,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
         TENStrongifyAndReturnIfNil(self);
         
         TENUsersView *usersView = self.usersView;
-        usersView.locking = NO;
+        usersView.locked = NO;
         [usersView.tableView reloadData];
     });
 }

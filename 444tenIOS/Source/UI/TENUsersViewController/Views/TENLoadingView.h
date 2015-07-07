@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TENLoadingView : UIView
-@property (nonatomic, assign, getter=isLocking)  BOOL    locking;
+@property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 
 + (instancetype)viewInSuperview:(UIView *)superview;
 

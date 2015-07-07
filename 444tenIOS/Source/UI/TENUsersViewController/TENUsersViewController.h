@@ -10,9 +10,9 @@
 
 #import "TENUsers.h"
 
-@interface TENUsersViewController : UIViewController <  UITableViewDelegate,
-                                                        UITableViewDataSource,
-                                                        TENModelObserver>
+@interface TENUsersViewController : UIViewController <UITableViewDelegate,
+                                                      UITableViewDataSource,
+                                                      TENModelObserver>
 @property (nonatomic, strong)   TENUsers    *users;
 
 - (IBAction)onAddButton:(id)sender;

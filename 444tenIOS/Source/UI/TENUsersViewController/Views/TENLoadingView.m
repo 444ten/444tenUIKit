@@ -12,16 +12,14 @@
 #import "UIView+TENExtensions.h"
 
 static const NSTimeInterval TENAnimateDuration  = 0.5;
-static const CGFloat        TENLockAlpha        = 0.7;
+static const CGFloat        TENLockAlpha        = 1.0;
 static const CGFloat        TENUnlockAlpha      = 0.0;
 
 @interface TENLoadingView ()
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
 
-- (void)lock:(BOOL)locking;
-
-- (TENAnimationsBlock)animationsWithLocking:(BOOL)locking;
-- (TENCompletionBlock)completionWithLocking:(BOOL)locking;
+- (TENAnimationsBlock)animationsWithLocked:(BOOL)locked;
+- (void)completionWithLocked:(BOOL)locked;
 
 @end
 
@@ -42,38 +40,33 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setLocking:(BOOL)locking {
-    if (_locking != locking) {
-        [self lock:locking];
+- (void)setLocked:(BOOL)locked {
+    if (_locked != locked) {
+        [UIView animateWithDuration:TENAnimateDuration
+                         animations:[self animationsWithLocked:locked]
+                         completion:^(BOOL finished) {
+                                        [self completionWithLocked:locked];
+                                        if (finished) {
+                                            _locked = locked;
+                                        }
+                                    }];
     }
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)lock:(BOOL)locking {
-    if (locking) {
-        _locking = YES;
+- (TENAnimationsBlock)animationsWithLocked:(BOOL)locked {
+    return ^{ self.alpha = locked ? TENLockAlpha : TENUnlockAlpha; };
+    
+}
+
+- (void)completionWithLocked:(BOOL)locked {
+    if (locked) {
         [self.activityIndicator startAnimating];
+    } else {
+        [self.activityIndicator stopAnimating];
     }
-    
-    [UIView animateWithDuration:TENAnimateDuration
-                     animations:[self animationsWithLocking:locking]
-                     completion:[self completionWithLocking:locking]];
-}
-
-- (TENAnimationsBlock)animationsWithLocking:(BOOL)locking {
-    return ^{ self.alpha = locking ? TENLockAlpha : TENUnlockAlpha; };
-    
-}
-
-- (TENCompletionBlock)completionWithLocking:(BOOL)locking {
-    TENCompletionBlock unlockingBlock = ^(BOOL finished){
-                                            [self.activityIndicator stopAnimating];
-                                            _locking = NO;
-                                        };
-    
-    return locking ? nil : unlockingBlock;
 }
 
 @end
