@@ -51,7 +51,7 @@
         case TENModelUnloaded:
             return @selector(model:didUnloadWithUsersInfo:);
         case TENModelWillLoad:
-            return @selector(model:startedLoadWithUsersInfo:);
+            return @selector(model:willLoadWithUsersInfo:);
         case TENModelLoaded:
             return @selector(model:didLoadWithUsersInfo:);
         case TENModelFailLoading:
