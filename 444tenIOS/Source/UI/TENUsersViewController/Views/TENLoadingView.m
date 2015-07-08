@@ -15,14 +15,6 @@ static const NSTimeInterval TENAnimateDuration  = 0.5;
 static const CGFloat        TENLockAlpha        = 1.0;
 static const CGFloat        TENUnlockAlpha      = 0.0;
 
-@interface TENLoadingView ()
-@property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
-
-- (TENAnimationsBlock)animationsWithLocked:(BOOL)locked;
-- (void)completionWithLocked:(BOOL)locked;
-
-@end
-
 @implementation TENLoadingView
 
 #pragma mark -
@@ -38,6 +30,15 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 }
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.alpha = TENUnlockAlpha;
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (void)setLocked:(BOOL)locked {
@@ -46,30 +47,17 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 
 - (void)setLocked:(BOOL)locked animated:(BOOL)animated {
     if (_locked != locked) {
+        if (locked) {
+            _locked = locked;
+        }
+        
         [UIView animateWithDuration: animated ? TENAnimateDuration : 0
-                         animations:[self animationsWithLocked:locked]
+                         animations:^{ self.alpha = locked ? TENLockAlpha : TENUnlockAlpha; }
                          completion:^(BOOL finished) {
-                             [self completionWithLocked:locked];
                              if (finished) {
                                  _locked = locked;
                              }
                          }];
-    }
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (TENAnimationsBlock)animationsWithLocked:(BOOL)locked {
-    return ^{ self.alpha = locked ? TENLockAlpha : TENUnlockAlpha; };
-    
-}
-
-- (void)completionWithLocked:(BOOL)locked {
-    if (locked) {
-        [self.activityIndicator startAnimating];
-    } else {
-        [self.activityIndicator stopAnimating];
     }
 }
 

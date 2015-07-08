@@ -10,8 +10,9 @@
 
 #import "NSFileManager+TENExtensions.h"
 
+#import "TENMacro.h"
+
 static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
-static const NSUInteger TENSleepInterval    = 1;
 
 @interface TENUsers ()
 
@@ -33,8 +34,8 @@ static const NSUInteger TENSleepInterval    = 1;
 #pragma mark Overloading
 
 - (void)performLoadingInBackground {
-    sleep(TENSleepInterval);
-    
+    TENSleep(1);
+        
     NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
     NSData *userData = [NSData dataWithContentsOfFile:file];
     
