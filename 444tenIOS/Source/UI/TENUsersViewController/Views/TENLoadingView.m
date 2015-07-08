@@ -46,19 +46,13 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 }
 
 - (void)setLocked:(BOOL)locked animated:(BOOL)animated {
-    if (_locked != locked) {
-        if (locked) {
-            _locked = locked;
-        }
-        
-        [UIView animateWithDuration: animated ? TENAnimateDuration : 0
-                         animations:^{ self.alpha = locked ? TENLockAlpha : TENUnlockAlpha; }
-                         completion:^(BOOL finished) {
-                             if (finished) {
-                                 _locked = locked;
-                             }
-                         }];
-    }
+    [UIView animateWithDuration: animated ? TENAnimateDuration : 0
+                     animations:^{ self.alpha = locked ? TENLockAlpha : TENUnlockAlpha; }
+                     completion:^(BOOL finished) {
+                         if (finished) {
+                             _locked = locked;
+                         }
+                     }];
 }
 
 @end

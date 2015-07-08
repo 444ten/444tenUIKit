@@ -15,19 +15,38 @@
 static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 
 @interface TENUsers ()
+@property (nonatomic, readonly)                         NSString    *fileName;
+@property (nonatomic, readonly)                         NSString    *filePath;
+@property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
 @end
 
 @implementation TENUsers
 
+@dynamic fileName;
+@dynamic filePath;
+@dynamic fileAvailable;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSString *)fileName {
+    return kTENUsersFileName;
+}
+
+- (NSString *)filePath {
+    return [NSFileManager documentDirectoryPathWithFileName:self.fileName];
+}
+
+- (BOOL)isFileAvailable {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
+}
+
 #pragma mark -
 #pragma mark Public
 
 - (void)save {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.objects];
-    NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
-    
-    [data writeToFile:file atomically:YES];
+    [[NSKeyedArchiver archivedDataWithRootObject:self.objects] writeToFile:self.filePath atomically:YES];
 }
 
 #pragma mark -
@@ -41,16 +60,13 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
         [self removeObjectAtIndex:0];
     }
     
-    NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
-    NSData *userData = [NSData dataWithContentsOfFile:file];
-    
-    if (userData) {
+    if (self.fileAvailable) {
+        NSData *userData = [NSData dataWithContentsOfFile:self.filePath];
         NSArray *array = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]];
         
         for (id object in array) {
             [self addObject:object];
         }
-        
     }
     
     self.shouldNotify = YES;

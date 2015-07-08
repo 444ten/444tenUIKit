@@ -78,7 +78,7 @@
     }
 }
 
-- (BOOL)isObsevedByObserver:(id)observer {
+- (BOOL)isObservedByObserver:(id)observer {
     @synchronized (self) {
         return [self.observerHashTable containsObject:observer];
     }

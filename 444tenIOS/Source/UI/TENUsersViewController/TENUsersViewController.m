@@ -110,7 +110,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark TENUsersObserver
 
--(void)modelWillLoad:(id)model {
+- (void)modelWillLoad:(id)model {
     self.usersView.locked = YES;
 }
 
