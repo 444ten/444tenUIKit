@@ -49,7 +49,7 @@
 #pragma mark -
 #pragma mark TENModelObserver
 
-- (void)model:(TENUser *)model didLoadWithUsersInfo:(id)userInfo {
+- (void)modelDidLoad:(id)model {
     TENWeakify(self)
     
     TENPerformOnMainThreadWithBlock(^{

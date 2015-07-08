@@ -58,13 +58,13 @@
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case TENModelUnloaded:
-            return @selector(model:didUnloadWithUsersInfo:);
+            return @selector(modelDidUnload:);
         case TENModelWillLoad:
-            return @selector(model:willLoadWithUsersInfo:);
+            return @selector(modelWillLoad:);
         case TENModelLoaded:
-            return @selector(model:didLoadWithUsersInfo:);
+            return @selector(modelDidLoad:);
         case TENModelFailLoading:
-            return @selector(model:didFailLoadWithUsersInfo:);
+            return @selector(modelDidFailLoad:);
         case TENModelChanged:
             return @selector(model:didChangeWithUsersInfo:);
             
