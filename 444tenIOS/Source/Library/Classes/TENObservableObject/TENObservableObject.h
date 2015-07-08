@@ -11,7 +11,7 @@
 @interface TENObservableObject : NSObject
 @property (atomic, assign)      NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observerSet;
-@property (nonatomic, assign)   BOOL        shouldNotify;
+@property (nonatomic, readonly) BOOL        shouldNotify;
 
 
 - (void)setState:(NSUInteger)state withObject:(id)object;
@@ -19,6 +19,8 @@
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
 - (BOOL)isObservedByObserver:(id)observer;
+
+- (void)performBlockWithoutNotify:(void(^)(void))block;
 
 // This methods is intended for subclassing. Never call its directly.
 - (SEL)selectorForState:(NSUInteger)state;

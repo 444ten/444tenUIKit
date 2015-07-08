@@ -10,6 +10,7 @@
 
 @interface TENObservableObject ()
 @property (nonatomic, retain)   NSHashTable     *observerHashTable;
+@property (nonatomic, assign)   BOOL            shouldNotify;
 
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object;
 
@@ -82,6 +83,12 @@
     @synchronized (self) {
         return [self.observerHashTable containsObject:observer];
     }
+}
+
+- (void)performBlockWithoutNotify:(void(^)(void))block {
+    self.shouldNotify = NO;
+    block();
+    self.shouldNotify = YES;
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
