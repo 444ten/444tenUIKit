@@ -1,14 +1,14 @@
 //
-//  TENArrayModel.h
+//  TENOrderedModel.h
 //  444tenIOS
 //
 //  Created by Andrey Ten on 7/7/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENObservableModel.h"
+#import "TENModel.h"
 
-@interface TENArrayModel : TENObservableModel <NSFastEnumeration>
+@interface TENOrderedModel : TENModel <NSFastEnumeration>
 @property (nonatomic, strong)   NSMutableArray  *array;
 
 - (NSUInteger)count;

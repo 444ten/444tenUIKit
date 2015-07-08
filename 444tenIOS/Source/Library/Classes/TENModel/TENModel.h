@@ -1,5 +1,5 @@
 //
-//  TENObservableModel.h
+//  TENModel.h
 //  444tenIOS
 //
 //  Created by Andrey Ten on 7/4/15.
@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, TENModelState) {
 
 @end
 
-@interface TENObservableModel : TENObservableObject
+@interface TENModel : TENObservableObject
 
 - (void)load;
 

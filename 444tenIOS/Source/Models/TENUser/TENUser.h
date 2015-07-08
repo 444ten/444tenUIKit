@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TENObservableModel.h"
+#import "TENModel.h"
 
-@interface TENUser : TENObservableModel <NSCoding>
+@interface TENUser : TENModel <NSCoding>
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, readonly) UIImage     *userImage;
 

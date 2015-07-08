@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENArrayModel.h"
+#import "TENOrderedModel.h"
 
-@interface TENUsers : TENArrayModel
+@interface TENUsers : TENOrderedModel
 
 - (void)save;
 
