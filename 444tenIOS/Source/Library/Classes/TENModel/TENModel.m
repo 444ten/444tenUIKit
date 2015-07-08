@@ -8,12 +8,6 @@
 
 #import "TENModel.h"
 
-@interface TENModel ()
-
-- (void)notifyWithState:(TENModelState)state;
-
-@end
-
 @implementation TENModel
 
 #pragma mark -
@@ -23,7 +17,7 @@
     @synchronized (self) {
         TENModelState state = self.state;
         if (TENModelWillLoad == state || TENModelLoaded == state) {
-            [self notifyWithState:state];
+            self.state = state;
             return;
         }
         
@@ -43,13 +37,6 @@
 
 - (void)performLoadingInBackground {
     
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)notifyWithState:(TENModelState)state {
-    self.state = state;
 }
 
 #pragma mark -

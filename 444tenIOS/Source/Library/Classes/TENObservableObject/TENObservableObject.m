@@ -9,7 +9,7 @@
 #import "TENObservableObject.h"
 
 @interface TENObservableObject ()
-@property (nonatomic, retain)   NSHashTable    *observerHashTable;
+@property (nonatomic, retain)   NSHashTable     *observerHashTable;
 
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object;
 
@@ -28,6 +28,7 @@
     self = [super init];
     if (self) {
         self.observerHashTable = [NSHashTable weakObjectsHashTable];
+        self.shouldNotify = YES;
     }
     
     return self;
@@ -43,7 +44,10 @@
 - (void)setState:(NSUInteger)state withObject:(id)object {
     @synchronized (self) {
         _state = state;
-        [self notifyOfStateChange:state withObject:object];
+        
+        if (self.shouldNotify) {
+            [self notifyOfStateChange:state withObject:object];
+        }
     }
 }
 

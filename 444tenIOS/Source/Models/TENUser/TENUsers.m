@@ -24,7 +24,7 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 #pragma mark Public
 
 - (void)save {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.array];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.objects];
     NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
     
     [data writeToFile:file atomically:YES];
@@ -35,14 +35,25 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 
 - (void)performLoadingInBackground {
     TENSleep(1);
-        
+    self.shouldNotify = NO;
+
+    while (self.count > 0) {
+        [self removeObjectAtIndex:0];
+    }
+    
     NSString *file = [NSFileManager documentDirectoryPathWithFileName:kTENUsersFileName];
     NSData *userData = [NSData dataWithContentsOfFile:file];
     
-    self.array  = userData
-                ? [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]]
-                :[NSMutableArray array];
+    if (userData) {
+        NSArray *array = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]];
+        
+        for (id object in array) {
+            [self addObject:object];
+        }
+        
+    }
     
+    self.shouldNotify = YES;
     self.state = TENModelLoaded;
 }
 

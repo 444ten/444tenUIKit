@@ -9,7 +9,7 @@
 #import "TENModel.h"
 
 @interface TENOrderedModel : TENModel <NSFastEnumeration>
-@property (nonatomic, strong)   NSMutableArray  *array;
+@property (nonatomic, readonly)   NSArray  *objects;
 
 - (NSUInteger)count;
 

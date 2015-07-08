@@ -12,7 +12,33 @@
 
 #import "TENChangedPath.h"
 
+@interface TENOrderedModel ()
+@property (nonatomic, strong)   NSMutableArray  *array;
+
+@end
+
 @implementation TENOrderedModel
+
+@dynamic objects;
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.array = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)objects {
+    return [self.array copy];
+}
 
 #pragma mark -
 #pragma mark Public

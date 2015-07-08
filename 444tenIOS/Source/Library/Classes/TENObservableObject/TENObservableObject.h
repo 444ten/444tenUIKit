@@ -11,6 +11,8 @@
 @interface TENObservableObject : NSObject
 @property (atomic, assign)      NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observerSet;
+@property (nonatomic, assign)   BOOL        shouldNotify;
+
 
 - (void)setState:(NSUInteger)state withObject:(id)object;
 
