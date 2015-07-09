@@ -70,6 +70,14 @@
     [self.array moveObjectAtIndex:fromIndex toIndex:toIndex];
 }
 
+- (void)removeAllObjectWithoutNotify {
+    [self.array removeAllObjects];
+}
+
+- (void)addObjectsFromArrayWithoutNotify:(NSArray *)array {
+    [self.array addObjectsFromArray:array];
+}
+
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     [self.array setObject:object atIndexedSubscript:index];
     [self setState:TENModelChanged withObject:[TENChangedPath reloadingPathWithIndex:index]];

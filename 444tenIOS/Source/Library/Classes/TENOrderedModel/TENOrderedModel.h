@@ -20,6 +20,10 @@
 - (void)removeObjectAtIndex:(NSUInteger)index;
 - (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
+// after calling this method's you should set state
+- (void)removeAllObjectWithoutNotify;
+- (void)addObjectsFromArrayWithoutNotify:(NSArray *)array;
+
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 

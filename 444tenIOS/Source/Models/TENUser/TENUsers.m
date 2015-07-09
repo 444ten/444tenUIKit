@@ -35,7 +35,7 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 }
 
 - (NSString *)filePath {
-    return [NSFileManager documentDirectoryPathWithFileName:self.fileName];
+    return [NSFileManager documentsPathWithFileName:self.fileName];
 }
 
 - (BOOL)isFileAvailable {
@@ -54,21 +54,11 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 
 - (void)performLoadingInBackground {
     TENSleep(1);
+    [self removeAllObjectWithoutNotify];
     
-    [self performBlockWithoutNotify:^{
-        while (self.count > 0) {
-            [self removeObjectAtIndex:0];
-        }
-        
-        if (self.fileAvailable) {
-            NSData *userData = [NSData dataWithContentsOfFile:self.filePath];
-            NSArray *array = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:userData]];
-            
-            for (id object in array) {
-                [self addObject:object];
-            }
-        }
-    }];
+    if (self.fileAvailable) {
+        [self addObjectsFromArrayWithoutNotify:[NSKeyedUnarchiver unarchiveObjectWithFile:self.filePath]];
+    }
     
     self.state = TENModelLoaded;
 }

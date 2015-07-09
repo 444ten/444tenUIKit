@@ -8,29 +8,10 @@
 
 #import "TENUsersView.h"
 
-#import "TENChangedPath.h"
-#import "TENLoadingView.h"
-
 static NSString * const kEdit = @"Edit";
 static NSString * const kDone = @"Done";
 
-@interface TENUsersView ()
-@property (nonatomic, strong)   TENLoadingView  *loadingView;
-
-@end
-
 @implementation TENUsersView
-
-@dynamic locked;
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
-    self.loadingView = [TENLoadingView viewInSuperview:self];
-}
 
 #pragma mark -
 #pragma mark - Accessors
@@ -43,14 +24,6 @@ static NSString * const kDone = @"Done";
         [self.editButton setTitle:editing ? kDone : kEdit
                          forState:UIControlStateNormal];
     }
-}
-
-- (void)setLocked:(BOOL)locked {
-    [self.loadingView setLocked:locked animated:YES];
-}
-
-- (BOOL)isLocked {
-    return self.loadingView.isLocked;
 }
 
 @end

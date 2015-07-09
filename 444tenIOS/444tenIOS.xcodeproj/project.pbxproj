@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C098B351B4DDC5C00C1F0C1 /* TENLockableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C098B341B4DDC5C00C1F0C1 /* TENLockableView.m */; };
+		6C098B401B4DDE0400C1F0C1 /* TENLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C098B3E1B4DDE0400C1F0C1 /* TENLoadingView.m */; };
+		6C098B411B4DDE0400C1F0C1 /* TENLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C098B3F1B4DDE0400C1F0C1 /* TENLoadingView.xib */; };
 		6C0FDB501B43F61600BE9A85 /* NSBundle+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0FDB4F1B43F61600BE9A85 /* NSBundle+TENExtensions.m */; };
 		6C0FDB541B4405D500BE9A85 /* TENImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0FDB531B4405D500BE9A85 /* TENImageModel.m */; };
 		6C0FDB581B441E9F00BE9A85 /* TENImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0FDB571B441E9F00BE9A85 /* TENImageModelDispatcher.m */; };
@@ -18,8 +21,6 @@
 		6C53FDCA1B381C3A00460608 /* TENThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDC91B381C3A00460608 /* TENThread.m */; };
 		6C53FDD61B3A963300460608 /* TENChangedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDD51B3A963300460608 /* TENChangedPath.m */; };
 		6C53FDDA1B3ACC9E00460608 /* NSMutableArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */; };
-		6CF640481B470C8D003025A6 /* TENLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF640461B470C8D003025A6 /* TENLoadingView.m */; };
-		6CF640491B470C8D003025A6 /* TENLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640471B470C8D003025A6 /* TENLoadingView.xib */; };
 		6CF6404D1B471C38003025A6 /* UIView+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */; };
 		6CF6405A1B49861A003025A6 /* User_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640521B49861A003025A6 /* User_1.png */; };
 		6CF6405B1B49861A003025A6 /* User_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640531B49861A003025A6 /* User_2.png */; };
@@ -76,6 +77,12 @@
 
 /* Begin PBXFileReference section */
 		651C6B1F400D759CDDDBABED /* Pods-444tenIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-444tenIOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-444tenIOSTests/Pods-444tenIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6C098B331B4DDC5C00C1F0C1 /* TENLockableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENLockableView.h; sourceTree = "<group>"; };
+		6C098B341B4DDC5C00C1F0C1 /* TENLockableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENLockableView.m; sourceTree = "<group>"; };
+		6C098B3D1B4DDE0400C1F0C1 /* TENLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENLoadingView.h; sourceTree = "<group>"; };
+		6C098B3E1B4DDE0400C1F0C1 /* TENLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENLoadingView.m; sourceTree = "<group>"; };
+		6C098B3F1B4DDE0400C1F0C1 /* TENLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENLoadingView.xib; sourceTree = "<group>"; };
+		6C098B441B4DE53500C1F0C1 /* TENLockableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TENLockableViewProtocol.h; sourceTree = "<group>"; };
 		6C0FDB4E1B43F61600BE9A85 /* NSBundle+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TENExtensions.h"; sourceTree = "<group>"; };
 		6C0FDB4F1B43F61600BE9A85 /* NSBundle+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TENExtensions.m"; sourceTree = "<group>"; };
 		6C0FDB521B4405D500BE9A85 /* TENImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENImageModel.h; sourceTree = "<group>"; };
@@ -97,9 +104,6 @@
 		6C53FDD41B3A963300460608 /* TENChangedPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENChangedPath.h; sourceTree = "<group>"; };
 		6C53FDD51B3A963300460608 /* TENChangedPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENChangedPath.m; sourceTree = "<group>"; };
 		6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArraySpec.m; sourceTree = "<group>"; };
-		6CF640451B470C8D003025A6 /* TENLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENLoadingView.h; sourceTree = "<group>"; };
-		6CF640461B470C8D003025A6 /* TENLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENLoadingView.m; sourceTree = "<group>"; };
-		6CF640471B470C8D003025A6 /* TENLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENLoadingView.xib; sourceTree = "<group>"; };
 		6CF6404B1B471C38003025A6 /* UIView+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TENExtensions.h"; sourceTree = "<group>"; };
 		6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TENExtensions.m"; sourceTree = "<group>"; };
 		6CF640521B49861A003025A6 /* User_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User_1.png; sourceTree = "<group>"; };
@@ -194,6 +198,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6C098B321B4DDC4000C1F0C1 /* TENLockableView */ = {
+			isa = PBXGroup;
+			children = (
+				6C098B331B4DDC5C00C1F0C1 /* TENLockableView.h */,
+				6C098B341B4DDC5C00C1F0C1 /* TENLockableView.m */,
+				6C098B441B4DE53500C1F0C1 /* TENLockableViewProtocol.h */,
+			);
+			path = TENLockableView;
+			sourceTree = "<group>";
+		};
+		6C098B3C1B4DDE0400C1F0C1 /* TENLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				6C098B3D1B4DDE0400C1F0C1 /* TENLoadingView.h */,
+				6C098B3E1B4DDE0400C1F0C1 /* TENLoadingView.m */,
+				6C098B3F1B4DDE0400C1F0C1 /* TENLoadingView.xib */,
+			);
+			path = TENLoadingView;
+			sourceTree = "<group>";
+		};
 		6C0FDB4D1B43F5ED00BE9A85 /* NSBundle+TENExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,13 +249,13 @@
 		6C53FDB21B35992800460608 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				6C0FDB4D1B43F5ED00BE9A85 /* NSBundle+TENExtensions */,
 				6CF640701B49E8E7003025A6 /* NSFileManager+TENExtensions */,
+				6C53FDBF1B38160400460608 /* NSMutableArray+TENExtensions */,
+				6C53FDB71B359B6800460608 /* UINib+TENExtensions */,
+				6C53FDBB1B35B3C200460608 /* UITableView+TENExtensions */,
 				6CF6404A1B471C16003025A6 /* UIView+TENExtensions */,
 				6CF6407E1B4A88E1003025A6 /* UIViewController+TENExtensions */,
-				6C0FDB4D1B43F5ED00BE9A85 /* NSBundle+TENExtensions */,
-				6C53FDBF1B38160400460608 /* NSMutableArray+TENExtensions */,
-				6C53FDBB1B35B3C200460608 /* UITableView+TENExtensions */,
-				6C53FDB71B359B6800460608 /* UINib+TENExtensions */,
 				6C53FDB31B35992800460608 /* UIWindow+TENExtensions */,
 			);
 			path = Categories;
@@ -446,11 +470,12 @@
 			isa = PBXGroup;
 			children = (
 				6C53FDD31B3A963300460608 /* TENChangedPath */,
-				6C53FDC71B381C3A00460608 /* TENThread */,
-				6C53FDC31B38178A00460608 /* TENObservableObject */,
+				6C098B321B4DDC4000C1F0C1 /* TENLockableView */,
 				6CF640861B4D1012003025A6 /* TENModel */,
-				6CFBE9EC1B34AE220051E3D6 /* TENTableViewCell */,
+				6C53FDC31B38178A00460608 /* TENObservableObject */,
 				6CF6408A1B4D10D7003025A6 /* TENOrderedModel */,
+				6CFBE9EC1B34AE220051E3D6 /* TENTableViewCell */,
+				6C53FDC71B381C3A00460608 /* TENThread */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -468,9 +493,9 @@
 		6CFBE9AD1B3027230051E3D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6CFBE9B41B3029B30051E3D6 /* TENSquareViewController */,
 				6CF640741B4A818A003025A6 /* TENTestViewController */,
 				6CFBE9DC1B32FED80051E3D6 /* TENUsersViewController */,
-				6CFBE9B41B3029B30051E3D6 /* TENSquareViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -545,12 +570,10 @@
 		6CFBE9F01B34AFAC0051E3D6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6C098B3C1B4DDE0400C1F0C1 /* TENLoadingView */,
 				6CFBE9F11B34B08C0051E3D6 /* TENUserCell.h */,
 				6CFBE9F21B34B08C0051E3D6 /* TENUserCell.m */,
 				6CFBE9F41B34B2200051E3D6 /* TENUserCell.xib */,
-				6CF640451B470C8D003025A6 /* TENLoadingView.h */,
-				6CF640461B470C8D003025A6 /* TENLoadingView.m */,
-				6CF640471B470C8D003025A6 /* TENLoadingView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -672,10 +695,10 @@
 				6CF6405F1B49861A003025A6 /* User_6.png in Resources */,
 				6CF640691B49BF93003025A6 /* User_9.png in Resources */,
 				6CF6405C1B49861A003025A6 /* User_3.png in Resources */,
+				6C098B411B4DDE0400C1F0C1 /* TENLoadingView.xib in Resources */,
 				6CF640601B49861A003025A6 /* User_7.png in Resources */,
 				6CF6406A1B49BF93003025A6 /* User_10.png in Resources */,
 				6CF6406D1B49BF93003025A6 /* User_13.png in Resources */,
-				6CF640491B470C8D003025A6 /* TENLoadingView.xib in Resources */,
 				6CF6405E1B49861A003025A6 /* User_5.png in Resources */,
 				6CF640611B49861A003025A6 /* User_8.png in Resources */,
 				6CFBE9F81B3579790051E3D6 /* cat.jpg in Resources */,
@@ -744,6 +767,7 @@
 			files = (
 				6C0FDB501B43F61600BE9A85 /* NSBundle+TENExtensions.m in Sources */,
 				6CFBE9871B3025B90051E3D6 /* TENAppDelegate.m in Sources */,
+				6C098B351B4DDC5C00C1F0C1 /* TENLockableView.m in Sources */,
 				6C53FDCA1B381C3A00460608 /* TENThread.m in Sources */,
 				6CF640811B4A890C003025A6 /* UIViewController+TENExtensions.m in Sources */,
 				6CF640731B49E909003025A6 /* NSFileManager+TENExtensions.m in Sources */,
@@ -752,12 +776,12 @@
 				6CFBE9F31B34B08C0051E3D6 /* TENUserCell.m in Sources */,
 				6CFBE9E81B3301250051E3D6 /* TENUser.m in Sources */,
 				6C0FDB581B441E9F00BE9A85 /* TENImageModelDispatcher.m in Sources */,
+				6C098B401B4DDE0400C1F0C1 /* TENLoadingView.m in Sources */,
 				6CF6408D1B4D10D7003025A6 /* TENOrderedModel.m in Sources */,
 				6C53FDBA1B359B7D00460608 /* UINib+TENExtensions.m in Sources */,
 				6CFBE9EF1B34AE490051E3D6 /* TENTableViewCell.m in Sources */,
 				6C53FDB61B35992800460608 /* UIWindow+TENExtensions.m in Sources */,
 				6CFBE9CB1B31832A0051E3D6 /* TENMainView.m in Sources */,
-				6CF640481B470C8D003025A6 /* TENLoadingView.m in Sources */,
 				6CFBE9E01B32FED80051E3D6 /* TENUsersViewController.m in Sources */,
 				6CF640781B4A81A9003025A6 /* TENTestViewController.m in Sources */,
 				6C53FDBE1B35B3D300460608 /* UITableView+TENExtensions.m in Sources */,
@@ -892,7 +916,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = 444tenIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -905,7 +928,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = 444tenIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

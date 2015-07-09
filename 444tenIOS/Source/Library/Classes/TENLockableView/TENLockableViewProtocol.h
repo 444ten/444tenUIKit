@@ -1,18 +1,17 @@
 //
-//  TENLoadingView.h
+//  TENLoadingViewProtocol.h
 //  444tenIOS
 //
-//  Created by 444ten on 6/28/15.
+//  Created by Andrey Ten on 7/9/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface TENLoadingView : UIView
+@protocol TENLockableViewProtocol <NSObject>
 @property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 
-+ (instancetype)viewInSuperview:(UIView *)superview;
-
+@required
 - (void)setLocked:(BOOL)locked animated:(BOOL)animated;
 
 @end

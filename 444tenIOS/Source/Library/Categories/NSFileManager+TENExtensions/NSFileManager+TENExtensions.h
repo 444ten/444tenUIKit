@@ -10,6 +10,6 @@
 
 @interface NSFileManager (TENExtensions)
 
-+ (NSString *)documentDirectoryPathWithFileName:(NSString *)fileName;
++ (NSString *)documentsPathWithFileName:(NSString *)fileName;
 
 @end

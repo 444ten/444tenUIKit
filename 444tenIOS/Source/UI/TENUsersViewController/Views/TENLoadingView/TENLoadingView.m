@@ -17,6 +17,8 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 
 @implementation TENLoadingView
 
+@synthesize locked = _locked;
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -44,6 +46,9 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 - (void)setLocked:(BOOL)locked {
     [self setLocked:locked animated:NO];
 }
+
+#pragma mark -
+#pragma mark TENLockableViewProtocol
 
 - (void)setLocked:(BOOL)locked animated:(BOOL)animated {
     [UIView animateWithDuration: animated ? TENAnimateDuration : 0
