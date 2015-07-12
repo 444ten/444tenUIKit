@@ -19,4 +19,12 @@
     return [path stringByAppendingPathComponent:fileName];
 }
 
+//+ (NSURL *)documentsURLWithFileName:(NSString *)fileName {
+//    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    
+//    path = [path stringByAppendingString:fileName];
+//    
+//    return [NSURL URLWithString:path];
+//}
+
 @end

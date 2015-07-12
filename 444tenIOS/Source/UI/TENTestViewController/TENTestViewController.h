@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TENTestViewController : UIViewController
+@property (nonatomic, strong)   IBOutlet UIImageView    *testImageView;
 
 @end

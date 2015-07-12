@@ -33,13 +33,13 @@
 //    TENSquareViewController *controller = [TENSquareViewController controller];
 //    controller.square = [TENSquareModel new];
     
-//    TENTestViewController *controller = [TENTestViewController controller];
+    TENTestViewController *controller = [TENTestViewController controller];
 
-    TENUsersViewController *controller = [TENUsersViewController controller];
-
-    TENUsers *users = [TENUsers new];
-    self.users = users;
-    controller.users = users;
+//    TENUsersViewController *controller = [TENUsersViewController controller];
+//
+//    TENUsers *users = [TENUsers new];
+//    self.users = users;
+//    controller.users = users;
     
     window.rootViewController = controller;
     [window makeKeyAndVisible];
