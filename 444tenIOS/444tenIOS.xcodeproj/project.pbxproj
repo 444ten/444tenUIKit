@@ -82,7 +82,7 @@
 		6C098B3D1B4DDE0400C1F0C1 /* TENLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENLoadingView.h; sourceTree = "<group>"; };
 		6C098B3E1B4DDE0400C1F0C1 /* TENLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENLoadingView.m; sourceTree = "<group>"; };
 		6C098B3F1B4DDE0400C1F0C1 /* TENLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENLoadingView.xib; sourceTree = "<group>"; };
-		6C098B441B4DE53500C1F0C1 /* TENLockableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TENLockableViewProtocol.h; sourceTree = "<group>"; };
+		6C098B441B4DE53500C1F0C1 /* TENLoadingViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TENLoadingViewProtocol.h; path = ../../../../Library/Classes/TENLockableView/TENLoadingViewProtocol.h; sourceTree = "<group>"; };
 		6C0FDB4E1B43F61600BE9A85 /* NSBundle+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TENExtensions.h"; sourceTree = "<group>"; };
 		6C0FDB4F1B43F61600BE9A85 /* NSBundle+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TENExtensions.m"; sourceTree = "<group>"; };
 		6C0FDB521B4405D500BE9A85 /* TENImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENImageModel.h; sourceTree = "<group>"; };
@@ -203,7 +203,6 @@
 			children = (
 				6C098B331B4DDC5C00C1F0C1 /* TENLockableView.h */,
 				6C098B341B4DDC5C00C1F0C1 /* TENLockableView.m */,
-				6C098B441B4DE53500C1F0C1 /* TENLockableViewProtocol.h */,
 			);
 			path = TENLockableView;
 			sourceTree = "<group>";
@@ -214,6 +213,7 @@
 				6C098B3D1B4DDE0400C1F0C1 /* TENLoadingView.h */,
 				6C098B3E1B4DDE0400C1F0C1 /* TENLoadingView.m */,
 				6C098B3F1B4DDE0400C1F0C1 /* TENLoadingView.xib */,
+				6C098B441B4DE53500C1F0C1 /* TENLoadingViewProtocol.h */,
 			);
 			path = TENLoadingView;
 			sourceTree = "<group>";

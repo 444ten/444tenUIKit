@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TENLockableViewProtocol.h"
+#import "TENLoadingViewProtocol.h"
 
 @interface TENLockableView : UIView
-@property (nonatomic, strong)   UIView<TENLockableViewProtocol> *lockingView;
+@property (nonatomic, strong)   IBOutlet UIView<TENLoadingViewProtocol> *loadingView;
 
 @property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 

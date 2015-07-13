@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TENLockableViewProtocol.h"
+#import "TENLoadingViewProtocol.h"
 
-@interface TENLoadingView : UIView <TENLockableViewProtocol>
-
-+ (instancetype)viewInSuperview:(UIView *)superview;
+@interface TENLoadingView : UIView <TENLoadingViewProtocol>
 
 @end

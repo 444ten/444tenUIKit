@@ -19,11 +19,11 @@
 @dynamic locked;
 
 - (void)setLocked:(BOOL)locked {
-    [self.lockingView setLocked:locked animated:YES];
+    [self.loadingView setLocked:locked animated:YES];
 }
 
 - (BOOL)isLocked {
-    return self.lockingView.isLocked;
+    return self.loadingView.isLocked;
 }
 
 @end

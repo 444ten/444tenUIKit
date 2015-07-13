@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TENLockableViewProtocol <NSObject>
+@protocol TENLoadingViewProtocol <NSObject>
 @property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 
-@required
++ (instancetype)viewInSuperview:(UIView *)superview;
+
 - (void)setLocked:(BOOL)locked animated:(BOOL)animated;
 
 @end

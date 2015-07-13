@@ -13,7 +13,6 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENChangedPath.h"
-#import "TENLoadingView.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 #import "TENUser.h"
@@ -49,15 +48,8 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark View Lifecycle
 
-- (void)loadView {
-    [super loadView];
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.usersView.lockingView = [TENLoadingView viewInSuperview:self.usersView];
 
     [self.users load];
 }
