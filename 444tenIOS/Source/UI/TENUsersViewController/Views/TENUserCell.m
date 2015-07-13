@@ -43,7 +43,7 @@
 
 - (void)fillWithModel:(TENUser *)user {
     self.nameLabel.text = user.name;
-    self.userImageView.image = user.userImage;
+    self.userImageView.image = user.userImage.image;
 }
 
 #pragma mark -

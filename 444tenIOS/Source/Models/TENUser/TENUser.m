@@ -10,13 +10,13 @@
 
 #import "TENMacro.h"
 
-static NSString * const kTENFailImageName   = @"cat.jpg";
 static NSString * const kCoderName          = @"kCoderName";
+
+static NSString * const kTENURL = @"https://upload.wikimedia.org/wikipedia/commons/2/22/Apple_computer_cat.jpg";
 
 static NSUInteger userNumber = 0;
 
 @interface TENUser ()
-@property (nonatomic, strong) UIImage   *userImage;
 
 @end
 
@@ -43,8 +43,7 @@ static NSUInteger userNumber = 0;
 - (void)performLoadingInBackground {
     TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
     
-    UIImage *image = [UIImage imageNamed:self.name];
-    self.userImage = image ? image : [UIImage imageNamed:kTENFailImageName];
+    self.userImage = [TENImage imageWithURL:[NSURL URLWithString:kTENURL]];
     
     self.state = TENModelLoaded;
 }

@@ -13,6 +13,7 @@
 		6C0FDB501B43F61600BE9A85 /* NSBundle+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0FDB4F1B43F61600BE9A85 /* NSBundle+TENExtensions.m */; };
 		6C0FDB541B4405D500BE9A85 /* TENImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0FDB531B4405D500BE9A85 /* TENImageModel.m */; };
 		6C0FDB581B441E9F00BE9A85 /* TENImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0FDB571B441E9F00BE9A85 /* TENImageModelDispatcher.m */; };
+		6C40AA2C1B53C98F0063CC6D /* TENImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C40AA2B1B53C98F0063CC6D /* TENImage.m */; };
 		6C53FDB61B35992800460608 /* UIWindow+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDB51B35992800460608 /* UIWindow+TENExtensions.m */; };
 		6C53FDBA1B359B7D00460608 /* UINib+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDB91B359B7D00460608 /* UINib+TENExtensions.m */; };
 		6C53FDBE1B35B3D300460608 /* UITableView+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDBD1B35B3D300460608 /* UITableView+TENExtensions.m */; };
@@ -89,6 +90,8 @@
 		6C0FDB531B4405D500BE9A85 /* TENImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENImageModel.m; sourceTree = "<group>"; };
 		6C0FDB561B441E9F00BE9A85 /* TENImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENImageModelDispatcher.h; sourceTree = "<group>"; };
 		6C0FDB571B441E9F00BE9A85 /* TENImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENImageModelDispatcher.m; sourceTree = "<group>"; };
+		6C40AA2A1B53C98F0063CC6D /* TENImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENImage.h; sourceTree = "<group>"; };
+		6C40AA2B1B53C98F0063CC6D /* TENImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENImage.m; sourceTree = "<group>"; };
 		6C53FDB41B35992800460608 /* UIWindow+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+TENExtensions.h"; sourceTree = "<group>"; };
 		6C53FDB51B35992800460608 /* UIWindow+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+TENExtensions.m"; sourceTree = "<group>"; };
 		6C53FDB81B359B7D00460608 /* UINib+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+TENExtensions.h"; sourceTree = "<group>"; };
@@ -244,6 +247,15 @@
 				6C0FDB571B441E9F00BE9A85 /* TENImageModelDispatcher.m */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		6C40AA291B53C9730063CC6D /* TENImage */ = {
+			isa = PBXGroup;
+			children = (
+				6C40AA2A1B53C98F0063CC6D /* TENImage.h */,
+				6C40AA2B1B53C98F0063CC6D /* TENImage.m */,
+			);
+			path = TENImage;
 			sourceTree = "<group>";
 		};
 		6C53FDB21B35992800460608 /* Categories */ = {
@@ -483,6 +495,7 @@
 		6CFBE9AC1B3027230051E3D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6C40AA291B53C9730063CC6D /* TENImage */,
 				6C0FDB511B4405BD00BE9A85 /* TENImageModel */,
 				6CFBE9C01B305BF10051E3D6 /* TENSquareModel */,
 				6CFBE9E51B3301090051E3D6 /* TENUser */,
@@ -780,6 +793,7 @@
 				6CF6408D1B4D10D7003025A6 /* TENOrderedModel.m in Sources */,
 				6C53FDBA1B359B7D00460608 /* UINib+TENExtensions.m in Sources */,
 				6CFBE9EF1B34AE490051E3D6 /* TENTableViewCell.m in Sources */,
+				6C40AA2C1B53C98F0063CC6D /* TENImage.m in Sources */,
 				6C53FDB61B35992800460608 /* UIWindow+TENExtensions.m in Sources */,
 				6CFBE9CB1B31832A0051E3D6 /* TENMainView.m in Sources */,
 				6CFBE9E01B32FED80051E3D6 /* TENUsersViewController.m in Sources */,

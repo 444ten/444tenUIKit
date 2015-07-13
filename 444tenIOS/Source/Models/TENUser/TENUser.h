@@ -10,8 +10,10 @@
 
 #import "TENModel.h"
 
+#import "TENImage.h"
+
 @interface TENUser : TENModel <NSCoding>
 @property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, readonly) UIImage     *userImage;
+@property (nonatomic, strong)   TENImage    *userImage;
 
 @end
