@@ -14,7 +14,8 @@
 static NSString * const kTENFailImageName   = @"cat.jpg";
 
 @interface TENImage ()
-@property (nonatomic, strong)                           NSURL       *fileURL;
+@property (nonatomic, strong)   UIImage *image;
+@property (nonatomic, strong)   NSURL   *fileURL;
 
 @property (nonatomic, readonly)                         NSString    *fileName;
 @property (nonatomic, readonly)                         NSString    *filePath;
@@ -43,14 +44,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     self = [super init];
     if (self) {
         self.fileURL = url;
-        
-        if (self.isFileAvailable) {
-            self.image = [UIImage imageWithContentsOfFile:self.filePath];
-        } else {
-            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-            NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-            [[session downloadTaskWithURL:self.fileURL] resume];
-        }
+        [self load];
     }
     
     return self;
@@ -62,10 +56,6 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 #pragma mark -
 #pragma mark Accessors
 
-//- (UIImage *)image {
-//    return [UIImage imageNamed:kTENFailImageName];
-//}
-
 - (NSString *)fileName {
     return [self.fileURL lastPathComponent];
 }
@@ -76,6 +66,19 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 
 - (BOOL)isFileAvailable {
     return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
+}
+
+#pragma mark -
+#pragma mark Overloading
+
+- (void)setupLoading {
+    if (self.isFileAvailable) {
+        self.image = [UIImage imageWithContentsOfFile:self.filePath];
+    } else {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+        [[session downloadTaskWithURL:self.fileURL] resume];
+    }
 }
 
 #pragma mark -
@@ -101,9 +104,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     [[NSFileManager defaultManager] copyItemAtURL:location
                                             toURL:[NSURL fileURLWithPath:filePath]
                                             error:nil];
-    TENPerformOnMainThreadWithBlock(^{
-        self.image = [UIImage imageWithContentsOfFile:filePath];
-    });
+    self.image = [UIImage imageWithContentsOfFile:filePath];
 }
 
 

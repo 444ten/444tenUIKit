@@ -11,7 +11,7 @@
 #import "TENModel.h"
 
 @interface TENImage : TENModel <NSURLSessionDataDelegate>
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, readonly) UIImage *image;
 
 + (instancetype)imageWithURL:(NSURL *)url;
 
