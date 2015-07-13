@@ -16,7 +16,23 @@
 
 @implementation TENLockableView
 
+@dynamic loadingViewClass;
 @dynamic locked;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (Class)loadingViewClass {
+    return [TENLoadingView class];
+}
+
+- (UIView<TENLoadingViewProtocol> *)loadingView {
+    if (nil == _loadingView) {
+        _loadingView = [self.loadingViewClass viewInSuperview:self];
+    }
+    
+    return _loadingView;
+}
 
 - (void)setLocked:(BOOL)locked {
     [self.loadingView setLocked:locked animated:YES];

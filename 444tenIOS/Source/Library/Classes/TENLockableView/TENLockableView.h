@@ -13,6 +13,7 @@
 @interface TENLockableView : UIView
 @property (nonatomic, strong)   IBOutlet UIView<TENLoadingViewProtocol> *loadingView;
 
+@property (nonatomic, readonly)                 Class   loadingViewClass;
 @property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 
 @end

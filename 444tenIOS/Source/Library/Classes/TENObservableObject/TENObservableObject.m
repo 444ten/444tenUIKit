@@ -18,9 +18,9 @@
 
 @implementation TENObservableObject
 
-@dynamic observerSet;
-
 @synthesize state = _state;
+
+@dynamic observerSet;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations

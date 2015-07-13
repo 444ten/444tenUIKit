@@ -16,15 +16,6 @@ static NSString * const kDone = @"Done";
 @implementation TENUsersView
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    self.loadingView = [TENLoadingView viewInSuperview:self];
-}
-
-#pragma mark -
 #pragma mark - Accessors
 
 - (void)setEditing:(BOOL)editing {
