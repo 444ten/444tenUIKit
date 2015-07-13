@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TENTestViewController : UIViewController
+@interface TENTestViewController : UIViewController <NSURLSessionDownloadDelegate>
 @property (nonatomic, strong)   IBOutlet UIImageView    *testImageView;
 
 @end

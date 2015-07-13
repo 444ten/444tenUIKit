@@ -8,13 +8,14 @@
 
 #import "TENTestViewController.h"
 
+#import "TENMacro.h"
+#import "TENThread.h"
+
 #import "NSFileManager+TENExtensions.h"
 
-static NSString * const kTENFailImageName   = @"cat.jpg";
+typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
 
 static NSString * const kTENURL = @"https://upload.wikimedia.org/wikipedia/commons/2/22/Apple_computer_cat.jpg";
-static NSString * const kTENURLImageName = @"Apple_computer_cat.jpg";
-
 
 @interface TENTestViewController ()
 @property (nonatomic, readonly)                         NSURL       *fileURL;
@@ -22,9 +23,11 @@ static NSString * const kTENURLImageName = @"Apple_computer_cat.jpg";
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
+- (TENTaskCompletion)taskCompletion;
+
 @end
 
-@implementation TENTestViewController
+@implementation TENTestViewController 
 
 @dynamic fileURL;
 @dynamic fileName;
@@ -37,31 +40,19 @@ static NSString * const kTENURLImageName = @"Apple_computer_cat.jpg";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *downloadTaskURL = [NSURL URLWithString:kTENURL];
-    
-    NSURLSessionDownloadTask *task =
-        [session downloadTaskWithURL:downloadTaskURL
-                   completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                       NSFileManager *fileManager = [NSFileManager defaultManager];
-                       UIImage *image = nil;
-                       
-                       if (self.isFileAvailable) {
-                           image = [UIImage imageNamed:self.fileName];
-                       } else {
-                            [fileManager copyItemAtURL:location
-                                                 toURL:[NSURL URLWithString:self.filePath]
-                                                 error:nil];
-                           
-                           NSData *data = [[NSData alloc] initWithContentsOfURL:location];
-                           image = [[UIImage alloc] initWithData:data];
-                       }
-                       
-                       self.testImageView.image = image;
-                   }];
-    
-    [task resume];
+    if (self.isFileAvailable) {
+        self.testImageView.image = [UIImage imageWithContentsOfFile:self.filePath];
+    } else {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+// delegate
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+        [[session downloadTaskWithURL:self.fileURL] resume];
+        
+// block
+//        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+//        [[session downloadTaskWithURL:self.fileURL completionHandler:[self taskCompletion]] resume];
+        
+    }
     
 }
 
@@ -84,5 +75,50 @@ static NSString * const kTENURLImageName = @"Apple_computer_cat.jpg";
     return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
 }
 
+#pragma mark -
+#pragma mark Private
+
+- (TENTaskCompletion)taskCompletion {
+    return ^ (NSURL *location, NSURLResponse *response, NSError *error) {
+        TENSleep(1);
+        NSString *filePath = self.filePath;
+        
+        [[NSFileManager defaultManager] copyItemAtURL:location
+                                                toURL:[NSURL fileURLWithPath:filePath]
+                                                error:nil];
+        TENPerformOnMainThreadWithBlock(^{
+            NSLog(@"%@", error);
+            self.testImageView.image = [UIImage imageWithContentsOfFile:filePath];
+        });
+    };
+}
+
+#pragma mark -
+#pragma mark NSURLSessionDownloadDelegate
+
+- (void)    URLSession:(NSURLSession *)session
+                  task:(NSURLSessionTask *)task
+  didCompleteWithError:(NSError *)error
+{
+    NSLog(@"%@", task);
+    NSLog(@"%@", error);
+}
+
+
+- (void)        URLSession:(NSURLSession *)session
+              downloadTask:(NSURLSessionDownloadTask *)downloadTask
+ didFinishDownloadingToURL:(NSURL *)location
+{
+    NSLog(@"%@", downloadTask);
+
+    NSString *filePath = self.filePath;
+    
+    [[NSFileManager defaultManager] copyItemAtURL:location
+                                            toURL:[NSURL fileURLWithPath:filePath]
+                                            error:nil];
+    TENPerformOnMainThreadWithBlock(^{
+        self.testImageView.image = [UIImage imageWithContentsOfFile:filePath];
+    });
+}
 
 @end
