@@ -13,10 +13,7 @@
 
 typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
 
-static NSString * const kTENFailImageName   = @"cat.jpg";
-
 @interface TENImage ()
-@property (nonatomic, strong)   UIImage *image;
 @property (nonatomic, strong)   NSURL   *fileURL;
 
 @property (nonatomic, readonly)                         NSString    *fileName;
@@ -24,6 +21,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
 - (TENTaskCompletion)taskCompletion;
+- (void)notify;
 
 @end
 
@@ -74,12 +72,12 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 
 - (void)performLoadingInBackground {
     if (self.isFileAvailable) {
-        self.image = [UIImage imageWithContentsOfFile:self.filePath];
-        self.state = TENModelLoaded;
+        [self notify];
     } else {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
         
+        NSURLSession *session = [NSURLSession sharedSession];
         [[session downloadTaskWithURL:self.fileURL completionHandler:[self taskCompletion]] resume];
     }
 }
@@ -89,21 +87,20 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 
 - (TENTaskCompletion)taskCompletion {
     return ^(NSURL *location, NSURLResponse *response, NSError *error) {
-        if (error) {
-            self.image = [UIImage imageNamed:kTENFailImageName];
-            self.state = TENModelLoaded;
-            
-            return;
+        if (nil == error) {
+            [[NSFileManager defaultManager] copyItemAtURL:location
+                                                    toURL:[NSURL fileURLWithPath:self.filePath]
+                                                    error:nil];
+            [self notify];
+        } else {
+            self.state = TENModelFailLoading;
         }
-        
-        NSString *filePath = self.filePath;
-        
-        [[NSFileManager defaultManager] copyItemAtURL:location
-                                                toURL:[NSURL fileURLWithPath:filePath]
-                                                error:nil];
-        self.image = [UIImage imageWithContentsOfFile:filePath];
-        self.state = TENModelLoaded;
     };
+}
+
+- (void)notify {
+    self.image = [UIImage imageWithContentsOfFile:self.filePath];
+    self.state = TENModelLoaded;
 }
 
 @end

@@ -11,10 +11,8 @@
 #import "TENMacro.h"
 
 static NSString * const kCoderName          = @"kCoderName";
-
-//static NSString * const kTENURL = @"https://upload.wikimedia.org/wikipedia/commons/2/22/Apple_computer_cat.jpg";
-static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri";
-//static NSString * const kTENURL = @"http://qiqru.org/media/npict/0905/original/oboi_na_temu_kosmicheskie_obekty_bolshogo_razreshenija_313196.jpeg";
+static NSString * const kTENFailImageName   = @"cat.jpg";
+static NSString * const kTENURL             = @"http://rsload.net/images4/vin/2014/0707/pri";
 
 static NSUInteger userNumber = 0;
 
@@ -59,6 +57,11 @@ static NSUInteger userNumber = 0;
 
 - (void)modelDidLoad:(id)model {
     self.state = TENModelLoaded;
+}
+
+- (void)modelDidFailLoad:(id)model {
+    self.userImage.image = [UIImage imageNamed:kTENFailImageName];
+    self.state = TENModelLoaded;    
 }
 
 #pragma mark -
