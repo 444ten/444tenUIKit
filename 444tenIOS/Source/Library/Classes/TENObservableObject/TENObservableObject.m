@@ -85,7 +85,7 @@
     }
 }
 
-- (void)performBlockWithoutNotify:(void(^)(void))block {
+- (void)performBlockWithoutNotification:(void(^)(void))block {
     self.shouldNotify = NO;
     block();
     self.shouldNotify = YES;

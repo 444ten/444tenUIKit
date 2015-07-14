@@ -25,6 +25,7 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 + (instancetype)viewInSuperview:(UIView *)superview {
     TENLoadingView *result = [[NSBundle mainBundle] objectWithClass:[self class]];
     result.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    result.frame = superview.bounds;
     
     [superview addSubview:result];
     
@@ -44,6 +45,7 @@ static const CGFloat        TENUnlockAlpha      = 0.0;
 #pragma mark Accessors
 
 - (void)setLocked:(BOOL)locked {
+    [self.superview bringSubviewToFront:self];
     [self setLocked:locked animated:NO];
 }
 

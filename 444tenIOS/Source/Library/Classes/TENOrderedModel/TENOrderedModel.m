@@ -70,11 +70,11 @@
     [self.array moveObjectAtIndex:fromIndex toIndex:toIndex];
 }
 
-- (void)removeAllObjectWithoutNotify {
+- (void)removeAllObjectWithoutNotification {
     [self.array removeAllObjects];
 }
 
-- (void)addObjectsFromArrayWithoutNotify:(NSArray *)array {
+- (void)addObjectsFromArrayWithoutNotification:(NSArray *)array {
     [self.array addObjectsFromArray:array];
 }
 

@@ -54,10 +54,10 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 
 - (void)performLoadingInBackground {
     TENSleep(1);
-    [self removeAllObjectWithoutNotify];
+    [self removeAllObjectWithoutNotification];
     
     if (self.fileAvailable) {
-        [self addObjectsFromArrayWithoutNotify:[NSKeyedUnarchiver unarchiveObjectWithFile:self.filePath]];
+        [self addObjectsFromArrayWithoutNotification:[NSKeyedUnarchiver unarchiveObjectWithFile:self.filePath]];
     }
     
     self.state = TENModelLoaded;

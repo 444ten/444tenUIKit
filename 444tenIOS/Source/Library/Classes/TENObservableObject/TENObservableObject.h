@@ -20,7 +20,7 @@
 - (void)removeObserver:(id)observer;
 - (BOOL)isObservedByObserver:(id)observer;
 
-- (void)performBlockWithoutNotify:(void(^)(void))block;
+- (void)performBlockWithoutNotification:(void(^)(void))block;
 
 // This methods is intended for subclassing. Never call its directly.
 - (SEL)selectorForState:(NSUInteger)state;
