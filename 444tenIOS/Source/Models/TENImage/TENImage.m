@@ -9,6 +9,8 @@
 #import "TENImage.h"
 
 #import "NSFileManager+TENExtensions.h"
+#import "NSURLSession+TENExtensions.h"
+
 #import "TENThread.h"
 
 typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
@@ -20,6 +22,8 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
+@property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
+
 - (TENTaskCompletion)taskCompletion;
 - (void)notify;
 
@@ -30,7 +34,6 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 @dynamic fileName;
 @dynamic filePath;
 @dynamic fileAvailable;
-
 
 #pragma mark -
 #pragma mark Class Methods
@@ -74,11 +77,12 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     if (self.isFileAvailable) {
         [self notify];
     } else {
-//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-        
-        NSURLSession *session = [NSURLSession sharedSession];
-        [[session downloadTaskWithURL:self.fileURL completionHandler:[self taskCompletion]] resume];
+        NSURLSession *session = [NSURLSession sharedDefaultSession];
+        NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:self.fileURL
+                                                            completionHandler:[self taskCompletion]];
+
+        self.downloadTask = downloadTask;
+        [downloadTask resume];
     }
 }
 

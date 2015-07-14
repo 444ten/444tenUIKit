@@ -22,6 +22,7 @@
 		6C53FDCA1B381C3A00460608 /* TENThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDC91B381C3A00460608 /* TENThread.m */; };
 		6C53FDD61B3A963300460608 /* TENChangedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDD51B3A963300460608 /* TENChangedPath.m */; };
 		6C53FDDA1B3ACC9E00460608 /* NSMutableArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */; };
+		6C66BC991B5550530091C420 /* NSURLSession+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BC981B5550530091C420 /* NSURLSession+TENExtensions.m */; };
 		6CF6404D1B471C38003025A6 /* UIView+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */; };
 		6CF6405A1B49861A003025A6 /* User_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640521B49861A003025A6 /* User_1.png */; };
 		6CF6405B1B49861A003025A6 /* User_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640531B49861A003025A6 /* User_2.png */; };
@@ -107,6 +108,8 @@
 		6C53FDD41B3A963300460608 /* TENChangedPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENChangedPath.h; sourceTree = "<group>"; };
 		6C53FDD51B3A963300460608 /* TENChangedPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENChangedPath.m; sourceTree = "<group>"; };
 		6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArraySpec.m; sourceTree = "<group>"; };
+		6C66BC971B5550530091C420 /* NSURLSession+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+TENExtensions.h"; sourceTree = "<group>"; };
+		6C66BC981B5550530091C420 /* NSURLSession+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+TENExtensions.m"; sourceTree = "<group>"; };
 		6CF6404B1B471C38003025A6 /* UIView+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TENExtensions.h"; sourceTree = "<group>"; };
 		6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TENExtensions.m"; sourceTree = "<group>"; };
 		6CF640521B49861A003025A6 /* User_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User_1.png; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 				6C0FDB4D1B43F5ED00BE9A85 /* NSBundle+TENExtensions */,
 				6CF640701B49E8E7003025A6 /* NSFileManager+TENExtensions */,
 				6C53FDBF1B38160400460608 /* NSMutableArray+TENExtensions */,
+				6C66BC961B5550250091C420 /* NSURLSession+TENExtensions */,
 				6C53FDB71B359B6800460608 /* UINib+TENExtensions */,
 				6C53FDBB1B35B3C200460608 /* UITableView+TENExtensions */,
 				6CF6404A1B471C16003025A6 /* UIView+TENExtensions */,
@@ -350,6 +354,15 @@
 				6C53FDD91B3ACC9E00460608 /* NSMutableArraySpec.m */,
 			);
 			path = NSMutableArraySpec;
+			sourceTree = "<group>";
+		};
+		6C66BC961B5550250091C420 /* NSURLSession+TENExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				6C66BC971B5550530091C420 /* NSURLSession+TENExtensions.h */,
+				6C66BC981B5550530091C420 /* NSURLSession+TENExtensions.m */,
+			);
+			path = "NSURLSession+TENExtensions";
 			sourceTree = "<group>";
 		};
 		6CF6404A1B471C16003025A6 /* UIView+TENExtensions */ = {
@@ -792,6 +805,7 @@
 				6C098B401B4DDE0400C1F0C1 /* TENLoadingView.m in Sources */,
 				6CF6408D1B4D10D7003025A6 /* TENOrderedModel.m in Sources */,
 				6C53FDBA1B359B7D00460608 /* UINib+TENExtensions.m in Sources */,
+				6C66BC991B5550530091C420 /* NSURLSession+TENExtensions.m in Sources */,
 				6CFBE9EF1B34AE490051E3D6 /* TENTableViewCell.m in Sources */,
 				6C40AA2C1B53C98F0063CC6D /* TENImage.m in Sources */,
 				6C53FDB61B35992800460608 /* UIWindow+TENExtensions.m in Sources */,
