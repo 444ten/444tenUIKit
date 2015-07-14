@@ -11,6 +11,8 @@
 #import "NSFileManager+TENExtensions.h"
 #import "TENThread.h"
 
+typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
+
 static NSString * const kTENFailImageName   = @"cat.jpg";
 
 @interface TENImage ()
@@ -20,6 +22,8 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 @property (nonatomic, readonly)                         NSString    *fileName;
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
+
+- (TENTaskCompletion)taskCompletion;
 
 @end
 
@@ -51,9 +55,6 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 }
 
 #pragma mark -
-#pragma mark Public
-
-#pragma mark -
 #pragma mark Accessors
 
 - (NSString *)fileName {
@@ -71,41 +72,38 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 #pragma mark -
 #pragma mark Overloading
 
-- (void)setupLoading {
+- (void)performLoadingInBackground {
     if (self.isFileAvailable) {
         self.image = [UIImage imageWithContentsOfFile:self.filePath];
+        self.state = TENModelLoaded;
     } else {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-        [[session downloadTaskWithURL:self.fileURL] resume];
+        
+        [[session downloadTaskWithURL:self.fileURL completionHandler:[self taskCompletion]] resume];
     }
 }
 
 #pragma mark -
-#pragma mark NSURLSessionDownloadDelegate
+#pragma mark Private
 
-- (void)    URLSession:(NSURLSession *)session
-                  task:(NSURLSessionTask *)task
-  didCompleteWithError:(NSError *)error
-{
-    NSLog(@"%@", task);
-    NSLog(@"%@", error);
+- (TENTaskCompletion)taskCompletion {
+    return ^(NSURL *location, NSURLResponse *response, NSError *error) {
+        if (error) {
+            self.image = [UIImage imageNamed:kTENFailImageName];
+            self.state = TENModelLoaded;
+            
+            return;
+        }
+        
+        NSString *filePath = self.filePath;
+        
+        [[NSFileManager defaultManager] copyItemAtURL:location
+                                                toURL:[NSURL fileURLWithPath:filePath]
+                                                error:nil];
+        self.image = [UIImage imageWithContentsOfFile:filePath];
+        self.state = TENModelLoaded;
+    };
 }
-
-
-- (void)        URLSession:(NSURLSession *)session
-              downloadTask:(NSURLSessionDownloadTask *)downloadTask
- didFinishDownloadingToURL:(NSURL *)location
-{
-    NSLog(@"%@", downloadTask);
-    
-    NSString *filePath = self.filePath;
-    
-    [[NSFileManager defaultManager] copyItemAtURL:location
-                                            toURL:[NSURL fileURLWithPath:filePath]
-                                            error:nil];
-    self.image = [UIImage imageWithContentsOfFile:filePath];
-}
-
 
 @end

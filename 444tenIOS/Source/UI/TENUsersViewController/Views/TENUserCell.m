@@ -55,8 +55,8 @@
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
         
-        [self.activityIndicator stopAnimating];
         [self fillWithModel:model];
+        [self.activityIndicator stopAnimating];
     });
 }
 

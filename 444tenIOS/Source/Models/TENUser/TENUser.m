@@ -12,7 +12,9 @@
 
 static NSString * const kCoderName          = @"kCoderName";
 
-static NSString * const kTENURL = @"https://upload.wikimedia.org/wikipedia/commons/2/22/Apple_computer_cat.jpg";
+//static NSString * const kTENURL = @"https://upload.wikimedia.org/wikipedia/commons/2/22/Apple_computer_cat.jpg";
+static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri";
+//static NSString * const kTENURL = @"http://qiqru.org/media/npict/0905/original/oboi_na_temu_kosmicheskie_obekty_bolshogo_razreshenija_313196.jpeg";
 
 static NSUInteger userNumber = 0;
 
@@ -43,8 +45,19 @@ static NSUInteger userNumber = 0;
 - (void)performLoadingInBackground {
     TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
     
-    self.userImage = [TENImage imageWithURL:[NSURL URLWithString:kTENURL]];
+    NSString *string = [NSString stringWithFormat:@"%@%lu.jpg", kTENURL, userNumber - 1];
     
+    TENImage *userImage = [TENImage imageWithURL:[NSURL URLWithString:string]];
+   
+    [userImage addObserver:self];
+    
+    self.userImage = userImage;
+}
+
+#pragma mark -
+#pragma mark TENModelObserver
+
+- (void)modelDidLoad:(id)model {
     self.state = TENModelLoaded;
 }
 

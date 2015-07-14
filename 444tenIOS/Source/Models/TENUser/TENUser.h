@@ -12,7 +12,7 @@
 
 #import "TENImage.h"
 
-@interface TENUser : TENModel <NSCoding>
+@interface TENUser : TENModel <NSCoding, TENModelObserver>
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, strong)   TENImage    *userImage;
 
