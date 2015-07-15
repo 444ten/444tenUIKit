@@ -12,7 +12,7 @@
 #import "TENMacro.h"
 #import "TENThread.h"
 
-static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri2.jpg";
+static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri1.jpg";
 
 @interface TENUserCell ()
 

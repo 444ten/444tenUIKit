@@ -26,7 +26,7 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 @property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
 
 - (TENTaskCompletion)taskCompletion;
-- (void)notify;
+- (void)loadImageAndNotify;
 
 @end
 
@@ -78,7 +78,7 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
 
     if (self.isFileAvailable) {
-        [self notify];
+        [self loadImageAndNotify];
     } else {
         NSURLSession *session = [NSURLSession sharedDefaultSession];
         NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:self.fileURL
@@ -94,18 +94,28 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 
 - (TENTaskCompletion)taskCompletion {
     return ^(NSURL *location, NSURLResponse *response, NSError *error) {
-        if (nil == error) {
-            [[NSFileManager defaultManager] copyItemAtURL:location
-                                                    toURL:[NSURL fileURLWithPath:self.filePath]
-                                                    error:nil];
-            [self notify];
-        } else {
+        if (nil != error) {
             self.state = TENModelFailLoading;
+            
+            return;
         }
+        
+        NSError *fileManagerError = nil;
+        [[NSFileManager defaultManager] copyItemAtURL:location
+                                                toURL:[NSURL fileURLWithPath:self.filePath]
+                                                error:&fileManagerError];
+
+        if (nil != fileManagerError) {
+            self.state = TENModelFailLoading;
+            
+            return;
+        }
+        
+        [self loadImageAndNotify];
     };
 }
 
-- (void)notify {
+- (void)loadImageAndNotify {
     self.image = [UIImage imageWithContentsOfFile:self.filePath];
     self.state = TENModelLoaded;
 }
