@@ -10,6 +10,12 @@
 
 @interface NSFileManager (TENExtensions)
 
++ (NSString *)documentsPath;
 + (NSString *)documentsPathWithFileName:(NSString *)fileName;
+
++ (NSString *)directoryPathWithType:(NSSearchPathDirectory)type;
+
++ (NSString *)filePathWithDirectoryType:(NSSearchPathDirectory)type
+                               fileName:(NSString *)fileName;
 
 @end
