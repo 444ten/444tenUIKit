@@ -10,8 +10,11 @@
 
 #import "TENUser.h"
 
+@class TENAvatarView;
+
 @interface TENUserCell : TENTableViewCell <TENModelObserver>
-@property (nonatomic, strong)   IBOutlet UILabel                    *nameLabel;
+@property (nonatomic, retain)   IBOutlet TENAvatarView  *avatarView;
+@property (nonatomic, strong)   IBOutlet UILabel        *nameLabel;
 
 @property (nonatomic, strong)   TENUser *user;
 

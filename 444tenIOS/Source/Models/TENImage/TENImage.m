@@ -11,6 +11,7 @@
 #import "NSFileManager+TENExtensions.h"
 #import "NSURLSession+TENExtensions.h"
 
+#import "TENMacro.h"
 #import "TENThread.h"
 
 typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
@@ -74,6 +75,8 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 #pragma mark Overloading
 
 - (void)performLoadingInBackground {
+    TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
+
     if (self.isFileAvailable) {
         [self notify];
     } else {

@@ -12,8 +12,9 @@
 #import "TENMacro.h"
 #import "TENThread.h"
 
+static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri2.jpg";
+
 @interface TENUserCell ()
-@property (nonatomic, retain)   IBOutlet TENAvatarView   *avatarView;
 
 @end
 
@@ -35,10 +36,14 @@
         
         _user = user;
         [_user addObserver:self];
-        
-        self.avatarView.locked = YES;
+                
+        TENImage *userImage = [TENImage imageWithURL:[NSURL URLWithString:kTENURL]];
+    
+        user.userImage = userImage;
+        self.avatarView.avatarImage = userImage;
 
         [self fillWithModel:user];
+        
         [user load];
     }
 }
@@ -48,7 +53,6 @@
 
 - (void)fillWithModel:(TENUser *)user {
     self.nameLabel.text = user.name;
-    self.avatarView.avatarImageView.image = user.userImage.image;
 }
 
 #pragma mark -
@@ -61,10 +65,7 @@
         TENStrongifyAndReturnIfNil(self);
         
         [self fillWithModel:model];
-        self.avatarView.locked = NO;
     });
 }
-
-
 
 @end
