@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -21,20 +20,25 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6C1-oM-45l">
-                        <rect key="frame" x="0.0" y="0.0" width="69" height="43"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="po0-KH-87P">
-                        <rect key="frame" x="24" y="12" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </activityIndicatorView>
+                    <view contentMode="scaleToFill" id="6ne-40-NaF" customClass="TENAvatarView">
+                        <rect key="frame" x="0.0" y="0.0" width="69" height="43.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cHk-NG-uuD">
+                                <rect key="frame" x="0.0" y="-1" width="69" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="avatarImageView" destination="cHk-NG-uuD" id="ED5-Ye-Egy"/>
+                        </connections>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="activityIndicator" destination="po0-KH-87P" id="8QV-Vq-ZuL"/>
+                <outlet property="avatarView" destination="6ne-40-NaF" id="OLE-ib-aRy"/>
                 <outlet property="nameLabel" destination="WbK-hH-AST" id="rZj-AX-6BY"/>
-                <outlet property="userImageView" destination="6C1-oM-45l" id="hW2-Cs-ITR"/>
             </connections>
             <point key="canvasLocation" x="608" y="506"/>
         </tableViewCell>

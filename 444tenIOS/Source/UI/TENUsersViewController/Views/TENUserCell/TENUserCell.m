@@ -8,9 +8,14 @@
 
 #import "TENUserCell.h"
 
+#import "TENAvatarView.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 
+@interface TENUserCell ()
+@property (nonatomic, retain)   IBOutlet TENAvatarView   *avatarView;
+
+@end
 
 @implementation TENUserCell
 
@@ -31,7 +36,7 @@
         _user = user;
         [_user addObserver:self];
         
-        [self.activityIndicator startAnimating];
+        self.avatarView.locked = YES;
 
         [self fillWithModel:user];
         [user load];
@@ -43,7 +48,7 @@
 
 - (void)fillWithModel:(TENUser *)user {
     self.nameLabel.text = user.name;
-    self.userImageView.image = user.userImage.image;
+    self.avatarView.avatarImageView.image = user.userImage.image;
 }
 
 #pragma mark -
@@ -56,7 +61,7 @@
         TENStrongifyAndReturnIfNil(self);
         
         [self fillWithModel:model];
-        [self.activityIndicator stopAnimating];
+        self.avatarView.locked = NO;
     });
 }
 

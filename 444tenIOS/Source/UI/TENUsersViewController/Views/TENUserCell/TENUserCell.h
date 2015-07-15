@@ -12,8 +12,6 @@
 
 @interface TENUserCell : TENTableViewCell <TENModelObserver>
 @property (nonatomic, strong)   IBOutlet UILabel                    *nameLabel;
-@property (nonatomic, strong)   IBOutlet UIImageView                *userImageView;
-@property (nonatomic, strong)   IBOutlet UIActivityIndicatorView    *activityIndicator;
 
 @property (nonatomic, strong)   TENUser *user;
 
