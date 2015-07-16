@@ -8,7 +8,7 @@
 
 #import "TENUserCell.h"
 
-#import "TENAvatarView.h"
+#import "TENProfileView.h"
 
 @implementation TENUserCell
 
@@ -27,7 +27,7 @@
 
 - (void)fillWithModel:(TENUser *)user {
     self.nameLabel.text = user.name;
-    self.avatarView.avatarImage = user.userImage;
+    self.profileView.profileImage = user.userImage;
 }
 
 @end

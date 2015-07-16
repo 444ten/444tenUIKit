@@ -20,7 +20,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" id="6ne-40-NaF" customClass="TENAvatarView">
+                    <view contentMode="scaleToFill" id="6ne-40-NaF" customClass="TENProfileView">
                         <rect key="frame" x="0.0" y="0.0" width="69" height="43.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                         <subviews>
@@ -31,14 +31,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
-                            <outlet property="avatarImageView" destination="cHk-NG-uuD" id="ED5-Ye-Egy"/>
+                            <outlet property="profileImageView" destination="cHk-NG-uuD" id="ajU-t4-2RN"/>
                         </connections>
                     </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="avatarView" destination="6ne-40-NaF" id="OLE-ib-aRy"/>
                 <outlet property="nameLabel" destination="WbK-hH-AST" id="rZj-AX-6BY"/>
+                <outlet property="profileView" destination="6ne-40-NaF" id="8Sa-RY-XKp"/>
             </connections>
             <point key="canvasLocation" x="608" y="506"/>
         </tableViewCell>

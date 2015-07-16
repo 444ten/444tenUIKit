@@ -46,9 +46,13 @@
     NSArray *paths = @[changedPath.path];
     
     switch (changedPath.pathType) {
-        case TENPathTypeInserting:
+        case TENPathTypeInserting: {
             [self insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
+            [self scrollToRowAtIndexPath:changedPath.path
+                        atScrollPosition:UITableViewScrollPositionBottom
+                                animated:YES];
             break;
+        }
         case TENPathTypeDeleting:
             [self deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationLeft];
             break;

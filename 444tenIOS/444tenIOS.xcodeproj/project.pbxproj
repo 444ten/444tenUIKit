@@ -25,7 +25,7 @@
 		6C66BC991B5550530091C420 /* NSURLSession+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BC981B5550530091C420 /* NSURLSession+TENExtensions.m */; };
 		6C66BCA51B5687B70091C420 /* TENUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCA31B5687B70091C420 /* TENUserCell.m */; };
 		6C66BCA61B5687B70091C420 /* TENUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C66BCA41B5687B70091C420 /* TENUserCell.xib */; };
-		6C66BCA91B56886C0091C420 /* TENAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCA81B56886C0091C420 /* TENAvatarView.m */; };
+		6C66BCA91B56886C0091C420 /* TENProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCA81B56886C0091C420 /* TENProfileView.m */; };
 		6CF6404D1B471C38003025A6 /* UIView+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */; };
 		6CF6405A1B49861A003025A6 /* User_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640521B49861A003025A6 /* User_1.png */; };
 		6CF6405B1B49861A003025A6 /* User_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF640531B49861A003025A6 /* User_2.png */; };
@@ -114,8 +114,8 @@
 		6C66BCA21B5687B70091C420 /* TENUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUserCell.h; sourceTree = "<group>"; };
 		6C66BCA31B5687B70091C420 /* TENUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUserCell.m; sourceTree = "<group>"; };
 		6C66BCA41B5687B70091C420 /* TENUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENUserCell.xib; sourceTree = "<group>"; };
-		6C66BCA71B56886C0091C420 /* TENAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENAvatarView.h; sourceTree = "<group>"; };
-		6C66BCA81B56886C0091C420 /* TENAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENAvatarView.m; sourceTree = "<group>"; };
+		6C66BCA71B56886C0091C420 /* TENProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENProfileView.h; sourceTree = "<group>"; };
+		6C66BCA81B56886C0091C420 /* TENProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENProfileView.m; sourceTree = "<group>"; };
 		6CF6404B1B471C38003025A6 /* UIView+TENExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TENExtensions.h"; sourceTree = "<group>"; };
 		6CF6404C1B471C38003025A6 /* UIView+TENExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TENExtensions.m"; sourceTree = "<group>"; };
 		6CF640521B49861A003025A6 /* User_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User_1.png; sourceTree = "<group>"; };
@@ -374,8 +374,8 @@
 				6C66BCA21B5687B70091C420 /* TENUserCell.h */,
 				6C66BCA31B5687B70091C420 /* TENUserCell.m */,
 				6C66BCA41B5687B70091C420 /* TENUserCell.xib */,
-				6C66BCA71B56886C0091C420 /* TENAvatarView.h */,
-				6C66BCA81B56886C0091C420 /* TENAvatarView.m */,
+				6C66BCA71B56886C0091C420 /* TENProfileView.h */,
+				6C66BCA81B56886C0091C420 /* TENProfileView.m */,
 			);
 			path = TENUserCell;
 			sourceTree = "<group>";
@@ -829,7 +829,7 @@
 				6C53FDD61B3A963300460608 /* TENChangedPath.m in Sources */,
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,
 				6CF640891B4D1012003025A6 /* TENModel.m in Sources */,
-				6C66BCA91B56886C0091C420 /* TENAvatarView.m in Sources */,
+				6C66BCA91B56886C0091C420 /* TENProfileView.m in Sources */,
 				6CFBE9EB1B3302C50051E3D6 /* TENUsers.m in Sources */,
 				6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */,
 				6C0FDB541B4405D500BE9A85 /* TENImageModel.m in Sources */,
