@@ -21,11 +21,17 @@
 #import "TENUsers.h"
 #import "TENUsersView.h"
 
-static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri1.jpg";
+static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/";
 
 static NSUInteger userNumber = 0;
 
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
+
+@interface TENUsersViewController ()
+
+- (TENUser *)newUser;
+
+@end
 
 @implementation TENUsersViewController
 
@@ -63,16 +69,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark Interface Handling
 
 - (IBAction)onAddButton:(id)sender {
-    TENUser *user = [TENUser new];
-    
-    TENImage *userImage = [TENImage imageWithURL:[NSURL URLWithString:kTENURL]];
-    user.name = [NSString stringWithFormat:@"User_%lu", userNumber];
-    
-    userNumber += 1;
-
-    user.userImage = userImage;
-    
-    [self.users addObject:user];
+    [self.users addObject:[self newUser]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -85,10 +82,27 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 #pragma mark -
+#pragma mark Private
+
+- (TENUser *)newUser {
+    TENUser *result = [TENUser new];
+
+    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
+    userNumber += 1;
+    
+    result.name = name;
+    
+    NSURL *url = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
+    result.userImage = [TENImage imageWithURL:url];
+
+    return result;
+}
+
+#pragma mark -
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.users[indexPath.row] = [TENUser new];
+    self.users[indexPath.row] = [self newUser];
 }
 
 #pragma mark -
