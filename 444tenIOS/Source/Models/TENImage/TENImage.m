@@ -9,7 +9,6 @@
 #import "TENImage.h"
 
 #import "NSFileManager+TENExtensions.h"
-#import "NSURLSession+TENExtensions.h"
 
 #import "TENMacro.h"
 #import "TENThread.h"
@@ -23,6 +22,7 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
+@property (nonatomic, strong)   NSURLSession                *session;
 @property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
 
 - (TENTaskCompletion)taskCompletion;
@@ -70,6 +70,15 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
 }
 
+- (NSURLSession *)session {
+    if (nil == _session) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:configuration];
+    }
+    
+    return _session;
+}
+
 #pragma mark -
 #pragma mark Overloading
 
@@ -79,10 +88,8 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     if (self.isFileAvailable) {
         [self loadImageAndNotify];
     } else {
-        NSURLSession *session = [NSURLSession sharedDefaultSession];
-        NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:self.fileURL
-                                                            completionHandler:[self taskCompletion]];
-
+        NSURLSessionDownloadTask *downloadTask = [self.session downloadTaskWithURL:self.fileURL
+                                                                 completionHandler:[self taskCompletion]];
         self.downloadTask = downloadTask;
         [downloadTask resume];
     }
