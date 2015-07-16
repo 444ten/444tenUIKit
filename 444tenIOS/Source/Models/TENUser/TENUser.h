@@ -6,13 +6,9 @@
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-#import "TENModel.h"
-
 #import "TENImage.h"
 
-@interface TENUser : TENModel <NSCoding>
+@interface TENUser : NSObject <NSCoding>
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, strong)   TENImage    *userImage;
 

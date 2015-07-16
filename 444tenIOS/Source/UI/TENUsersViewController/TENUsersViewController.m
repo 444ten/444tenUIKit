@@ -13,12 +13,17 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENChangedPath.h"
+#import "TENImage.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 #import "TENUser.h"
 #import "TENUserCell.h"
 #import "TENUsers.h"
 #import "TENUsersView.h"
+
+static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri1.jpg";
+
+static NSUInteger userNumber = 0;
 
 TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersView);
 
@@ -57,8 +62,17 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark Interface Handling
 
-- (IBAction)onAddButton:(id)sender {    
-    [self.users addObject:[TENUser new]];
+- (IBAction)onAddButton:(id)sender {
+    TENUser *user = [TENUser new];
+    
+    TENImage *userImage = [TENImage imageWithURL:[NSURL URLWithString:kTENURL]];
+    user.name = [NSString stringWithFormat:@"User_%lu", userNumber];
+    
+    userNumber += 1;
+
+    user.userImage = userImage;
+    
+    [self.users addObject:user];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {

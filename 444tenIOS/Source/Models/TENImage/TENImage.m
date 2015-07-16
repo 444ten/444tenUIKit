@@ -50,7 +50,6 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     self = [super init];
     if (self) {
         self.fileURL = url;
-        [self load];
     }
     
     return self;

@@ -9,42 +9,16 @@
 #import "TENUserCell.h"
 
 #import "TENAvatarView.h"
-#import "TENMacro.h"
-#import "TENThread.h"
-
-static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri1.jpg";
-
-@interface TENUserCell ()
-
-@end
 
 @implementation TENUserCell
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.user = nil;
-}
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setUser:(TENUser *)user {
     if (_user != user) {
-        [_user removeObserver:self];
-        
         _user = user;
-        [_user addObserver:self];
-                
-        TENImage *userImage = [TENImage imageWithURL:[NSURL URLWithString:kTENURL]];
-    
-        user.userImage = userImage;
-        self.avatarView.avatarImage = userImage;
-
         [self fillWithModel:user];
-        
-        [user load];
     }
 }
 
@@ -53,19 +27,7 @@ static NSString * const kTENURL = @"http://rsload.net/images4/vin/2014/0707/pri1
 
 - (void)fillWithModel:(TENUser *)user {
     self.nameLabel.text = user.name;
-}
-
-#pragma mark -
-#pragma mark TENModelObserver
-
-- (void)modelDidLoad:(id)model {
-    TENWeakify(self)
-    
-    TENPerformOnMainThreadWithBlock(^{
-        TENStrongifyAndReturnIfNil(self);
-        
-        [self fillWithModel:model];
-    });
+    self.avatarView.avatarImage = user.userImage;
 }
 
 @end
