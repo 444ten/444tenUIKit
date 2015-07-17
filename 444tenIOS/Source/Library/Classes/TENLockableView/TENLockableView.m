@@ -16,6 +16,8 @@
 
 @implementation TENLockableView
 
+@synthesize loadingView = _loadingView;
+
 @dynamic loadingViewClass;
 @dynamic locked;
 
@@ -24,6 +26,14 @@
 
 - (Class)loadingViewClass {
     return [TENLoadingView class];
+}
+
+- (void)setLoadingView:(UIView<TENLoadingViewProtocol> *)loadingView {
+    if (_loadingView != loadingView) {
+        [_loadingView removeFromSuperview];
+        
+        _loadingView = loadingView;
+    }
 }
 
 - (UIView<TENLoadingViewProtocol> *)loadingView {
