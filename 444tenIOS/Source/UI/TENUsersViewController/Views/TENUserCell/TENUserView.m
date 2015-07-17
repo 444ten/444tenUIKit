@@ -1,12 +1,12 @@
 //
-//  TENProfileView.m
+//  TENUserView.m
 //  444tenIOS
 //
 //  Created by Andrey Ten on 7/15/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENProfileView.h"
+#import "TENUserView.h"
 
 #import "TENImageModel.h"
 #import "TENMacro.h"
@@ -14,28 +14,36 @@
 
 static NSString * const kTENFailImageName   = @"cat.jpg";
 
-@implementation TENProfileView
+@implementation TENUserView
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.profileImage = nil;
+    self.userImageModel = nil;
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setProfileImage:(TENImageModel *)profileImage {
-    if (_profileImage != profileImage) {
-        [_profileImage removeObserver:self];
+- (void)setUserImageModel:(TENImageModel *)userImageModel {
+    if (_userImageModel != userImageModel) {
+        [_userImageModel removeObserver:self];
         
-        _profileImage = profileImage;
-        [_profileImage addObserver:self];
+        _userImageModel = userImageModel;
+        [_userImageModel addObserver:self];
         
         self.locked = YES;
-        [_profileImage load];
+        [self fillWithModel:userImageModel];
+        [_userImageModel load];
     }
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)fillWithModel:(TENImageModel *)model {
+    self.userImageView.image = model.image;
 }
 
 #pragma mark -
@@ -46,9 +54,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
-        
-//        self.profileImageView.image = self.profileImage.image;
-        self.profileImageView.image = model.image;
+        [self fillWithModel:model];
         self.locked = NO;
     });
 }
@@ -59,7 +65,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
         
-        self.profileImageView.image = [UIImage imageNamed:kTENFailImageName];
+        self.userImageModel.image = [UIImage imageNamed:kTENFailImageName];
         self.locked = NO;
     });
 }

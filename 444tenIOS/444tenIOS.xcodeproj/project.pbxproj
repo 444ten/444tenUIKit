@@ -22,7 +22,7 @@
 		6C66BC991B5550530091C420 /* NSURLSession+TENExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BC981B5550530091C420 /* NSURLSession+TENExtensions.m */; };
 		6C66BCA51B5687B70091C420 /* TENUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCA31B5687B70091C420 /* TENUserCell.m */; };
 		6C66BCA61B5687B70091C420 /* TENUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C66BCA41B5687B70091C420 /* TENUserCell.xib */; };
-		6C66BCA91B56886C0091C420 /* TENProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCA81B56886C0091C420 /* TENProfileView.m */; };
+		6C66BCA91B56886C0091C420 /* TENUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCA81B56886C0091C420 /* TENUserView.m */; };
 		6C66BCB81B5913D00091C420 /* TSTImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCB51B5913D00091C420 /* TSTImageModelDispatcher.m */; };
 		6C66BCB91B5913D00091C420 /* TSTImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCB71B5913D00091C420 /* TSTImageModel.m */; };
 		6C66BCBD1B5913F30091C420 /* TENImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C66BCBC1B5913F30091C420 /* TENImageModel.m */; };
@@ -108,8 +108,8 @@
 		6C66BCA21B5687B70091C420 /* TENUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUserCell.h; sourceTree = "<group>"; };
 		6C66BCA31B5687B70091C420 /* TENUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUserCell.m; sourceTree = "<group>"; };
 		6C66BCA41B5687B70091C420 /* TENUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TENUserCell.xib; sourceTree = "<group>"; };
-		6C66BCA71B56886C0091C420 /* TENProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENProfileView.h; sourceTree = "<group>"; };
-		6C66BCA81B56886C0091C420 /* TENProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENProfileView.m; sourceTree = "<group>"; };
+		6C66BCA71B56886C0091C420 /* TENUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TENUserView.h; sourceTree = "<group>"; };
+		6C66BCA81B56886C0091C420 /* TENUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TENUserView.m; sourceTree = "<group>"; };
 		6C66BCB41B5913D00091C420 /* TSTImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTImageModelDispatcher.h; sourceTree = "<group>"; };
 		6C66BCB51B5913D00091C420 /* TSTImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTImageModelDispatcher.m; sourceTree = "<group>"; };
 		6C66BCB61B5913D00091C420 /* TSTImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTImageModel.h; sourceTree = "<group>"; };
@@ -346,8 +346,8 @@
 				6C66BCA21B5687B70091C420 /* TENUserCell.h */,
 				6C66BCA31B5687B70091C420 /* TENUserCell.m */,
 				6C66BCA41B5687B70091C420 /* TENUserCell.xib */,
-				6C66BCA71B56886C0091C420 /* TENProfileView.h */,
-				6C66BCA81B56886C0091C420 /* TENProfileView.m */,
+				6C66BCA71B56886C0091C420 /* TENUserView.h */,
+				6C66BCA81B56886C0091C420 /* TENUserView.m */,
 			);
 			path = TENUserCell;
 			sourceTree = "<group>";
@@ -829,7 +829,7 @@
 				6C53FDD61B3A963300460608 /* TENChangedPath.m in Sources */,
 				6CFBE9841B3025B90051E3D6 /* main.m in Sources */,
 				6CF640891B4D1012003025A6 /* TENModel.m in Sources */,
-				6C66BCA91B56886C0091C420 /* TENProfileView.m in Sources */,
+				6C66BCA91B56886C0091C420 /* TENUserView.m in Sources */,
 				6CFBE9EB1B3302C50051E3D6 /* TENUsers.m in Sources */,
 				6CFBE9E41B32FF730051E3D6 /* TENUsersView.m in Sources */,
 				6CFBE9CD1B31832A0051E3D6 /* TENSquareViewController.m in Sources */,
