@@ -87,8 +87,11 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (TENUser *)newUser {
     TENUser *result = [TENUser new];
 
-    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
-    userNumber += 1;
+//    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
+//    userNumber += 1;
+    NSUInteger randomNumber = arc4random() % 3;
+    
+    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", randomNumber];
     
     result.name = name;
     

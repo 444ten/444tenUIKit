@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENObjectCaсhe : NSObject
+@interface TENObjectCache : NSObject
 
 - (NSUInteger)count;
 

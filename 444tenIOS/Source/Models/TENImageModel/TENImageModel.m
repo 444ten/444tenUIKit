@@ -10,7 +10,7 @@
 
 #import "NSFileManager+TENExtensions.h"
 
-#import "TENObjectCaсhe.h"
+#import "TENObjectCache.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 
@@ -26,8 +26,10 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 @property (nonatomic, readonly) NSURLSession                *session;
 @property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
 
+@property (nonatomic, readonly) TENObjectCache              *imageModelCache;
+
 + (NSURLSession *)session;
-+ (TENObjectCaсhe *)imageCache;
++ (TENObjectCache *)imageModelCache;
 
 - (TENTaskCompletion)taskCompletion;
 - (void)loadImageAndNotify;
@@ -40,12 +42,24 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 @dynamic filePath;
 @dynamic fileAvailable;
 @dynamic session;
+@dynamic imageModelCache;
 
 #pragma mark -
 #pragma mark Class Methods
 
 + (instancetype)imageWithURL:(NSURL *)url {
-    return [[self alloc] initWithURL:url];
+    TENObjectCache *imageModelCache = [self imageModelCache];
+    
+    @synchronized (imageModelCache) {
+        id result = [imageModelCache objectForKey:url];
+        
+        if (!result) {
+            result = [[self alloc] initWithURL:url];
+            [imageModelCache setObject:result forKey:url];
+        }
+        
+        return result;
+    }
 }
 
 + (NSURLSession *)session {
@@ -60,15 +74,15 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     return __session;
 }
 
-+ (TENObjectCaсhe *)imageCache {
-    static TENObjectCaсhe *__imageCache = nil;
++ (TENObjectCache *)imageModelCache {
+    static TENObjectCache *__imageModelCache = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __imageCache = [TENObjectCaсhe new];
+        __imageModelCache = [TENObjectCache new];
     });
     
-    return __imageCache;
+    return __imageModelCache;
 }
 
 
@@ -105,6 +119,10 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 - (NSURLSession *)session {
     return [[self class] session];
+}
+
+- (TENObjectCache *)imageModelCache {
+    return [[self class] imageModelCache];
 }
 
 - (void)setDownloadTask:(NSURLSessionDownloadTask *)downloadTask {

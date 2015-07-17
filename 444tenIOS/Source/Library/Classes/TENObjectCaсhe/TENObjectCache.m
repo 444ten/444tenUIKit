@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENObjectCaсhe.h"
+#import "TENObjectCache.h"
 
-@interface TENObjectCaсhe ()
+@interface TENObjectCache ()
 @property (nonatomic, strong) NSMapTable    *imageCache;
 
 @end
 
-@implementation TENObjectCaсhe
+@implementation TENObjectCache
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
