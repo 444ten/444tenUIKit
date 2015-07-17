@@ -13,7 +13,7 @@
 #import "TENMacro.h"
 #import "TENThread.h"
 
-typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
+typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 @interface TENImageModel ()
 @property (nonatomic, strong)   NSURL   *fileURL;
@@ -22,8 +22,10 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
-@property (nonatomic, strong)   NSURLSession                *session;
+@property (nonatomic, readonly) NSURLSession                *session;
 @property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
+
++ (NSURLSession *)session;
 
 - (TENTaskCompletion)taskCompletion;
 - (void)loadImageAndNotify;
@@ -35,6 +37,7 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 @dynamic fileName;
 @dynamic filePath;
 @dynamic fileAvailable;
+@dynamic session;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -43,8 +46,24 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     return [[self alloc] initWithURL:url];
 }
 
++ (NSURLSession *)session {
+    static NSURLSession *__session = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        __session = [NSURLSession sessionWithConfiguration:configuration];
+    });
+    
+    return __session;
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.downloadTask = nil;
+}
 
 - (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
@@ -71,12 +90,16 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 }
 
 - (NSURLSession *)session {
-    if (nil == _session) {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:configuration];
+    return [[self class] session];
+}
+
+- (void)setDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
+    if (_downloadTask != downloadTask) {
+        [_downloadTask cancel];
+        
+        _downloadTask = downloadTask;
+        [_downloadTask resume];
     }
-    
-    return _session;
 }
 
 #pragma mark -
@@ -88,10 +111,8 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
     if (self.isFileAvailable) {
         [self loadImageAndNotify];
     } else {
-        NSURLSessionDownloadTask *downloadTask = [self.session downloadTaskWithURL:self.fileURL
-                                                                 completionHandler:[self taskCompletion]];
-        self.downloadTask = downloadTask;
-        [downloadTask resume];
+        self.downloadTask = [self.session downloadTaskWithURL:self.fileURL
+                                            completionHandler:[self taskCompletion]];
     }
 }
 
@@ -99,8 +120,8 @@ typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSErr
 #pragma mark Private
 
 - (TENTaskCompletion)taskCompletion {
-    return ^(NSURL *location, NSURLResponse *response, NSError *error) {
-        if (nil != error) {
+    return ^(NSURL *location, NSHTTPURLResponse *response, NSError *error) {
+        if (nil != error || 200 != response.statusCode) {
             self.state = TENModelFailLoading;
             
             return;

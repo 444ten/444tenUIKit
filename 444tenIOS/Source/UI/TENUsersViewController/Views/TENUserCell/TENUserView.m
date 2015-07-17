@@ -64,8 +64,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
-        
-        self.userImageModel.image = [UIImage imageNamed:kTENFailImageName];
+        self.userImageView.image = [UIImage imageNamed:kTENFailImageName];
         self.locked = NO;
     });
 }
