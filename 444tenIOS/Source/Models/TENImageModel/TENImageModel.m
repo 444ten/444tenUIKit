@@ -10,6 +10,7 @@
 
 #import "NSFileManager+TENExtensions.h"
 
+#import "TENObjectCaсhe.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 
@@ -26,6 +27,7 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 @property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
 
 + (NSURLSession *)session;
++ (TENObjectCaсhe *)imageCache;
 
 - (TENTaskCompletion)taskCompletion;
 - (void)loadImageAndNotify;
@@ -57,6 +59,18 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     
     return __session;
 }
+
++ (TENObjectCaсhe *)imageCache {
+    static TENObjectCaсhe *__imageCache = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __imageCache = [TENObjectCaсhe new];
+    });
+    
+    return __imageCache;
+}
+
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -107,7 +121,7 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 - (void)performLoadingInBackground {
     TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
-
+    
     if (self.isFileAvailable) {
         [self loadImageAndNotify];
     } else {

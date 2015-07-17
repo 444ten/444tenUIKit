@@ -1,5 +1,5 @@
 //
-//  TENImageCaсhe.h
+//  TENObjectCaсhe.h
 //  444tenIOS
 //
 //  Created by Andrey Ten on 7/17/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENImageCache : NSObject
+@interface TENObjectCaсhe : NSObject
 
 - (NSUInteger)count;
 
