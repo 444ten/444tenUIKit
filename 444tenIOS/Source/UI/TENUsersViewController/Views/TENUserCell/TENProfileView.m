@@ -8,7 +8,7 @@
 
 #import "TENProfileView.h"
 
-#import "TENImage.h"
+#import "TENImageModel.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 
@@ -26,7 +26,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setProfileImage:(TENImage *)profileImage {
+- (void)setProfileImage:(TENImageModel *)profileImage {
     if (_profileImage != profileImage) {
         [_profileImage removeObserver:self];
         
@@ -41,7 +41,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 #pragma mark -
 #pragma mark TENModelObserver
 
-- (void)modelDidLoad:(TENImage *)model {
+- (void)modelDidLoad:(TENImageModel *)model {
     TENWeakify(self);
     
     TENPerformOnMainThreadWithBlock(^{
@@ -63,6 +63,5 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
         self.locked = NO;
     });
 }
-
 
 @end

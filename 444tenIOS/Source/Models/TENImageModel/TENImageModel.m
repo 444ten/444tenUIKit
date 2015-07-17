@@ -2,25 +2,39 @@
 //  TENImageModel.m
 //  444tenIOS
 //
-//  Created by Andrey Ten on 7/1/15.
+//  Created by Andrey Ten on 7/13/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
 #import "TENImageModel.h"
 
-#import "TENImageModelDispatcher.h"
+#import "NSFileManager+TENExtensions.h"
+
 #import "TENMacro.h"
+#import "TENThread.h"
+
+typedef void(^TENTaskCompletion)(NSURL *location, NSURLResponse *response, NSError *error);
 
 @interface TENImageModel ()
-@property (nonatomic, strong)   UIImage     *image;
-@property (nonatomic, strong)   NSURL       *url;
-@property (nonatomic, strong)   NSOperation *operation;
+@property (nonatomic, strong)   NSURL   *fileURL;
 
-- (NSOperation *)imageLoadingOperation;
+@property (nonatomic, readonly)                         NSString    *fileName;
+@property (nonatomic, readonly)                         NSString    *filePath;
+@property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
+
+@property (nonatomic, strong)   NSURLSession                *session;
+@property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
+
+- (TENTaskCompletion)taskCompletion;
+- (void)loadImageAndNotify;
 
 @end
 
 @implementation TENImageModel
+
+@dynamic fileName;
+@dynamic filePath;
+@dynamic fileAvailable;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -32,14 +46,10 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    self.operation = nil;
-}
-
 - (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
     if (self) {
-        self.url = url;
+        self.fileURL = url;
     }
     
     return self;
@@ -48,63 +58,72 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setOperation:(NSOperation *)operation {
-    if (_operation != operation) {
-        [_operation cancel];
-        
-        _operation = operation;
-        
-        if (operation) {
-            TENImageModelDispatcher *dispatcher = [TENImageModelDispatcher sharedDispatcher];
-            [dispatcher.queue addOperation:operation];
-        }
+- (NSString *)fileName {
+    return [self.fileURL lastPathComponent];
+}
+
+- (NSString *)filePath {
+    return [NSFileManager documentsPathWithFileName:self.fileName];
+}
+
+- (BOOL)isFileAvailable {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
+}
+
+- (NSURLSession *)session {
+    if (nil == _session) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:configuration];
     }
+    
+    return _session;
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Overloading
 
-- (void)load {
-    @synchronized (self) {
-        if (self.state == TENImageModelLoading) {
-            return;
-        }
-        
-        if (self.state == TENImageModelLoaded) {
-            [self setState:TENImageModelLoaded];
-            return;
-        }
-        
-        self.state = TENImageModelLoading;
+- (void)performLoadingInBackground {
+    TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
+
+    if (self.isFileAvailable) {
+        [self loadImageAndNotify];
+    } else {
+        NSURLSessionDownloadTask *downloadTask = [self.session downloadTaskWithURL:self.fileURL
+                                                                 completionHandler:[self taskCompletion]];
+        self.downloadTask = downloadTask;
+        [downloadTask resume];
     }
-
-    self.operation = [self imageLoadingOperation];
-}
-
-- (void)dump {
-    self.operation = nil;
-    self.image = nil;
-    self.state = TENImageModelUnloaded;
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (NSOperation *)imageLoadingOperation {
-    TENWeakify(self);
-    
-    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        TENStrongifyAndReturnIfNil(self);
-        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
-    }];
-    
-    operation.completionBlock = ^{
-        TENStrongifyAndReturnIfNil(self);
-        self.state = self.image ? TENImageModelLoaded : TENImageModelFailingLoading;
-    };
+- (TENTaskCompletion)taskCompletion {
+    return ^(NSURL *location, NSURLResponse *response, NSError *error) {
+        if (nil != error) {
+            self.state = TENModelFailLoading;
+            
+            return;
+        }
+        
+        NSError *fileManagerError = nil;
+        [[NSFileManager defaultManager] copyItemAtURL:location
+                                                toURL:[NSURL fileURLWithPath:self.filePath]
+                                                error:&fileManagerError];
 
-    return operation;
+        if (nil != fileManagerError) {
+            self.state = TENModelFailLoading;
+            
+            return;
+        }
+        
+        [self loadImageAndNotify];
+    };
 }
 
+- (void)loadImageAndNotify {
+    self.image = [UIImage imageWithContentsOfFile:self.filePath];
+    self.state = TENModelLoaded;
+}
 
 @end

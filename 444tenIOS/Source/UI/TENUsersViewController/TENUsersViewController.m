@@ -13,7 +13,7 @@
 #import "UITableView+TENExtensions.h"
 
 #import "TENChangedPath.h"
-#import "TENImage.h"
+#import "TENImageModel.h"
 #import "TENMacro.h"
 #import "TENThread.h"
 #import "TENUser.h"
@@ -93,7 +93,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     result.name = name;
     
     NSURL *url = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
-    result.userImage = [TENImage imageWithURL:url];
+    result.imageModel = [TENImageModel imageWithURL:url];
 
     return result;
 }

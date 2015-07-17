@@ -8,11 +8,11 @@
 
 #import "TENLockableView.h"
 
-@class TENImage;
+@class TENImageModel;
 
 @interface TENProfileView : TENLockableView
 @property (nonatomic, strong)   IBOutlet UIImageView    *profileImageView;
 
-@property (nonatomic, strong)   TENImage    *profileImage;
+@property (nonatomic, strong)   TENImageModel    *profileImage;
 
 @end

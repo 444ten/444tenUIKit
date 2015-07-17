@@ -1,5 +1,5 @@
 //
-//  TENImageModelDispatcher.h
+//  TSTImageModelDispatcher.h
 //  444tenIOS
 //
 //  Created by Andrey Ten on 7/1/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENImageModelDispatcher : NSObject
+@interface TSTImageModelDispatcher : NSObject
 @property (nonatomic, readonly) NSOperationQueue    *queue;
 
 + (instancetype)sharedDispatcher;

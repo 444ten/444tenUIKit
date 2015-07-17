@@ -1,21 +1,21 @@
 //
-//  TENImageModelDispatcher.m
+//  TSTImageModelDispatcher.m
 //  444tenIOS
 //
 //  Created by Andrey Ten on 7/1/15.
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENImageModelDispatcher.h"
+#import "TSTImageModelDispatcher.h"
 
-@interface TENImageModelDispatcher ()
+@interface TSTImageModelDispatcher ()
 @property (nonatomic, strong) NSOperationQueue    *queue;
 
 - (void)initQueue;
 
 @end
 
-@implementation TENImageModelDispatcher
+@implementation TSTImageModelDispatcher
 
 #pragma mark -
 #pragma mark Class Methods
