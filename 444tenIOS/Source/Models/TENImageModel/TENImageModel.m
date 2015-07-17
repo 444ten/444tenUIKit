@@ -20,6 +20,7 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 @property (nonatomic, strong)   NSURL   *fileURL;
 
 @property (nonatomic, readonly)                         NSString    *fileName;
+@property (nonatomic, readonly)                         NSString    *folderPath;
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
@@ -40,6 +41,7 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 @dynamic fileName;
 @dynamic filePath;
+@dynamic folderPath;
 @dynamic fileAvailable;
 @dynamic session;
 @dynamic imageModelCache;
@@ -97,6 +99,11 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     self = [super init];
     if (self) {
         self.fileURL = url;
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.folderPath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:nil];
     }
     
     return self;
@@ -109,8 +116,15 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     return [self.fileURL lastPathComponent];
 }
 
+- (NSString *)folderPath {
+    NSURL *url = self.fileURL;
+    NSString *path = [url.host stringByAppendingPathComponent:[url.path stringByDeletingLastPathComponent]];
+    
+    return [NSFileManager documentsPathWithFileName:[path stringByStandardizingPath]];
+}
+
 - (NSString *)filePath {
-    return [NSFileManager documentsPathWithFileName:self.fileName];
+    return [self.folderPath stringByAppendingPathComponent:self.fileName];
 }
 
 - (BOOL)isFileAvailable {

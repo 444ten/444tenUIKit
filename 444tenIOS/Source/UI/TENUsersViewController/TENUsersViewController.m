@@ -29,7 +29,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 @interface TENUsersViewController ()
 
-- (TENUser *)newUser;
+- (TENUser *)user;
 
 @end
 
@@ -69,7 +69,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark Interface Handling
 
 - (IBAction)onAddButton:(id)sender {
-    [self.users addObject:[self newUser]];
+    [self.users addObject:[self user]];
 }
 
 - (IBAction)onEditButton:(UIButton *)sender {
@@ -84,22 +84,19 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark -
 #pragma mark Private
 
-- (TENUser *)newUser {
+- (TENUser *)user {
     TENUser *result = [TENUser new];
 
 //    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
     userNumber += 1;
     
     NSUInteger step = userNumber < 8 ? 0 : 3;
-    
     NSUInteger randomNumber = arc4random() % 3 + step;
     
     NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", randomNumber];
     
     result.name = name;
-    
-    NSURL *url = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
-    result.imageUrl = url;
+    result.imageUrl = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
 
     return result;
 }
@@ -108,7 +105,7 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.users[indexPath.row] = [self newUser];
+    self.users[indexPath.row] = [self user];
 }
 
 - (void)    tableView:(UITableView *)tableView
