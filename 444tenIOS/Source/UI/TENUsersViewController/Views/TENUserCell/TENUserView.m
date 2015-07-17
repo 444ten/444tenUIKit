@@ -14,6 +14,8 @@
 
 static NSString * const kTENFailImageName   = @"cat.jpg";
 
+static const BOOL TENLoadingViewAnimated    = NO;
+
 @implementation TENUserView
 
 #pragma mark -
@@ -33,7 +35,8 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
         _userImageModel = userImageModel;
         [_userImageModel addObserver:self];
         
-        self.locked = YES;
+        [self setLocked:YES animated:TENLoadingViewAnimated];
+        
         [self fillWithModel:userImageModel];
         [_userImageModel load];
     }
@@ -55,7 +58,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
         [self fillWithModel:model];
-        self.locked = NO;
+        [self setLocked:NO animated:TENLoadingViewAnimated];
     });
 }
 
@@ -65,7 +68,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
         self.userImageView.image = [UIImage imageNamed:kTENFailImageName];
-        self.locked = NO;
+        [self setLocked:NO animated:TENLoadingViewAnimated];
     });
 }
 

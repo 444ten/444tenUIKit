@@ -16,4 +16,6 @@
 @property (nonatomic, readonly)                 Class   loadingViewClass;
 @property (nonatomic, assign, getter=isLocked)  BOOL    locked;
 
+- (void)setLocked:(BOOL)locked animated:(BOOL)animated;
+
 @end

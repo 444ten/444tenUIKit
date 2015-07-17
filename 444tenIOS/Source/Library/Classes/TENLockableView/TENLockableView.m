@@ -45,7 +45,11 @@
 }
 
 - (void)setLocked:(BOOL)locked {
-    [self.loadingView setLocked:locked animated:YES];
+    [self setLocked:locked animated:YES];
+}
+
+- (void)setLocked:(BOOL)locked animated:(BOOL)animated {
+    [self.loadingView setLocked:locked animated:animated];
 }
 
 - (BOOL)isLocked {
