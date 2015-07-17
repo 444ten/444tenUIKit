@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TENImageCa_he : NSObject
+@interface TENImageCache : NSObject
+
+- (NSUInteger)count;
+
+- (id)objectForKey:(id)aKey;
+
+- (void)removeObjectForKey:(id)aKey;
+- (void)setObject:(id)anObject forKey:(id)aKey;
+
+- (void)removeAllObjects;
+
+- (NSDictionary *)dictionaryRepresentation;
 
 @end

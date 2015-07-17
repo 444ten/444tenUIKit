@@ -8,6 +8,60 @@
 
 #import "TENImageCaсhe.h"
 
-@implementation TENImageCa_he
+@interface TENImageCache ()
+@property (nonatomic, strong) NSMapTable    *imageCache;
+
+@end
+
+@implementation TENImageCache
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.imageCache = [NSMapTable strongToWeakObjectsMapTable];
+    }
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (NSUInteger)count {
+    return self.imageCache.count;
+}
+
+- (id)objectForKey:(id)aKey {
+    @synchronized (self) {
+        return [self.imageCache objectForKey:aKey];
+    }
+}
+
+- (void)removeObjectForKey:(id)aKey {
+    @synchronized (self) {
+        [self.imageCache removeObjectForKey:aKey];
+    }
+}
+
+- (void)setObject:(id)anObject forKey:(id)aKey {
+    @synchronized (self) {
+        [self.imageCache setObject:anObject forKey:aKey];
+    }
+}
+
+- (void)removeAllObjects {
+    @synchronized (self) {
+        [self.imageCache removeAllObjects];
+    }
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    @synchronized (self) {
+        return [self.imageCache dictionaryRepresentation];
+    }
+}
 
 @end
