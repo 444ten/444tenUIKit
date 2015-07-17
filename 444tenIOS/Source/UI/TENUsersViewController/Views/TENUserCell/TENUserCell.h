@@ -8,8 +8,9 @@
 
 #import "TENTableViewCell.h"
 
-#import "TENUser.h"
+#import "TENModel.h"
 
+@class TENUser;
 @class TENUserView;
 
 @interface TENUserCell : TENTableViewCell <TENModelObserver>

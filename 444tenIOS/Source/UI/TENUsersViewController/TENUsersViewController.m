@@ -88,15 +88,18 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
     TENUser *result = [TENUser new];
 
 //    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
-//    userNumber += 1;
-    NSUInteger randomNumber = arc4random() % 3;
+    userNumber += 1;
+    
+    NSUInteger step = userNumber < 8 ? 0 : 3;
+    
+    NSUInteger randomNumber = arc4random() % 3 + step;
     
     NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", randomNumber];
     
     result.name = name;
     
     NSURL *url = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
-    result.imageModel = [TENImageModel imageWithURL:url];
+    result.imageUrl = url;
 
     return result;
 }
@@ -106,6 +109,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.users[indexPath.row] = [self newUser];
+}
+
+- (void)    tableView:(UITableView *)tableView
+ didEndDisplayingCell:(UITableViewCell *)cell
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    NSLog(@"%@", indexPath);
 }
 
 #pragma mark -

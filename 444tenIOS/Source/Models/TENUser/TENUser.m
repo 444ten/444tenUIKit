@@ -8,9 +8,20 @@
 
 #import "TENUser.h"
 
-static NSString * const kCoderName          = @"kCoderName";
+#import "TENImageModel.h"
+
+static NSString * const kCoderName  = @"kCoderName";
 
 @implementation TENUser
+
+@dynamic imageModel;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (TENImageModel *)imageModel {
+    return [TENImageModel imageWithURL:self.imageUrl];
+}
 
 #pragma mark -
 #pragma mark NSCoding protocol

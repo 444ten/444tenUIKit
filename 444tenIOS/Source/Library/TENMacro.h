@@ -58,12 +58,12 @@
         return result; \
     }
 
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 #if (1 == DEBUG_MODE)
-#define TENSleep(time) sleep(time)
-#define TENUSleep(time) usleep(time)
+    #define TENSleep(time) sleep(time)
+    #define TENUSleep(time) usleep(time)
 #else
-#define TENSleep(time)
-#define TENUSleep(time)
+    #define TENSleep(time)
+    #define TENUSleep(time)
 #endif

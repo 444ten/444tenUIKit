@@ -8,6 +8,7 @@
 
 #import "TENUserCell.h"
 
+#import "TENUser.h"
 #import "TENUserView.h"
 
 @implementation TENUserCell

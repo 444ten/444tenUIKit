@@ -6,10 +6,13 @@
 //  Copyright (c) 2015 Andrey Ten. All rights reserved.
 //
 
-#import "TENImageModel.h"
+#import <Foundation/Foundation.h>
+
+@class TENImageModel;
 
 @interface TENUser : NSObject <NSCoding>
 @property (nonatomic, copy)     NSString        *name;
-@property (nonatomic, strong)   TENImageModel   *imageModel;
+@property (nonatomic, strong)   NSURL           *imageUrl;
+@property (nonatomic, readonly) TENImageModel   *imageModel;
 
 @end
