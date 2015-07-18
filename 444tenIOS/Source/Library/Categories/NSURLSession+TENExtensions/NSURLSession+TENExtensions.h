@@ -10,6 +10,6 @@
 
 @interface NSURLSession (TENExtensions)
 
-+ (NSURLSession *)sharedDefaultSession;
++ (NSURLSession *)sharedEphemeralSessionForClass:(Class)cls;
 
 @end

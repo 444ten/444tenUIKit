@@ -28,14 +28,6 @@
     return [TENLoadingView class];
 }
 
-- (void)setLoadingView:(UIView<TENLoadingViewProtocol> *)loadingView {
-    if (_loadingView != loadingView) {
-        [_loadingView removeFromSuperview];
-        
-        _loadingView = loadingView;
-    }
-}
-
 - (UIView<TENLoadingViewProtocol> *)loadingView {
     if (nil == _loadingView) {
         _loadingView = [self.loadingViewClass viewInSuperview:self];
@@ -44,16 +36,24 @@
     return _loadingView;
 }
 
+- (void)setLoadingView:(UIView<TENLoadingViewProtocol> *)loadingView {
+    if (_loadingView != loadingView) {
+        [_loadingView removeFromSuperview];
+        
+        _loadingView = loadingView;
+    }
+}
+
+- (BOOL)isLocked {
+    return self.loadingView.isLocked;
+}
+
 - (void)setLocked:(BOOL)locked {
     [self setLocked:locked animated:YES];
 }
 
 - (void)setLocked:(BOOL)locked animated:(BOOL)animated {
     [self.loadingView setLocked:locked animated:animated];
-}
-
-- (BOOL)isLocked {
-    return self.loadingView.isLocked;
 }
 
 @end

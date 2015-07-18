@@ -9,6 +9,7 @@
 #import "TENImageModel.h"
 
 #import "NSFileManager+TENExtensions.h"
+#import "NSURLSession+TENExtensions.h"
 
 #import "TENObjectCache.h"
 #import "TENMacro.h"
@@ -29,7 +30,6 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 @property (nonatomic, readonly) TENObjectCache              *imageModelCache;
 
-+ (NSURLSession *)session;
 + (TENObjectCache *)imageModelCache;
 
 - (TENTaskCompletion)taskCompletion;
@@ -64,18 +64,6 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     }
 }
 
-+ (NSURLSession *)session {
-    static NSURLSession *__session = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-        __session = [NSURLSession sessionWithConfiguration:configuration];
-    });
-    
-    return __session;
-}
-
 + (TENObjectCache *)imageModelCache {
     static TENObjectCache *__imageModelCache = nil;
     
@@ -86,7 +74,6 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     
     return __imageModelCache;
 }
-
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -132,7 +119,7 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 }
 
 - (NSURLSession *)session {
-    return [[self class] session];
+    return [NSURLSession sharedEphemeralSessionForClass:[self class]];
 }
 
 - (TENObjectCache *)imageModelCache {
