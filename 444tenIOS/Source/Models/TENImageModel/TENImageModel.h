@@ -17,4 +17,6 @@
 
 - (instancetype)initWithURL:(NSURL *)url;
 
+- (void)cancel;
+
 @end

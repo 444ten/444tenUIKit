@@ -86,15 +86,17 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 
 - (TENUser *)user {
     TENUser *result = [TENUser new];
+    
+//unique
+//    NSUInteger number = userNumber;
 
-    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
+//random
+    NSUInteger step = userNumber < 8 ? 0 : 3;
+    NSUInteger number = arc4random() % 3 + step;
+    
     userNumber += 1;
-    
-//    NSUInteger step = userNumber < 8 ? 0 : 3;
-//    NSUInteger randomNumber = arc4random() % 3 + step;
-//    
-//    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", randomNumber];
-    
+
+    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", number];
     result.name = name;
     result.imageUrl = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
 
@@ -109,10 +111,10 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 }
 
 - (void)    tableView:(UITableView *)tableView
- didEndDisplayingCell:(UITableViewCell *)cell
+ didEndDisplayingCell:(TENUserCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"%@", indexPath);
+    cell.user = nil;
 }
 
 #pragma mark -

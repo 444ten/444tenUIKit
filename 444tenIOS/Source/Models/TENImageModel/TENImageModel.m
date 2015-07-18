@@ -85,7 +85,7 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.downloadTask = nil;
+    [self cancel];
 }
 
 - (instancetype)initWithURL:(NSURL *)url {
@@ -137,6 +137,15 @@ static NSString * const kTENFailImageName   = @"cat.jpg";
 
 - (BOOL)isFileAvailable {
     return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)cancel {
+    [[[self class] imageModelCache] removeObjectForKey:self.fileURL];
+    self.downloadTask = nil;
+    self.image = nil;
 }
 
 #pragma mark -
