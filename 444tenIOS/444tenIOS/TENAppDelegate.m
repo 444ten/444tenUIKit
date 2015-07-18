@@ -48,7 +48,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    [self.users save];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -63,7 +63,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [self.users save];
+
 }
 
 @end

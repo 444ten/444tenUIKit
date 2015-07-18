@@ -10,6 +10,6 @@
 
 @interface TENUsers : TENOrderedModel
 
-- (void)save;
+- (void)save:(id)object;
 
 @end

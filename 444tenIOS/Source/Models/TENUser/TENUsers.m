@@ -8,6 +8,8 @@
 
 #import "TENUsers.h"
 
+#import <UIKit/UIKit.h>
+
 #import "NSFileManager+TENExtensions.h"
 
 #import "TENMacro.h"
@@ -28,6 +30,25 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 @dynamic fileAvailable;
 
 #pragma mark -
+#pragma mark - Initiualizations and Deallocations
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        
+        [nc addObserver:self selector:@selector(save:) name:UIApplicationWillResignActiveNotification object:nil];
+        [nc addObserver:self selector:@selector(save:) name:UIApplicationWillTerminateNotification object:nil];
+    }
+    
+    return self;
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (NSString *)fileName {
@@ -45,7 +66,7 @@ static NSString * const kTENUsersFileName   = @"kTENUsersFileName.plist";
 #pragma mark -
 #pragma mark Public
 
-- (void)save {
+- (void)save:(id)object {
     [[NSKeyedArchiver archivedDataWithRootObject:self.objects] writeToFile:self.filePath atomically:YES];
 }
 
