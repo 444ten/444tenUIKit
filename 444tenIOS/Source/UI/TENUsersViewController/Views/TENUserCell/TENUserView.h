@@ -17,5 +17,4 @@
 
 - (void)fillWithModel:(TENImageModel *)model;
 
-
 @end

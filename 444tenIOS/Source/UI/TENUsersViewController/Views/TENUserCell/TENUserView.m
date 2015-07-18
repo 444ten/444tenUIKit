@@ -12,8 +12,6 @@
 #import "TENMacro.h"
 #import "TENThread.h"
 
-static NSString * const kTENFailImageName   = @"cat.jpg";
-
 static const BOOL TENLoadingViewAnimated    = NO;
 
 @implementation TENUserView
@@ -58,16 +56,6 @@ static const BOOL TENLoadingViewAnimated    = NO;
     TENPerformOnMainThreadWithBlock(^{
         TENStrongifyAndReturnIfNil(self);
         [self fillWithModel:model];
-        [self setLocked:NO animated:TENLoadingViewAnimated];
-    });
-}
-
-- (void)modelDidFailLoad:(id)model {
-    TENWeakify(self);
-    
-    TENPerformOnMainThreadWithBlock(^{
-        TENStrongifyAndReturnIfNil(self);
-        self.userImageView.image = [UIImage imageNamed:kTENFailImageName];
         [self setLocked:NO animated:TENLoadingViewAnimated];
     });
 }

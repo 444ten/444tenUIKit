@@ -13,27 +13,24 @@
 
 #import "TENObjectCache.h"
 #import "TENMacro.h"
-#import "TENThread.h"
 
 typedef void(^TENTaskCompletion)(id location, id response, id error);
 
+static NSString * const kTENFailImageName   = @"cat.jpg";
+
 @interface TENImageModel ()
-@property (nonatomic, strong)   NSURL   *fileURL;
+@property (nonatomic, strong)   NSURL                       *fileURL;
+@property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
 
 @property (nonatomic, readonly)                         NSString    *fileName;
 @property (nonatomic, readonly)                         NSString    *folderPath;
 @property (nonatomic, readonly)                         NSString    *filePath;
 @property (nonatomic, readonly, getter=isFileAvailable) BOOL        fileAvailable;
 
-@property (nonatomic, readonly) NSURLSession                *session;
-@property (nonatomic, strong)   NSURLSessionDownloadTask    *downloadTask;
-
-@property (nonatomic, readonly) TENObjectCache              *imageModelCache;
-
 + (TENObjectCache *)imageModelCache;
++ (UIImage *)failImage;
 
 - (TENTaskCompletion)taskCompletion;
-- (void)loadImageAndNotify;
 
 @end
 
@@ -43,8 +40,6 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 @dynamic filePath;
 @dynamic folderPath;
 @dynamic fileAvailable;
-@dynamic session;
-@dynamic imageModelCache;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -75,6 +70,17 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     return __imageModelCache;
 }
 
++ (UIImage *)failImage {
+    static UIImage *__failImage = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __failImage = [UIImage imageNamed:kTENFailImageName];
+    });
+    
+    return __failImage;
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
@@ -86,7 +92,6 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     self = [super init];
     if (self) {
         self.fileURL = url;
-        
         [[NSFileManager defaultManager] createDirectoryAtPath:self.folderPath
                                   withIntermediateDirectories:YES
                                                    attributes:nil
@@ -98,6 +103,22 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 #pragma mark -
 #pragma mark Accessors
+
+- (void)setImage:(UIImage *)image {
+    if (_image != image) {
+        _image = image;
+        self.state = TENModelLoaded;
+    }
+}
+
+- (void)setDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
+    if (_downloadTask != downloadTask) {
+        [_downloadTask cancel];
+        
+        _downloadTask = downloadTask;
+        [_downloadTask resume];
+    }
+}
 
 - (NSString *)fileName {
     return [self.fileURL lastPathComponent];
@@ -118,23 +139,6 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
 }
 
-- (NSURLSession *)session {
-    return [NSURLSession sharedEphemeralSessionForClass:[self class]];
-}
-
-- (TENObjectCache *)imageModelCache {
-    return [[self class] imageModelCache];
-}
-
-- (void)setDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
-    if (_downloadTask != downloadTask) {
-        [_downloadTask cancel];
-        
-        _downloadTask = downloadTask;
-        [_downloadTask resume];
-    }
-}
-
 #pragma mark -
 #pragma mark Overloading
 
@@ -142,10 +146,11 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
     TENUSleep(1000*1000 + 1000 * arc4random_uniform(1000));
     
     if (self.isFileAvailable) {
-        [self loadImageAndNotify];
+        self.image = [UIImage imageWithContentsOfFile:self.filePath];
     } else {
-        self.downloadTask = [self.session downloadTaskWithURL:self.fileURL
-                                            completionHandler:[self taskCompletion]];
+        NSURLSession *session = [NSURLSession sharedEphemeralSessionForClass:[self class]];
+        self.downloadTask = [session downloadTaskWithURL:self.fileURL
+                                       completionHandler:[self taskCompletion]];
     }
 }
 
@@ -154,30 +159,21 @@ typedef void(^TENTaskCompletion)(id location, id response, id error);
 
 - (TENTaskCompletion)taskCompletion {
     return ^(NSURL *location, NSHTTPURLResponse *response, NSError *error) {
-        if (nil != error || 200 != response.statusCode) {
-            self.state = TENModelFailLoading;
-            
-            return;
-        }
-        
-        NSError *fileManagerError = nil;
-        [[NSFileManager defaultManager] copyItemAtURL:location
-                                                toURL:[NSURL fileURLWithPath:self.filePath]
-                                                error:&fileManagerError];
+        UIImage *image = [[self class] failImage];
 
-        if (nil != fileManagerError) {
-            self.state = TENModelFailLoading;
-            
-            return;
+        if (nil == error && 200 == response.statusCode) {
+            NSError *fileManagerError = nil;
+            [[NSFileManager defaultManager] copyItemAtURL:location
+                                                    toURL:[NSURL fileURLWithPath:self.filePath]
+                                                    error:&fileManagerError];
+        
+            if (nil == fileManagerError) {
+                image = [UIImage imageWithContentsOfFile:self.filePath];
+            }
         }
         
-        [self loadImageAndNotify];
+        self.image = image;
     };
-}
-
-- (void)loadImageAndNotify {
-    self.image = [UIImage imageWithContentsOfFile:self.filePath];
-    self.state = TENModelLoaded;
 }
 
 @end

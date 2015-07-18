@@ -87,13 +87,13 @@ TENViewControllerBaseViewProperty(TENUsersViewController, usersView, TENUsersVie
 - (TENUser *)user {
     TENUser *result = [TENUser new];
 
-//    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
+    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", userNumber];
     userNumber += 1;
     
-    NSUInteger step = userNumber < 8 ? 0 : 3;
-    NSUInteger randomNumber = arc4random() % 3 + step;
-    
-    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", randomNumber];
+//    NSUInteger step = userNumber < 8 ? 0 : 3;
+//    NSUInteger randomNumber = arc4random() % 3 + step;
+//    
+//    NSString *name = [NSString stringWithFormat:@"pri%lu.jpg", randomNumber];
     
     result.name = name;
     result.imageUrl = [[NSURL URLWithString:kTENURL] URLByAppendingPathComponent:name];
