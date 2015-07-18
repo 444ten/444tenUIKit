@@ -10,7 +10,8 @@
 
 #import "TENImageModel.h"
 
-static NSString * const kCoderName  = @"kCoderName";
+static NSString * const kCoderName      = @"kCoderName";
+static NSString * const kCoderImageUrl  = @"kCoderImageUrl";
 
 @implementation TENUser
 
@@ -30,6 +31,7 @@ static NSString * const kCoderName  = @"kCoderName";
     self = [super init];
     if (self) {
         self.name = [aDecoder decodeObjectForKey:kCoderName];
+        self.imageUrl = [aDecoder decodeObjectForKey:kCoderImageUrl];
     }
     
     return self;
@@ -37,6 +39,7 @@ static NSString * const kCoderName  = @"kCoderName";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:kCoderName];
+    [aCoder encodeObject:self.imageUrl forKey:kCoderImageUrl];
 }
 
 @end

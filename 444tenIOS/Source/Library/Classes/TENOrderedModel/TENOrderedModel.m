@@ -70,12 +70,16 @@
     [self.array moveObjectAtIndex:fromIndex toIndex:toIndex];
 }
 
-- (void)removeAllObjectWithoutNotification {
-    [self.array removeAllObjects];
+- (void)removeAllObjects {
+    while ([self count] > 0) {
+        [self removeObjectAtIndex:0];
+    }
 }
 
-- (void)addObjectsFromArrayWithoutNotification:(NSArray *)array {
-    [self.array addObjectsFromArray:array];
+- (void)addObjectsFromArray:(NSArray *)array {
+    for (id object in array) {
+        [self addObject:object];
+    }
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
